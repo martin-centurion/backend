@@ -18,3 +18,91 @@ Se llamará al método “addProduct” con los mismos campos de arriba, debe ar
 Se evaluará que getProductById devuelva error si no encuentra el producto o el producto en caso de encontrarlo
 
 */
+
+class ProductManager {
+    constructor() {
+      this.products = [];
+    }
+  
+    generateUniqueId() {
+      // Función para generar un ID único
+      return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+    }
+  
+    getProducts() {
+      return this.products;
+    }
+  
+    addProduct(title, description, price, thumbnail, code, stock) {
+      // Comprobar si el código ya existe en algún producto
+      const existingProduct = this.products.find(product => product.code === code);
+      if (existingProduct) {
+        throw new Error("El código de producto ya está en uso.");
+      }
+  
+      const id = this.generateUniqueId();
+      const product = {
+        id,
+        title,
+        description,
+        price,
+        thumbnail,
+        code,
+        stock,
+      };
+      this.products.push(product);
+  
+      return product;
+    }
+  
+    getProductById(productId) {
+      const product = this.products.find(product => product.id === productId);
+      if (!product) {
+        throw new Error("Producto no encontrado.");
+      }
+      return product;
+    }
+  }
+  
+  // Crear una instancia de ProductManager
+  const productManager = new ProductManager();
+  
+  // Obtener productos (debe devolver un arreglo vacío)
+  console.log(productManager.getProducts()); // []
+  
+  // Agregar un producto
+  const newProduct = productManager.addProduct(
+    "producto prueba",
+    "Este es un producto prueba",
+    200,
+    "Sin imagen",
+    "abc123",
+    25
+  );
+  console.log(newProduct); // Debería mostrar el producto agregado
+  
+  // Obtener productos nuevamente (ahora debería contener el producto agregado)
+  console.log(productManager.getProducts());
+  
+  // Intentar agregar el mismo producto nuevamente (debe arrojar un error)
+  try {
+    productManager.addProduct(
+      "producto prueba",
+      "Este es un producto prueba",
+      200,
+      "Sin imagen",
+      "abc123",
+      25
+    );
+  } catch (error) {
+    console.error(error.message); // Debería mostrar "El código de producto ya está en uso."
+  }
+  
+  // Obtener un producto por ID
+  try {
+    const foundProduct = productManager.getProductById(newProduct.id);
+    console.log(foundProduct);
+  } catch (error) {
+    console.error(error.message); // Debería mostrar el producto encontrado o un mensaje de error si no se encuentra.
+  }
+  
