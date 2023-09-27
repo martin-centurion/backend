@@ -13,13 +13,14 @@ class ProductManager {
             throw new Error('Todos los campos son obligatorios.');
         }
         const products = await getJSONFromFile(this.path);
-        if (products.some((product) => product.code === code)) {
-            console.log(`Ya esta en uso el codigo: ${code}`);   
+        const productExists = products.find((product) => product.code === code)
+        if (productExists) {
+            console.log('Este producto ya fue agregado.');   
         } else {
-            const id = Math.random();
+            let id = Math.random();
             const newProduct = { id, title, description, price, thumbnail, code, stock };
             products.push(newProduct);
-            return saveJSONToFile(this.path, products);
+            await saveJSONToFile(this.path, products);
         }
     }
 
@@ -55,21 +56,30 @@ class ProductManager {
         }
     }
 
-    async updateProduct(id, updatedProduct) {
-        const getProducts = await getJSONFromFile(this.path);
-        const index = getProducts.findIndex(product => product.id === id);
-    if (index !== -1) {
-      updatedProduct.id = id; 
-      products[index] = updatedProduct;
-      this.saveProductsToFile(products);
-      console.log('Producto Actualizado:', updatedProduct);
-      return updatedProduct;
+    async updateProduct(id, newTitle, newDescription, newPrice, newThumbnail, newCode, newStock) {
+        const products = await getJSONFromFile(this.path);
+        const index = products.findIndex(product => product.id === id);
+        if (index !== -1) {
+          const updatedProduct = {
+            ...products[index],
+            title: newTitle,
+            description: newDescription,
+            price: newPrice,
+            thumbnail: newThumbnail,
+            code: newCode,
+            stock: newStock
+          };
       
-    } else {
-      console.log('No se ha podido actualizar el producto, ingrese el id correctamente desde el archivo ./products.json');
-      return null; 
-    }
-    }
+          products[index] = updatedProduct;
+          await saveJSONToFile(this.path, products);
+          console.log('Producto Actualizado:', updatedProduct);
+          return updatedProduct;
+        } else {
+          console.log('No se ha podido actualizar el producto. El ID proporcionado no existe.');
+          return null;
+        }
+  
+}
 
 }
 
@@ -117,11 +127,11 @@ const prodManager = async () => {
             code: "abc123",
             stock: 25
         });
-        const products = await productManager.getProducts();
+        let products = await productManager.getProducts();
         console.log('Acá los productos:', products);
         productManager.getProductById(0.06149531499542715) // Ingrese Id de Producto a Buscar
         productManager.deleteProduct(0.06149531499542715) // Ingresar Id de Producto a Eliminar
-        await productManager.updateProduct(0.06149531499542715, 'Update', 'Update', 250, 'Update', 'Update', 10)
+        await productManager.updateProduct(0.3981975682506571, 'Update', 'Update', 250, 'Update', 'Update', 10)
     } catch (error) {
         console.error(' Ha ocurrido un error: ', error.message);
     }
