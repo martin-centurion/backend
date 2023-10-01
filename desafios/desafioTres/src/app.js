@@ -1,9 +1,7 @@
 const express = require('express');
 const fs = require('fs');
-const ProductManager = require("./productManager") 
-const productsJSON = require("./products.json") 
+const productsJSON = require('./products.json') 
 
-const productManager = new ProductManager(productsJSON);
 const products = productsJSON;
 const app = express();
 
@@ -28,11 +26,11 @@ app.get('/products', (req, res) => {
     });
   });
 
-app.get("/products/:prodId", (req, res) => {
+app.get('/products/:prodId', (req, res) => {
     const { prodId } = req.params;
     const product = products.find (product => product.id === parseInt(prodId))
     if (!product) {
-        res.send({error:"Producto no encontrado"})
+        res.send({error: 'Producto no encontrado'})
     } else {
         res.send({product})
     }
