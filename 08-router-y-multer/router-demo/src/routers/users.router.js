@@ -14,4 +14,4 @@ router.get('/users', (req, res) => {
     res.status(200).json(users);
 });
 
-export default router
+export default router;

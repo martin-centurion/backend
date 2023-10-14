@@ -48,7 +48,3 @@ CartRouter .post('/cart/:cartId/product/:productId', async (req,res)=>{
     }
 })
 export default CartRouter 
-
-/* router.get();
-router.post();
-router.get(); */

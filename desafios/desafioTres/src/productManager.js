@@ -1,4 +1,3 @@
-const { log } = require('console');
 const { promises: fs } = require('fs');
 
 // Crear la class Constructor
