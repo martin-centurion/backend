@@ -1,127 +1,82 @@
 import fs from 'fs';
 import { getNewId } from '../utils/utils.js';
 
-class ProductManager{
-  constructor(path){
-    this.path = path;
-  }
-
-  async getProduct(){
-    return getJSONFromFile(this.path);
-  }
-
-  async addProduct(product) {
-    const { title, description, price, thumbnails, code, category, status } = product;
-    if(!(title || description || price || thumbnails || code || category || status)) {
-      throw new Error('Debe completar todos los campos');
+class ProductManager {
+    constructor(path) {
+        this.path = path;
     }
-    const products = await this.getProduct();
-    const productExists = products.find((product) => product.code === code);
-    if(productExists) {
-      throw new Error('Este producto yaa fue agregado.')
+
+    async addProduct(product) {
+        const { title, description, price, thumbnail, code, stock } = product;
+        if (!title || !description || !price || !thumbnail || !code || !stock) {
+            throw new Error('Todos los campos son obligatorios.');
+        }
+        const products = await this.getProducts();
+        const productExists = products.find((p) => p.code === code)
+        if (productExists) {
+            console.log('Este producto ya fue agregado.');   
+        } else {
+            let id = getNewId();
+            const newProduct = { id, title, description, price, thumbnail, code, stock };
+            products.push(newProduct);
+            await this.saveProducts(products);
+        }
     }
-    let id = getNewId();
-    const newProduct = { id, title, description, price, thumbnails, code, status };
-    products.push(newProduct);
 
-    await this.saveJSONToFile(this.path, products)
-  }
-
-  async getProductById(id){
-    const productId = await this.getProduct();
-    const product = productId.find((product) => product.id === id);
-    if (!product) {
-      throw new Error('Producto no encontrado.');
+    async getProducts() {
+        try {
+            const content = await fs.promises.readFile(this.path, 'utf-8');
+            return JSON.parse(content);
+        } catch (error) {
+            return [];
+        }
     }
-    return product;
-  }
 
-  async deleteProduct(id) {
-    const products = await this.getProduct();
-    const productIndex = products.findIndex((product) => product.id === id);
-    if (productIndex !== -1) {
-      products.splice(productIndex, 1);
-      await this.saveJSONToFile(this.path, products);
-      console.log('Se ha borrado correctamente.');
-    } else {
-      throw new Error('Producto no encontrado.')
+    async getProductById(id) {
+        const products = await this.getProducts();
+        const findedProduct = products.find((p) => p.id === id);
+        return findedProduct;
     }
-  }
 
-  saveJSONToFile = async (path, data) => {
-    const content = JSON.stringify(data, null, '\t');
-    try {
-      await fs.promises.writeFile(path, content, 'utf-8');
-    } catch(error) {
-      throw new Error(`El archivo ${path} no pudo ser escrito.`)  
+    async deleteProduct(id) {
+        const products = await this.getProducts();
+        const index = products.findIndex((p) => p.id === id);
+        if(index > -1) {
+            products.splice(index, 1);
+            await this.saveProducts(products);
+            console.log('Se ha borrado correctamente el producto');
+        } else {
+            console.log('No se ha podido borrar el producto.');
+        }
     }
-  };
 
-  async updateProduct(id, productUpdate) {
-    const products = await getJSONFromFile(this.path);
-    const index = products.findIndex((product) => product.id === id);
-    if (index !== -1) {
-      const updatedProduct = {
-        ...products[index],
-        ...productUpdate,
-      };
-
-      products[index] = updatedProduct;
-      await this.saveJSONToFile(this.path, products);
-      console.log('Producto Actualizado:', updatedProduct);
-      return updatedProduct;
-    } else {
-      console.log('No se ha podido actualizar el producto. El ID proporcionado no existe.');
-      return null;
-    }
-  }
+    async updateProduct(id, newProduct) {
+        const products = await this.getProducts();
+        const index = products.findIndex((p) => p.id === id);
+        if(index !== -1){
+            products[index] = {
+                ...products[index],
+                ...newProduct
+            };
+            await this.saveProducts(products);
+            console.log('Producto actualizado: ', products[index]);
+            return products[index];
+        } else {
+            console.log('No se ha podido actualizar el producto. El ID proporcionado no existe.');
+            return null;
+        }
+  
 }
 
-const existFile = async (path) => {
-  try {
-    await fs.promises.access(path);
-    return true;
-  } catch (error) {
-    return false;
-  }
-};
-
-const getJSONFromFile = async (path) => {
-  if (!await existFile(path)) {
-    console.log(path);
-    return [];
-  }
-
-  let content;
-
-  try {
-    content = await fs.promises.readFile(path, 'utf-8');
-  } catch (error) {
-    throw new Error(`El archivo ${path} no pudo ser leido.`)
-  }
-
-  try {
-    return JSON.parse(content);
-  } catch (error) {
-    throw new Error(`El archivo ${path} no tiene un formaton JSON valido.`)
-  };
+        async saveProducts(data) {
+            const content = JSON.stringify(data, null, '\t');
+            try {
+                await fs.promises.writeFile(this.path, content, 'utf-8');
+            } catch (error) {
+                throw new Error(`El archivo ${this.path} no pudo ser escrito.`)
+            }
+        }
 }
+
 
 export default ProductManager;
-
-// async function test() {
-//   const productManager = new ProductManager('./products.json');
-//   await productManager.addProduct({
-//     title: 'Titulo producto',
-//     description: 'Descripcion producto',
-//     price: 1000,
-//     thumbnails: 'imagen del producto',
-//     code: '1',
-//     stock: 10
-//   });
-
-//   let products = await productManager.getProduct();
-//   console.log('Acá los productos', products);
-// }
-
-// test();

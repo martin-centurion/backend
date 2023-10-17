@@ -1,98 +1,85 @@
 import fs from 'fs';
 import { getNewId } from '../utils/utils.js';
+import ProductManager from './productManager.js';
+
+const productManager = new ProductManager();
 
 class CartManager {
-  constructor(path) {
-    this.path = path;
-  }
-
-  async getCart() {
-    return getJSONFromFile(this.path);
-  }
-
-  saveJSONToFile = async (path, data) => {
-    const content = JSON.stringify(data, null, '\t');
-    try {
-      await fs.promises.writeFile(path, content, 'utf-8');
-    } catch (error) {
-      throw new Error(`El archivo ${path} no pudo ser escrito.`)
-    }
-  };
-
-  async addCart(){
-    try {
-      const cart = await this.getCart();
-      console.log('Get Cart', cart.lenght);
-      let newCart = {
-        id: getNewId(),
-        products: []
-      }
-      cart.push(newCart);
-      await this.saveJSONToFile(this.path, cart);
-      return newCart;
-    } catch (error) {
-      throw new Error(`Error ${error.message}`);
-    }
-  }
-
-  async getCartById(id) {
-    const cartId = await this.getCart();
-    const cart = cartId.find((cart) => cart.id === id);
-    if (!cart) {
-      throw new Error('Producto no encontrado.')
-    }
-    return cart;
-  }
-
-  async addProductToCart(cartId, product) {
-    let cart = await this.getCart();
-    const cartIndex = cart.findIndex((cart) => cart.id === cartId);
-    if(cartIndex === -1) {
-      throw new Error('No existe un carrito con ese id.')
+    constructor(path) {
+        this.path = path;
     }
 
-    const existingProduct = cart[cartIndex].products.find((p) => p.product === product.id);
-    if (existingProduct) {
-      existingProduct.quantity++;
-    } else {
-      cart[cartIndex].product.push({
-        product: product.id,
-        quantity: 1
-      });
+    async getCarts() {
+        try {
+            const content = await fs.promises.readFile(this.path, 'utf-8');
+            return JSON.parse(content);
+        } catch (error) {
+            return [];
+        }
     }
 
-    await this.saveJSONToFile(this.path, cart);
-  }
+    async getCartById(id) {
+        const carts = await this.getCarts();
+        const findedCart = carts.find((c) => c.id === id);
+        return findedCart;
+        
+    }
+
+    addProductInCart = async (cartId, prodId) => {
+        let cartsById = await this.getCartById(cartId);
+        if(!cartsById) return 'Carrito no encontrado';
+        let productById = await productManager.getProducts(prodId)
+        if(!cartsById) return 'Producto no encontrado';
+        
+        let cartsAll = await this.getCarts();
+        let cartsFilter = cartsAll.filter((cart) => cart.id != cartId);
+
+        if(cartsById.products.some(prod => prod.id === prodId)) {
+            let productInCart = cartsById.products.find((prod) => prod.id === prodId)
+            productInCart.quantity++;
+            let cartsConcat = [{productInCart, ...cartsFilter}];
+            await this.saveCarts(cartsConcat);
+            return 'Producto sumado al carrito';
+        }
+        
+        let cartsConcat = [{ 
+            id: cartId, 
+            product: [
+                {
+                    id: productById.id,
+                    quantity: 1}
+                ]
+            }, ... cartsFilter];
+            
+        await this.saveCarts(cartsConcat);
+        return 'Producto agregado al carrito';
+    }
+
+    async addCart() {
+        try {
+            const cart = await this.getCarts();
+            console.log('Carrito', cart.lenght);
+            let newCart = {
+                id: getNewId(),
+                products: []
+            }
+            cart.push(newCart);
+            await this.saveCarts(cart);
+            return newCart;
+        } catch (error) {
+            throw new Error(error)
+        }
+    }
+
+    async saveCarts(data) {
+        const content = JSON.stringify(data, null, `\t`);
+        try {
+            await fs.promises.writeFile(this.path, content, 'utf-8');
+        } catch (error) {
+            throw new Error(`El archivo ${this.path} no pudo ser escrito`);
+        }
+    }
 }
 
-    const existFile = async (path) => {
-      try {
-        await fs.promises.access(path);
-        return true;
-      } catch (error) {
-        return false;
-      }
-    };
-
-    const getJSONFromFile = async (path) => {
-      if(!await existFile(path)) {
-        console.log(path);
-        return [];
-      }
-
-      let content;
-
-      try {
-        content = await fs.promises.readFile(path, 'utf-8');
-      } catch(error) {
-        throw new Error(`El archivo ${path} no pudo ser leido.`);
-      }
-
-      try {
-        return JSON.parse(content);
-      } catch(error) {
-        throw new Error(`El archivo ${path} no tiene un formato JSON válido.`)
-      };
-    }
-
 export default CartManager;
+

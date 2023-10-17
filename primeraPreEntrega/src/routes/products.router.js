@@ -1,101 +1,49 @@
-import {Router} from "express"
-import ProductManager from '../classes/productManager.js'
-import { getNewId } from "../utils/utils.js";
+import { Router } from "express";
+import ProductManager from "../classes/productManager.js";
+
+const productManager = new ProductManager('./src/products.json');
+const ProductsRouter = Router();
+
+    ProductsRouter.get('/products', async (req, res) => {
+        const limit = req.query.limit;
+        const products = await productManager.getProducts();
+        if(!limit) {
+        res.json({ products });
+        } else {
+        res.json({ products: products.slice(0, parseInt(limit)) });
+        }
+    });
+
+    ProductsRouter.get('/products/:prodId', async (req, res) => {
+        const { prodId } = req.params;
+        const product = await productManager.getProductById(prodId);
+        if(!product) {
+            res.status(404).json({ error: 'Producto no encontrado' });
+        } else {
+            res.json({ product })
+        }
+    });
+
+    ProductsRouter.post('/products', (req, res) => {
+        try {
+            const productData = req.body;
+            productManager.addProduct(productData);
+            res.status(201).json({ message: 'Producto agregado correctamente.'})
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    });
+
+    ProductsRouter.delete('/products/:prodId', async (req, res) => {
+        try {
+            const { prodId } = req.params;
+            const productToEliminate = await productManager.deleteProduct(prodId);
+            console.log(productToEliminate);
+            res.status(201).json({ message: `Producto id ${prodId} ha sido eliminado correctamente.`})
+        } catch (error) {
+            res.status(400).json({ error: error.message })
+        }
+    })
 
 
-const productManager = new ProductManager('src/products.json');
- let products = await productManager.getProduct();
-const ProductRouter = Router()
-ProductRouter.get('/products', async(req, res) => {
-     const { limit } = req.query;
-     if (!limit) {
-        return res.status(201).send(products)
-     } else {
-       const numberLimit = parseInt(limit);
-   
-       if (isNaN(numberLimit) || numberLimit <= 0) {
-         return res.status(400).json({ error: 'Limite invalido' });
-       }else{
-       const limitedProducts = products.slice(0, numberLimit);
-       return res.json(limitedProducts);}
-   
-     }
-   });
-   ProductRouter.get('/products/:productId', async(req, res) => {
-    const { productId } = req.params;
-    const prod = products.find((product) => product.id === productId)
-    if(!prod){
-      return res.status(400).json({ error: 'No existe un producto con ese id' });
-    }else{
-    const product = products.find((user) => user.id === productId);
-    res.json(product);}
-  });
-
-  ProductRouter.post('/products', async (req, res)=>{
-    const body = req.body;
-    const { title, description, code, price, status, category, thumbnails}= body
-   try{ 
-    if( !(title && description && code && price
-     && status  && category )  ){
-      return res.status(400).json({error: `todos los campos son requeridos` })
-      // throw new Error(`Some data is missing`)
-  }
-    if(!(typeof title === 'string' && typeof description === 'string' 
-    && typeof code === 'string' && typeof price === 'number' 
-     && typeof category === 'string')){
-       return res.status(400).json({message:'Error en el tipo de dato ingresado'})
-    }
-    const newProduct= {
-      id: getNewId(),
-      title, 
-      description,
-      code,
-      price,
-      status,
-      category,
-      thumbnails
-    }
-     let added = await productManager.addProduct(newProduct)
-     console.log(added);
-     if (!added) {
-      throw new Error(`El producto no se pudo agregar`)}
-      else{
-        return res.status(201).send('producto agregado', newProduct)
-      }
-}
-  catch(error){
-    // console.log(error.message)
-    console.log("error", error)
-    return res.status(500).send(error)
-  }})
-  ProductRouter.put('/products/:productId', async (req, res)=>{
-   try{ 
-    const {productId} = req.params
-    const update =req.body
-    const productToUpdate = products.find(p => (productId === p.id))
-    if(productToUpdate){
-      await productManager.updateProduct(productId, update)
-      res.status(201).send({message:`acutalizacion del producto de id ${productId}`})
-    }else{
-      res.status(400).send({message:'no se puedo actualizar el producto'})
-    }}
-    catch(error){
-      return res.status(400).send({error: err.message})
-    }
-  })
-  ProductRouter.delete('/products/:productId', async (req,res)=>{
-   try{ const {productId}= req.params
-    const productToEliminate = products.find(p => (productId === p.id))
-    if(productToEliminate){
-      await productManager.deleteProduct(productId)
-      res.status(201).send({message:`Se elimino el producto de id ${productId}`})
-    }else{
-      res.status(400).send({message:'no se puedo eliminar el producto'})
-    }
-  
-  }catch(error){
-   return res.status(400).send({error: err.message})
-  }
-  })
- 
-   export {  ProductRouter, products };
+export default ProductsRouter;
