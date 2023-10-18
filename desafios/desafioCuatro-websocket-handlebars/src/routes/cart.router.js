@@ -4,6 +4,7 @@ import ProductManager from "../classes/productManager.js";
 
 const productManager = new ProductManager('./src/products.json')
 const cartManager = new CartManager('./src/cart.json');
+let products = await productManager.getProducts();
 const CartRouter = Router();
 
     CartRouter.post('/cart', async (req, res) => {
@@ -41,9 +42,20 @@ const CartRouter = Router();
     });
 
     CartRouter.post('/cart/:cartId/product/:prodId', async (req, res) => {
-        const { cartId } = req.params;
-        const { prodId } = req.params;
-        res.send(await cartManager.addProductInCart(cartId, prodId))
-    })
+        try {
+            const { cartId }= req.params;
+            const { prodId }= req.params;
+            const productFound = await products.find(p => prodId === p.id)
+            if(productFound){
+                await cartManager.addProductToCart(cartId, productFound)
+                res.status(201).send(productFound)
+            }else{
+                throw new Error ('No existe un producto con ese id.')
+            }
+        }
+        catch (error){
+            return res.status(400).send({error: error.message})
+        }
+    });
 
 export default CartRouter;

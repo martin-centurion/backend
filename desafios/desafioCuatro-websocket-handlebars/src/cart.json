@@ -1,19 +1,21 @@
 [
 	{
 		"id": "ac73ad72-0c77-4eef-a2a2-6b4c0c5e4f11",
-		"product": [
+		"products": [
 			{
-				"quantity": 1
+				"prodId": "d9732c83-1fa0-465a-89e0-c2dc7d049909",
+				"quantity": 3
 			}
 		]
 	},
 	{
-		"id": "ac73ad72-0c77-4eef-a2a2-6b4c0c5e4f11",
-		"products": []
-	},
-	{
 		"id": "309773b0-a846-4021-aea6-57703e49a346",
-		"products": []
+		"products": [
+			{
+				"prodId": "43ba7b79-6574-41da-944e-ac649c9416f2",
+				"quantity": 3
+			}
+		]
 	},
 	{
 		"id": "841ba1d7-e9ea-4aa0-a6fd-ec677a1cb68e",

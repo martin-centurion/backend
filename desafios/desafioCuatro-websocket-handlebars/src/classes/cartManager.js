@@ -25,34 +25,23 @@ class CartManager {
         
     }
 
-    addProductInCart = async (cartId, prodId) => {
-        let cartsById = await this.getCartById(cartId);
-        if(!cartsById) return 'Carrito no encontrado';
-        let productById = await productManager.getProducts(prodId)
-        if(!cartsById) return 'Producto no encontrado';
-        
-        let cartsAll = await this.getCarts();
-        let cartsFilter = cartsAll.filter((cart) => cart.id != cartId);
-
-        if(cartsById.products.some(prod => prod.id === prodId)) {
-            let productInCart = cartsById.products.find((prod) => prod.id === prodId)
-            productInCart.quantity++;
-            let cartsConcat = [{productInCart, ...cartsFilter}];
-            await this.saveCarts(cartsConcat);
-            return 'Producto sumado al carrito';
+    async addProductToCart(cartId, prodId) {
+        let cart = await this.getCarts();
+        const cartIndex = cart.findIndex((c) => c.id === cartId);
+        if (cartIndex === -1) {
+            throw new Error('No existe un carrito con ese Id');
         }
-        
-        let cartsConcat = [{ 
-            id: cartId, 
-            product: [
-                {
-                    id: productById.id,
-                    quantity: 1}
-                ]
-            }, ... cartsFilter];
-            
-        await this.saveCarts(cartsConcat);
-        return 'Producto agregado al carrito';
+        const existingProduct = cart[cartIndex].products.find(p => p.prodId === prodId.id);
+        if(existingProduct) {
+            existingProduct.quantity++;
+        } else {
+            cart[cartIndex].products.push({
+                prodId: prodId.id,
+                quantity: 1
+            });
+        }
+
+        await this.saveCarts(cart)
     }
 
     async addCart() {
