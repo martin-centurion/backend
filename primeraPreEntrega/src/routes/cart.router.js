@@ -42,24 +42,20 @@ const CartRouter = Router();
     });
 
     CartRouter.post('/cart/:cartId/product/:prodId', async (req, res) => {
-        try{
-            const {cartId}= req.params
-            const {prodId}= req.params;
-           
-            console.log('products', products);
+        try {
+            const { cartId }= req.params;
+            const { prodId }= req.params;
             const productFound = await products.find(p => prodId === p.id)
-            console.log('product found', productFound);
             if(productFound){
-                await cartManager.addProductToCart(cartId,productFound)
+                await cartManager.addProductToCart(cartId, productFound)
                 res.status(201).send(productFound)
             }else{
-                throw new Error ('no existe un producto con ese id :/')
+                throw new Error ('No existe un producto con ese id.')
             }
-    
         }
-        catch(error){
+        catch (error){
             return res.status(400).send({error: error.message})
         }
-    })
+    });
 
 export default CartRouter;

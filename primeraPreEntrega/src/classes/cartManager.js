@@ -31,12 +31,12 @@ class CartManager {
         if (cartIndex === -1) {
             throw new Error('No existe un carrito con ese Id');
         }
-        const existingProduct = cart[cartIndex].products.find((p) => p.product === product.id);
+        const existingProduct = cart[cartIndex].products.find(p => p.prodId === prodId.id);
         if(existingProduct) {
             existingProduct.quantity++;
         } else {
             cart[cartIndex].products.push({
-                product: product.id,
+                prodId: prodId.id,
                 quantity: 1
             });
         }
