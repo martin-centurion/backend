@@ -1,0 +1,47 @@
+[
+	{
+		"id": "d9732c83-1fa0-465a-89e0-c2dc7d049909",
+		"title": "title",
+		"description": "description",
+		"price": 200,
+		"thumbnail": "ruta imagen",
+		"code": "6",
+		"stock": 20
+	},
+	{
+		"id": "43ba7b79-6574-41da-944e-ac649c9416f2",
+		"title": "title",
+		"description": "description",
+		"price": 200,
+		"thumbnail": "ruta imagen",
+		"code": "7",
+		"stock": 20
+	},
+	{
+		"id": "63abd865-28d2-4b8f-a45c-fa2939abb2e0",
+		"title": "title",
+		"description": "description",
+		"price": 200,
+		"thumbnail": "ruta imagen",
+		"code": "8",
+		"stock": 20
+	},
+	{
+		"id": "0da8470c-10eb-4b51-80d9-2c2b550dc69e",
+		"title": "title",
+		"description": "description",
+		"price": 200,
+		"thumbnail": "ruta imagen",
+		"code": "9",
+		"stock": 20
+	},
+	{
+		"id": "7a1250de-d45c-4df6-9fc9-66765a0bc3d6",
+		"title": "title",
+		"description": "description",
+		"price": 200,
+		"thumbnail": "ruta imagen",
+		"code": "10",
+		"stock": 20
+	}
+]
