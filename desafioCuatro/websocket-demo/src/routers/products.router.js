@@ -1,6 +1,6 @@
 import { Router } from "express";
 import ProductManager from "../classes/productManager.js";
-import serverSocket from "../server.js";
+//import serverSocket from "../server.js";
 
 const productManager = new ProductManager('./src/products.json');
 const allProducts = await productManager.getProducts();

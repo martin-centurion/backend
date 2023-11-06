@@ -7,8 +7,8 @@ class ProductManager {
     }
 
     async addProduct(product) {
-        const { title, description, price, thumbnail, code, stock } = product;
-        if (!title || !description || !price || !thumbnail || !code || !stock) {
+        const { title, description, price, code, stock } = product;
+        if (!title || !description || !price || !code || !stock) {
             throw new Error('Todos los campos son obligatorios.');
         }
         const products = await this.getProducts();
