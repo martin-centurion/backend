@@ -22,6 +22,8 @@ serverHttp.listen(PORT, () => {
 serverSocket.on('connection', (socketClient) => {
     console.log(`Se ha conectado un nuevo cliente > Id: ${socketClient.id}`);
 
+    socketClient.emit('start', messages);
+
     socketClient.on('new-message', (body) => {
         console.log(`El cliente ${socketClient.id} ha enviado este mensaje: ${body}`);
         const msg = {

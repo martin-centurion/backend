@@ -29,6 +29,11 @@
         });
     };
 
+    socket.on('start', (data) => {
+        messages = data;
+        updateMessage(messages);
+    });
+
     socket.on('notification', (message) => {
         messages.push(message);
         updateMessage(messages);
