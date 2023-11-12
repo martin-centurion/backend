@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { v4 as uuidv4} from 'uuid';
-import { uploader } from "../utils.js";
+import { v4 as uuidv4 } from 'uuid';
+import { uploader } from '../utils.js';
 
 const router = Router();
 
@@ -13,15 +13,15 @@ const users = [
   ];
 
 router.get('/users', (req, res) => {
-    res.status(200).json(users);
+    res.status(200).json(users)
 });
 
-router.post('/users', uploader.single('thumbnail'),(req, res) => {
+router.post('/users', uploader.single('avatar'), (req, res) => {
   const { body } = req;
   const newUser = {
       id: uuidv4(),
       ... body,
-      thumbnail: req.file.path,
+      avatar: req.file.path,
   };
   users.push(newUser);
   res.status(201).json(newUser);

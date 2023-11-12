@@ -1,6 +1,5 @@
 import { Router } from "express";
-import path from 'path';
-import { v4 as uuidv4 } from "uuid";
+import { v4 as uuidv4 } from 'uuid';
 import { uploader } from '../utils.js';
 
 const router = Router();
@@ -16,8 +15,8 @@ const pets = [
 ];
 
 router.get('/pets', (req, res) => {
-    res.status(200).json(pets);
-});
+    res.status(200).json(pets)
+})
 
 router.post('/pets', uploader.single('thumbnail'), (req, res) => {
     const { body } = req;
@@ -26,8 +25,8 @@ router.post('/pets', uploader.single('thumbnail'), (req, res) => {
         ... body,
         thumbnail: req.file.path,
     };
-    pets.push(newPet);
+    pets.push(newPet)
     res.status(201).json(newPet);
-});
+})
 
 export default router;

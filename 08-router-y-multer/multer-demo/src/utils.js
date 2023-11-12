@@ -1,5 +1,6 @@
 import multer from 'multer';
 import path from 'path';
+
 import { fileURLToPath } from 'url';
 
 const __filename = fileURLToPath(import.meta.url);
@@ -16,4 +17,4 @@ const storage = multer.diskStorage({
     }
 });
 
-export const uploader = multer({ storage })
+export const uploader = multer({ storage });
