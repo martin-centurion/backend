@@ -1,14 +1,10 @@
 import express from 'express';
 import path from 'path'; 
-import { fileURLToPath } from 'url';
+import { __dirname } from './utils.js';
 
 import indexRouter from './routers/index.router.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
 const app = express();
-const PORT = 8080;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
