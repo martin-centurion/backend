@@ -1,12 +1,12 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 const Address = new Schema({
     street:  { type: String },
     city:    { type: String },
     country: { type: String },
-})
+}, { _id: false })
 
-const user = new mongoose.Schema({
+const user = new Schema({
     fullName: { type: String, required: true},
     email:    { type: String, required: true, unique: true},
     age:      { type: Number, required: true},
