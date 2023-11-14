@@ -1,92 +1,29 @@
 [
 	{
-		"id": 872797,
+		"id": 78521,
 		"title": "title",
 		"description": "description",
 		"price": 200,
-		"thumbnail": "Imagen",
-		"code": "Code 1",
-		"stock": 25
+		"thumbnail": "ruta imagen",
+		"code": "1",
+		"stock": 20
 	},
 	{
-		"id": 31303,
+		"id": 1697423071898,
 		"title": "title",
 		"description": "description",
 		"price": 200,
-		"thumbnail": "Imagen",
-		"code": "Code 2",
-		"stock": 25
+		"thumbnail": "ruta imagen",
+		"code": "2",
+		"stock": 20
 	},
 	{
-		"id": 77339,
+		"id": 1697423082626,
 		"title": "title",
 		"description": "description",
 		"price": 200,
-		"thumbnail": "Imagen",
-		"code": "Code 3",
-		"stock": 25
-	},
-	{
-		"id": 931223,
-		"title": "title",
-		"description": "description",
-		"price": 200,
-		"thumbnail": "Imagen",
-		"code": "Code 4",
-		"stock": 25
-	},
-	{
-		"id": 221911,
-		"title": "title",
-		"description": "description",
-		"price": 200,
-		"thumbnail": "Imagen",
-		"code": "Code 5",
-		"stock": 25
-	},
-	{
-		"id": 720186,
-		"title": "title",
-		"description": "description",
-		"price": 200,
-		"thumbnail": "Imagen",
-		"code": "Code 6",
-		"stock": 25
-	},
-	{
-		"id": 866438,
-		"title": "title",
-		"description": "description",
-		"price": 200,
-		"thumbnail": "Imagen",
-		"code": "Code 7",
-		"stock": 25
-	},
-	{
-		"id": 346815,
-		"title": "title",
-		"description": "description",
-		"price": 200,
-		"thumbnail": "Imagen",
-		"code": "Code 8",
-		"stock": 25
-	},
-	{
-		"id": 415009,
-		"title": "title",
-		"description": "description",
-		"price": 200,
-		"thumbnail": "Imagen",
-		"code": "Code 9",
-		"stock": 25
-	},
-	{
-		"id": 700818,
-		"title": "title",
-		"description": "description",
-		"price": 200,
-		"thumbnail": "Imagen",
-		"code": "Code 10",
-		"stock": 25
+		"thumbnail": "ruta imagen",
+		"code": "3",
+		"stock": 20
 	}
 ]

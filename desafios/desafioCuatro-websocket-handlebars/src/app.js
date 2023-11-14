@@ -1,19 +1,33 @@
-import express from "express";
-import ProductsRouter from "./routes/products.router.js";
-import CartRouter from "./routes/cart.router.js";
+import express from 'express';
+import handlebars from 'express-handlebars';
 import path from 'path';
-import { __dirname } from "./utils/utils.js";
+import { __dirname } from './utils/utils.js';
 
 const app = express();
-const PORT = 8080;
 
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true}));
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.use('/api', ProductsRouter, CartRouter);
+app.engine('handlebars', handlebars.engine());
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'handlebars');
 
-app.listen(PORT, () => {
-  console.log(`Server running in http://localhost:${PORT}`);
+app.get('/', (req, res) => {
+    const user = {
+        id: 'eas',
+        firstName: 'Martín',
+        lastName: 'Centurión',
+        age: 70,
+        mail: 'rs@gmail.com',
+    };
+    res.render('index', user)
+})
+
+app.use((error, req, res, next) => {
+    const message = `Ah ocurrido un error desconocido: ${error.message}`;
+    console.log(message);
+    res.status(500).json({ status: 'error', message});
 });
 
+export default app;

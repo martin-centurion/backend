@@ -1,41 +1,45 @@
 const express = require('express');
-const fs = require('fs');
-const productsJSON = require('./products.json') 
+const ProductManager = require('./productManager.js');
 
-const products = productsJSON;
 const app = express();
+const PORT = 8080;
 
+const productManager = new ProductManager('./src/products.json');
+
+app.use(express.json())
 app.use(express.urlencoded({ extended: true }));
 
-
-app.get('/products', (req, res) => {
+app.get('/products', async (req, res) => {
     const limit = req.query.limit;
-  
-    fs.readFile('products.json', 'utf8', (err, data) => {
-      if (err) {
-        return res.json({ error: 'Error al leer el archivo de productos' });
-      }
-  
-      let products = JSON.parse(data);
-  
-      if (limit) {
-        products = products.slice(0, parseInt(limit));
-      }
-  
+    const products = await productManager.getProducts();
+    if(!limit) {
       res.json({ products });
-    });
+    } else {
+      res.json({ products: products.slice(0, parseInt(limit)) });
+    }
   });
 
-app.get('/products/:prodId', (req, res) => {
+app.get('/products/:prodId', async (req, res) => {
     const { prodId } = req.params;
-    const product = products.find (product => product.id === parseInt(prodId))
+    const product = await productManager.getProductById(prodId);
     if (!product) {
-        res.send({error: 'Producto no encontrado'})
+        res.status(404).json({error: 'Producto no encontrado'})
     } else {
-        res.send({product})
+        res.json({ product })
     }
 });
 
-app.listen(8080, () =>{
-    console.log('Servidor escuchando desde el puerto 8080')
+app.post('/products', (req, res) => {
+  try {
+    const productData = req.body;
+    productManager.addProduct(productData);
+    res.status(201).json({ message: 'Producto agregado correctamente.'})
+  } catch (error) {
+    res.status(400).json({ error: error.message });
+    
+  }
+});
+
+app.listen(PORT, () =>{
+    console.log(`Server running in http://localhost:${PORT}`)
 });
