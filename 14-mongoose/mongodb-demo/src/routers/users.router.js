@@ -2,8 +2,8 @@ import { Router } from "express";
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    res.send('<h1>Mongoose</h1>')
+router.get('/users', (req, res) => {
+    
 });
 
 export default router;
