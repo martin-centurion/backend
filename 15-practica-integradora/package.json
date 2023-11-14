@@ -1,0 +1,14 @@
+{
+  "name": "15-practica-integradora",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "start": "node .",
+    "dev": "nodemon ."
+  },
+  "keywords": ["class", "express", "template-engine", "mongodb", "multer"],
+  "author": "Martin Centurion",
+  "license": "MIT"
+}
