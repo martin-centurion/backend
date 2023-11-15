@@ -8,7 +8,18 @@
     "start": "node .",
     "dev": "nodemon ."
   },
-  "keywords": ["class", "express", "template-engine", "mongodb", "multer"],
+  "keywords": [
+    "class",
+    "express",
+    "template-engine",
+    "mongodb",
+    "multer"
+  ],
   "author": "Martin Centurion",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-handlebars": "^7.1.2",
+    "mongoose": "^8.0.0"
+  }
 }
