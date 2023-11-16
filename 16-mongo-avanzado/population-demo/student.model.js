@@ -12,4 +12,12 @@ const userSchema = new mongoose.Schema({
     courses: { type: [ courseItemSchema ], default: []}
 });
 
+userSchema.pre('find', function() {
+    this.populate('courses.course');
+});
+
+userSchema.pre('save', function() {
+    // Validacion de un campo antes de cargar
+});
+
 export default mongoose.model('students', userSchema);

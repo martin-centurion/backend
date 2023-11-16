@@ -28,8 +28,8 @@ const test = async () => {
     // const result = await StudentModel.updateOne({ _id: student._id }, student);
     // console.log('result', result);
 
-    const student = await StudentModel.find().populate('courses.course');
+    const student = await StudentModel.find();
     console.log('student', JSON.stringify(student, null, 2));
-}
+};
 
 test();
