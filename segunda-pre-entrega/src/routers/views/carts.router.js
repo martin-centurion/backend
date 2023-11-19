@@ -5,7 +5,7 @@ const router = Router();
 
 router.get('/carts', async (req, res) => {
     const carts = await CartManager.get();
-    res.render('index',  { carts: carts.map(c => c.toJSON()) });
+    res.render('carts',  { carts: carts.map(c => c.toJSON()) });
 });
 
 export default router;
