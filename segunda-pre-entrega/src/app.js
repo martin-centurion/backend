@@ -18,6 +18,9 @@ app.set('view engine', 'handlebars');
 app.get('/', (req, res) => {
     res.send('<h1>Segunda pre entrega</h1>')
 });
+app.get('/register', (req, res) => {
+    res.render('register');
+})
 
 app.use('/home', (req, res) => {
     res.render('index');
