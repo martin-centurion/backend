@@ -1,6 +1,7 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
 import productViewRouter from './routers/views/products.router.js';
+import productApiRouter from './routers/api/productsApi.router.js';
 import { __dirname } from './utils.js';
 import path from 'path';
 
@@ -21,8 +22,8 @@ app.get('/', (req, res) => {
 app.use('/home', (req, res) => {
     res.render('index');
 });
-
-app.use('/products', productViewRouter);
+app.use('/api', productApiRouter)
+app.use('/', productViewRouter);
 
 
 export default app;
