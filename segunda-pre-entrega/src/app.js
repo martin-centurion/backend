@@ -17,16 +17,6 @@ app.engine('handlebars', handlebars.engine());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
-app.get('/', (req, res) => {
-    res.send('<h1>Segunda pre entrega</h1>')
-});
-app.get('/register', (req, res) => {
-    res.render('register');
-})
-
-app.use('/home', (req, res) => {
-    res.render('index');
-});
 app.use('/api', productApiRouter, cartApiRouter)
 app.use('/', productViewRouter, cartViewRouter);
 

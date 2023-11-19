@@ -38,8 +38,8 @@ export default class CartManager {
         if(!cart) {
             throw new Exception('No se ha encontrado el carrito', 404)
         }
-        const index = cart.products.findIndez((product) => String(product._id) === pid);
-        if(index === 1) {
+        const index = cart.products.findIndex((product) => String(product._id) === pid);
+        if(index === -1) {
             cart.products.push({ product: pid, quantity: 1})
         } else {
             cart.products[index].quantity ++;
