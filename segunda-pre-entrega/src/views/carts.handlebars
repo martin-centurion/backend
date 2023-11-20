@@ -5,9 +5,9 @@
         <th>Id del Producto</th>
         <th>Cantidad</th>
     </tr>
-    {{#each carts}}
+    {{#each payload}}
     <tr>
-        <td>{{this._id}}</td>
+        <td>{{../cartId}}</td>
         <td>{{this.product._id}}</td> 
         <td>{{this.quantity}}</td>
     </tr>

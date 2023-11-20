@@ -10,14 +10,23 @@ router.get('/carts', async (req, res) => {
 });
 
 router.get('/carts/:cid', async (req, res) => {
+    const { params: { cid }} = req;
     try {
-        const { params: { cid }} = req;
         const cart = await CartManager.getById(cid);
-        res.status(200).json(cart);
+        res.render('carts', buildResponse(cid, cart));
     } catch (error) {
         res.status(error.statusCode || 500).json({ message: error.message });
     }
 });
+
+const buildResponse = (cid, data) => {
+    const payload = data.products.map(product => product.toJSON());
+    console.log('payload', payload);
+    return {
+        cartId: cid,
+        payload
+    }
+}
 
 router.post('/carts', async (req, res) => {
     const { body } = req;
