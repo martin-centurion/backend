@@ -17,7 +17,8 @@ app.engine('handlebars', handlebars.engine());
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'handlebars');
 
-app.use('/api', productApiRouter, cartApiRouter)
+app.use('/', cartApiRouter);
+app.use('/', productApiRouter)
 app.use('/', productViewRouter, cartViewRouter);
 
 
