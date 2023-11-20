@@ -1,29 +1,39 @@
-<h1>Productos</h1>
-
-<table id="main" role="grid">
-    <tr>
-        <th>Titulo</th>
-        <th>Descripcion</th>
-        <th>Precio</th>
-        <th>Stock</th>
-        <th>Codigo</th>
-        <th>Category</th>
-    </tr>
+<nav>
+  <ul>
+    <li><strong>Furniture</strong></li>
+  </ul>
+  <ul>
+    <li><a href="http://localhost:8080/products">All</a></li>
+    <li><a href="http://localhost:8080/products?group=Table">Table</a></li>
+    <li><a href="http://localhost:8080/products?group=Lightning">Lightning</a></li>
+    <li><a href="http://localhost:8080/products?group=Garden">Garden</a></li>
+    <li><a href="#">Registro</a></li>
+  </ul>
+</nav>
+<h1>Nuestros productos</h1>
+    <nav>
+    <ul>
+        <li><a href="http://localhost:8080/products?sort=asc">Asc</a></li>
+        <li><a href="http://localhost:8080/products?sort=desc">Des</a></li>
+    </ul>
+    </nav>
+    <div  class="grid">
     {{#each payload}}
-        <tr>
-            <td>{{ this.title }}</td>
-            <td>{{ this.description }}</td>
-            <td>{{ this.price }}</td>
-            <td>{{ this.stock }}</td>
-            <td>{{ this.code }}</td>
-            <td>{{ this.category }}</td>
-        </tr>
+        <div>
+            <div>
+                <p>{{ this.title }}</p>
+                <small>${{ this.price }} / </small>
+                <small>Stock: {{ this.stock }}</small>
+                <hr/>
+            </div>
+        </div>
     {{/each}}
-</table>
+    </div>
+    <br/>
 
-<p>Pagina actual: {{page}}</p>
+<h6>Pagina actual: {{page}}</h6>
+<a href="{{prevLink}}" role="button" class="contrast outline" {{#unless hasPrevPage}}disabled{{/unless}}>Anterior</a>
+<a href="{{nextLink}}" role="button" class="contrast outline" {{#unless hasNextPage}}disabled{{/unless}}>Siguiente</a>
 
-<a href="{{prevLink}}" role="button" {{#unless hasPrevPage}}disabled{{/unless}}>Anterior</a>
 
-<a href="{{nextLink}}" role="button" {{#unless hasNextPage}}disabled{{/unless}}>Siguiente</a>
 
