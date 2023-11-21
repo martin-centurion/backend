@@ -10,7 +10,7 @@ router.get('/products', async (req, res) => {
   const criteria = {};
   if (group) {
     criteria.category = group;
-  }
+  };
   console.log('group', group);
   const product = await ProductModel.paginate(criteria, opts);
   res.render('products', buildResponse({ ...product, group, sort }));
