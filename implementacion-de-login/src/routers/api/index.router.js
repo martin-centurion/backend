@@ -20,7 +20,7 @@ router.get('/profile', privateRouter, (req, res) => {
     res.render('profile', { title: 'Perfil', user: req.session.user });
 });
 
-router.get('/', publicRouter, (req, res) => {
+router.get('/login', publicRouter, (req, res) => {
     res.render('login', { title: 'Login' });
 });
 
