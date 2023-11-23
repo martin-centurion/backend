@@ -1,14 +1,14 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
-import productViewRouter from './routers/views/products.router.js';
-import productApiRouter from './routers/api/productsApi.router.js';
 import expressSession from 'express-session';
 import MongoStore from 'connect-mongo';
 import { URI } from './db/mongodb.js';
+import productViewRouter from './routers/views/products.router.js';
+import productApiRouter from './routers/api/productsApi.router.js';
 import cartViewRouter from './routers/views/carts.router.js';
 import cartApiRouter from './routers/api/cartsApi.router.js';
-
-import sessionRouter from './routers/views/sessions.router.js';
+import indexRouter from './routers/api/index.router.js';
+import sessionRouter from './routers/api/sessions.router.js';
 
 import { __dirname } from './utils.js';
 import path from 'path';
@@ -39,7 +39,8 @@ app.set('view engine', 'handlebars');
 app.use('/', cartApiRouter);
 app.use('/', productApiRouter)
 app.use('/', productViewRouter, cartViewRouter);
+app.use('/', indexRouter);
+app.use('/api', sessionRouter);
 
-app.use('/', sessionRouter);
 
 export default app;
