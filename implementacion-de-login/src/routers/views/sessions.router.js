@@ -2,6 +2,17 @@ import { Router } from 'express';
 
 const router = Router();
 
+router.get('/', (req, res) => {
+    const { name } = req.query;
+    if (!req.session.counter) {
+        req.session.counter = 1;
+        res.send(`Te damos la bienvenida ${name || ''}!`)
+    } else {
+        req.session.counter++;
+        res.send(`${name || 'Es'} tu visita # ${req.session.counter}`)
+    }
+})
+
 const userTest = {
     username: 'mcenturion',
     password: '1234'
@@ -16,8 +27,6 @@ router.get('/sessions', (req, res) => {
         res.send(`Visitas: ${req.session.counter}`)
     }
 });
-
-// http://localhost:8080/login?username=mcenturion&password=1234
 
 router.get('/login', (req, res) => {
    const { username, password } = req.query;
