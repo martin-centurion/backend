@@ -3,6 +3,16 @@ import { Router } from 'express';
 const router = Router();
 
 router.get('/', (req, res) => {
+    if (req.session.counter) {
+        req.session.counter += 1;
+    } else {
+        req.session.counter = 1;
+        res.send('')
+    }
+    res.send('<h1>Bueeenass</h1>')
+})
+
+router.get('/', (req, res) => {
     const { name } = req.query;
     if (!req.session.counter) {
         req.session.counter = 1;
