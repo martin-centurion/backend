@@ -7,7 +7,6 @@ router.get('/', (req, res) => {
         req.session.counter += 1;
     } else {
         req.session.counter = 1;
-        res.send('')
     }
     res.send('<h1>Bueeenass</h1>')
 })
