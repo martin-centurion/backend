@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import ProductManager from '../../dao/ProductManager.js';
 import ProductModel from '../../models/product.model.js';
+import userModel from '../../models/user.model.js';
 
 const router = Router();
 
@@ -8,12 +9,31 @@ router.get('/products', async (req, res) => {
   const { page = 1, limit = 5, group, sort } = req.query;
   const opts = { page, limit, sort: { price: sort || 'asc' } };
   const criteria = {};
+  const { user } = req.session;
+  if (!user) {
+    return res.status(401).send('Usuario no valido.')
+  }
+  let userData;
+  if (user.email === 'adminCoder@coder.com') {
+    userData = {
+      first_name: 'Admin',
+      last_name: 'Coderhouse',
+      rol: 'admin',
+    };
+  } else {
+      userData = await userModel.findOne({ email: user.email });
+      if (!userData) {
+        return res.status(404).send('Usuario no encontrado 😨.');
+      }}
+
+  const { first_name, last_name, rol} = userData;
+  
   if (group) {
     criteria.category = group;
   };
   console.log('group', group);
   const product = await ProductModel.paginate(criteria, opts);
-  res.render('products', buildResponse({ ...product, group, sort }));
+  res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, rol }));
 });
 
 router.get('/products/:pid', async (req, res) => {
@@ -60,6 +80,9 @@ const buildResponse = (data) => {
     prevPage: data.prevPage,
     nextPage: data.nextPage,
     page: data.page,
+    userName: data.first_name,
+    userLastName: data.last_name,
+    userRol: data.rol,
     hasPrevPage: data.hasPrevPage,
     hasNextPage: data.hasNextPage,
     prevLink: data.hasPrevPage ? `http://localhost:8080/products?limit=${data.limit}&page=${data.prevPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',

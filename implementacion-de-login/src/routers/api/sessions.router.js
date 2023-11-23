@@ -13,6 +13,15 @@ router.post('/sessions/register', async (req, res) => {
 
 router.post('/sessions/login', async (req, res) => {
     const { body: { email, password } } = req;
+    const userAdmin = {
+        username: 'adminCoder@coder.com',
+        password: 'adminCod3r123',
+        rol: "admin"
+    };
+    if (email === userAdmin.username && password === userAdmin.password) {
+        req.session.user = { first_name: "Admin", last_name: "Coderhouse", email: userAdmin.username, rol: userAdmin.rol };
+        return res.redirect('/products');
+    };
     const user = await UserModel.findOne({ email });
     if (!user) {
         return res.status(401).send('Correo o contraseña invalidos.')
@@ -23,7 +32,7 @@ router.post('/sessions/login', async (req, res) => {
     };
     const { first_name, last_name } = user;
     req.session.user = { first_name, last_name, email };
-    res.redirect('/profile');
+    res.redirect('/products');
 });
 
 router.get('/sessions/logout', (req, res) => {
