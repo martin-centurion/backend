@@ -1,0 +1,82 @@
+.banner__content {
+    display: flex;
+    margin: 8rem 0 2rem;
+
+    &__content-titulo {
+        grid-area: titulo;
+        font-size: 2rem;
+        align-self: flex-end;
+    }
+}
+
+.productos {
+    display: flex;
+
+    &__content {
+        display: flex;
+        flex-flow: column wrap;
+
+        &-title {
+            font-size: 1.5rem;
+            text-align: center;
+            padding-block: 2rem;
+        }
+
+        &-nav {
+            align-self: center;
+            margin-bottom: 2rem;
+        }
+
+        & ul {
+            display: flex;
+            flex-flow: row wrap;
+
+            & li {
+                font-size: .9rem;
+                text-transform: uppercase;
+                margin: 1rem;
+            }
+        }
+    }
+
+    &-img {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 2rem;
+
+        & article {
+            display: flex;
+            padding: 2rem; 
+            flex-flow: column wrap;
+            text-align: center;
+            align-items: center;
+            gap: 1rem; 
+
+            & > p {
+                font-size: .9rem;
+                text-transform: uppercase;
+                letter-spacing: .2rem;
+            }
+
+            & > img {
+                height: 180px;
+                align-items: center;
+            }
+        }
+
+        & a {
+            padding: 1rem;
+            border: 1px solid var(--clr-terciario);
+            color: var(--clr-terciario);
+            border-radius: 10px;
+            font-size: .8rem;
+            transition: .3s;
+
+            &:hover {
+                color: var(--clr-primario);
+                background-color: var(--clr-terciario);
+            }
+        }
+    }
+}
+

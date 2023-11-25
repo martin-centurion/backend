@@ -1,0 +1,82 @@
+.login {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 50%;
+    height: 80%;
+    margin: auto;
+    background-color: var(--clr-terciario);
+    padding: 5rem;
+    border-radius: 1rem;
+    align-items: center;
+    justify-content: center;
+    
+    &__content {
+            
+            & article {
+                text-align: center;
+
+                & h1 {
+                    font-size: 2rem;
+                    margin-bottom: 2rem;
+                    color: var(--clr-primario);
+                }
+
+                & p {
+                    font-size: .8rem;
+                    margin-bottom: 2rem;
+                    color: var(--clr-primario);
+                }
+
+                & .login__content-input {
+                    display: flex;
+                    margin: 2rem 0;
+                    align-items: center;
+                    justify-items: center;
+                    flex-direction: column;
+                    gap: 1rem;
+
+                    & input {
+                        border-radius: 10px;
+                        height: 2rem;
+                        padding: 1.5rem 1rem;
+                        width: 300px;
+                        background-color: var(--clr-secundario);
+                        border: none;
+                        color: var(--clr-primario);
+                    }
+
+                    & button {
+                        border-radius: 10px;
+                        font-size: 1rem;
+                        letter-spacing: .05rem;
+                        cursor: pointer;
+                        color: var(--clr-primario);
+                        height: 2rem;
+                        width: 300px;
+                        padding: 1.2rem 0 2rem;
+                        background-color: var(--clr-span);
+                        align-items: center;
+                        justify-items: center;
+
+                        &:hover {
+                            background-color: var(--clr-secundario);
+                            color: var(--clr-span);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    a {
+        font-size: .8rem;
+        color: var(--clr-span);
+        transition: .3s;
+    }
+
+    a:hover {
+        color: var(--clr-white);
+    }
