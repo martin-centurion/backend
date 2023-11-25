@@ -1,11 +1,11 @@
 import { Router } from 'express';
+import passport from 'passport';
 import { createHash, isValidPassword } from '../../utils.js'
 import UserModel from '../../models/user.model.js'
 
 const router = Router();
 
-
-router.post('/sessions/register', async (req, res) => {
+/* router.post('/sessions/register', async (req, res) => {
     const { body } = req;
     const newUser = await UserModel.create({ 
         ...body, 
@@ -13,7 +13,16 @@ router.post('/sessions/register', async (req, res) => {
     });
     console.log('newUser', newUser);
     res.redirect('/login');
+}); */
+
+router.post('/sessions/register', passport.authenticate('register', { failureRedirect: '/register' }), (req, res) => {
+    res.redirect('/login');
 });
+
+router.post('/sessions/login', passport.authenticate('login', { failureRedirect: '/login' }), (req, res) => {
+    req.session.user = req.user;
+    res.redirect('/profile');
+})
 
 router.post('/sessions/recovery-password', async (req, res) => {
     const { email, newPassword } = req.body;
@@ -25,18 +34,8 @@ router.post('/sessions/recovery-password', async (req, res) => {
     res.redirect('/login');
 });
 
-router.post('/sessions/login', async (req, res) => {
+/* router.post('/sessions/login', async (req, res) => {
     const { body: { email, password } } = req;
-    // Usuario harcodeado admin
-    /* const userAdmin = {
-        username: 'adminCoder@coder.com',
-        password: 'adminCod3r123',
-        rol: "admin"
-    };
-    if (email === userAdmin.username && password === userAdmin.password) {
-        req.session.user = { first_name: "Admin", last_name: "Coderhouse", email: userAdmin.username, rol: userAdmin.rol };
-        return res.redirect('/products');
-    }; */
     const user = await UserModel.findOne({ email });
     if (!user) {
         return res.status(401).send('Correo o contraseña invalidos.')
@@ -48,7 +47,7 @@ router.post('/sessions/login', async (req, res) => {
     const { first_name, last_name } = user;
     req.session.user = { first_name, last_name, email };
     res.redirect('/products');
-});
+}); */
 
 router.get('/sessions/logout', (req, res) => {
     req.session.destroy((error) => {
