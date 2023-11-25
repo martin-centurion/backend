@@ -6,7 +6,7 @@ import userModel from '../../models/user.model.js';
 const router = Router();
 
 router.get('/products', async (req, res) => {
-  const { page = 1, limit = 5, group, sort } = req.query;
+  const { page = 1, limit = 6, group, sort } = req.query;
   const opts = { page, limit, sort: { price: sort || 'asc' } };
   const criteria = {};
   const { user } = req.session;

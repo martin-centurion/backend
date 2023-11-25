@@ -6,7 +6,7 @@ const router = Router();
 router.get('/carts', async (req, res) => {
     const { query = {} } = req;
     const carts = await CartManager.get(query);
-    res.status(200).json(carts);
+    res.render('carts', carts);
 });
 
 router.get('/carts/:cid', async (req, res) => {
