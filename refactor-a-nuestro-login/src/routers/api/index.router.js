@@ -28,5 +28,9 @@ router.get('/register', publicRouter, (req, res) => {
     res.render('register', { title: 'Register' });
 });
 
+router.get('/recovery-password', publicRouter, (req, res) => {
+    res.render('recovery-password', { title: 'Recuperar Contraseña' });
+});
+
 
 export default router;
