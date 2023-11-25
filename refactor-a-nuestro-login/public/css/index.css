@@ -149,9 +149,9 @@ a:hover {
   .nav-link:hover::after {
     width: 100%; }
   .nav-link {
-    font-size: 1.2rem;
+    font-size: .9rem;
     text-transform: uppercase;
-    letter-spacing: .15rem;
+    letter-spacing: .05rem;
     color: var(--clr-secundario); }
 
 .nav-link-portfolio {
