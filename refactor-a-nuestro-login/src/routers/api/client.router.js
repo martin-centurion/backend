@@ -45,7 +45,7 @@ router.get('/current', authenticationMiddleware('jwt'), authorizationMiddelware(
     res.status(200).json(req.user);
 });
 
-router.get('/admin', authenticationMiddleware('jwr'), authorizationMiddelware('admin'), (req, res) => {
+router.get('/admin', authenticationMiddleware('jwt'), authorizationMiddelware('admin'), (req, res) => {
   res.status(200).json({ success: true });
 })
 

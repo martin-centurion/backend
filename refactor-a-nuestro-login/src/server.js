@@ -5,7 +5,8 @@ import app from './app.js';
 await init();
 
 const server = http.createServer(app);
-const PORT = 8080;
+const PORT = process.env.KEY_PORT;
+console.log('PORT: ', PORT);
 
 export const serverHttp = server.listen(PORT, () => {
     console.log(`Server running in http://localhost:${PORT}`);

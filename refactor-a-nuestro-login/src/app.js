@@ -16,8 +16,10 @@ import { init as initPassportConfig } from './config/passport.config.js';
 
 import { __dirname } from './utils.js';
 import path from 'path';
+import { log } from 'console';
 
-const SESSION_SECRET = '5(HWwTw%£_Q%<&RMEEiK6r7tLg]-$l@o';
+const SESSION_SECRET = process.env.KEY_SESSION_SECRET;
+console.log(SESSION_SECRET);
 
 const app = express();
 
@@ -25,6 +27,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
 app.use(cookieParser());
+
 
 app.use(expressSession({
     secret: SESSION_SECRET,

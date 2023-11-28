@@ -1,5 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import passport from 'passport';
-
 import { JWT_SECRET } from '../utils.js';
 import { Strategy as LocalStrategy } from 'passport-local';
 import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
@@ -13,8 +14,8 @@ const opts = {
 };
 
 const githubOpts = {
-    clientID: 'Iv1.418492569b46b962',
-    clientSecret: '5726e8c01b444e9f65d88f5a829fb185bddc2c15',
+    clientID: process.env.GITHUB_ID,
+    clientSecret: process.env.GITHUB_CLIENT_SECRET,
     callbackURL: "http://localhost:8080/api/sessions/github/callback"
 };
 

@@ -4,7 +4,7 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { fileURLToPath } from 'url';
 
-export const JWT_SECRET = '5(HWwTw%£_Q%<&RMEEiK6r7tLg]-$l@o';
+export const JWT_SECRET = process.env.KEY_JWT_SECRET;
 
 const __filename = fileURLToPath(import.meta.url);
 export const __dirname = path.dirname(__filename);
