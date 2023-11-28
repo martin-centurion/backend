@@ -39,7 +39,7 @@
     margin-right: 1rem;
 
     &:hover {
-        color: var(--clr-span);
+        color: var(--clr-terciario);
     }
 }
 
@@ -71,6 +71,10 @@
         text-transform: uppercase;
         letter-spacing: .05rem;
         color: var(--clr-secundario);
+
+        &:hover {
+            color: var(--clr-terciario)
+        }
     }
 }
 
@@ -92,5 +96,16 @@
 
     &:hover::after {
         width: 100%;
+    }
+
+    & {
+        font-size: .7rem;
+        text-transform: uppercase;
+        letter-spacing: .05rem;
+        color: var(--clr-terciario);
+
+        &:hover {
+            color: var(--clr-secundario)
+        }
     }
 }

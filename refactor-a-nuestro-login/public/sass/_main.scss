@@ -1,12 +1,18 @@
-.banner__content {
-    display: flex;
-    margin: 8rem 0 2rem;
 
-    &__content-titulo {
-        grid-area: titulo;
-        font-size: 2rem;
-        align-self: flex-end;
-    }
+.banner {
+        &__content {
+            display: flex;
+            margin: 2rem 0 2rem;
+        
+            &-titulo {
+                font-size: .8rem;
+                font-weight: 300;
+                letter-spacing: .095rem;
+                text-transform: uppercase;
+                align-self: flex-end;
+                color: var(--clr-secundario);
+            }
+        }
 }
 
 .productos {
@@ -17,6 +23,7 @@
         flex-flow: column wrap;
 
         &-title {
+            color: var(--clr-secundario);
             font-size: 1.5rem;
             text-align: center;
             padding-block: 2rem;
@@ -46,13 +53,17 @@
 
         & article {
             display: flex;
-            padding: 2rem; 
+            padding: 2rem;
+            border: 2px solid var(--clr-terciario);
+            //background-color: var(--clr-terciario);
+            border-radius: 10px;
             flex-flow: column wrap;
             text-align: center;
             align-items: center;
             gap: 1rem; 
 
             & > p {
+                color: var(--clr-secundario);
                 font-size: .9rem;
                 text-transform: uppercase;
                 letter-spacing: .2rem;
@@ -66,15 +77,15 @@
 
         & a {
             padding: 1rem;
-            border: 1px solid var(--clr-terciario);
-            color: var(--clr-terciario);
+            border: 1px solid var(--clr-secundario);
+            color: var(--clr-secundario);
             border-radius: 10px;
             font-size: .8rem;
             transition: .3s;
 
             &:hover {
-                color: var(--clr-primario);
-                background-color: var(--clr-terciario);
+                color: var(--clr-terciario);
+                background-color: var(--clr-secundario);
             }
         }
     }

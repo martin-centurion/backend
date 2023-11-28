@@ -6,7 +6,8 @@ const userSchema = new mongoose.Schema({
     email: { type: String, unique: true },
     age: Number,
     password: String,
-    rol: { type: String, default: "user" }
+    provider: String,
+    role: { type: String, default: "regular", enum: ['regular', 'seller', 'admin'] }
 }, { timestamps: true });
 
 export default mongoose.model('User', userSchema);

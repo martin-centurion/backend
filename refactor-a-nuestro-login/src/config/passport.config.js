@@ -1,5 +1,9 @@
 import passport from 'passport';
+
+import { JWT_SECRET } from '../utils.js';
 import { Strategy as LocalStrategy } from 'passport-local';
+import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
+import GitHubStrategy from 'passport-github2';
 import { createHash, isValidPassword } from '../utils.js';
 import UserModel from '../models/user.model.js';
 
@@ -8,7 +12,28 @@ const opts = {
     passReqToCallback: true,
 };
 
+const githubOpts = {
+    clientID: 'Iv1.418492569b46b962',
+    clientSecret: '5726e8c01b444e9f65d88f5a829fb185bddc2c15',
+    callbackURL: "http://localhost:8080/api/sessions/github/callback"
+};
+
+function cookieExtractor(req) {
+    let token = null;
+    if (req && req.cookies) {
+        token = req.cookies.access_token;
+    }
+    return token;
+};
+
 export const init = () => {
+
+    passport.use('jwt', new JWTStrategy({
+        jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
+        secretOrKey: JWT_SECRET,
+    }, (payload, done) => {
+        return done(null, payload);
+    }));
     passport.use('register', new LocalStrategy (opts, async (req, email, password, done) => {
         try {
             const user = await UserModel.findOne({ email });
@@ -40,6 +65,26 @@ export const init = () => {
             done(new Error(`Ocurrio un error durante a autenticacion ${error.message}.`));
         }
     }));
+
+    passport.use('github', new GitHubStrategy(githubOpts, async (accessToken, refreshToken, profile, done) => {
+        console.log('profile', profile);
+        const email = profile._json.email;
+        let user = await UserModel.findOne({ email });
+        if (user) {
+            return done(null, user)
+        };
+        user = {
+            first_name: profile._json.name,
+            last_name: '',
+            email,
+            age: 18,
+            password: '',
+            provider: 'Github',
+        };
+        
+        const newUser = await UserModel.create(user);
+        done(null, newUser);
+    }))
 
     passport.serializeUser((user, done) => {
         done(null, user._id);

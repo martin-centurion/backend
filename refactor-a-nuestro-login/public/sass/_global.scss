@@ -11,16 +11,16 @@
     scroll-behavior: smooth;
     --ff-title: 'Montserrat', sans-serif;
     --ff-text: 'Varela Round', sans-serif;
-    --clr-primario: rgb(238, 237, 237);
-    --clr-secundario: rgb(28, 62, 76);
-    --clr-terciario: rgb(6, 43, 58);
-    --clr-span: rgb(0, 218, 14);
-    --clr-bg: rgb(187, 187, 187);
+    --clr-primario: #FFFBF5;
+    --clr-secundario: #61488e;
+    --clr-terciario: #C3ACD0;
+    --clr-span: #F7EFE5;
+    --clr-green: #D2DE32;
 }
 
 body {
     background-color: var(--clr-primario);
-    color: var(--clr-white);
+    color: var(--clr-primario);
     font-family: var(--ff-title);
 }
 
