@@ -2,33 +2,28 @@ import dotenv from 'dotenv';
 dotenv.config();
 import passport from 'passport';
 import { JWT_SECRET } from '../utils.js';
-import { Strategy as LocalStrategy } from 'passport-local';
-import { Strategy as JWTStrategy, ExtractJwt } from 'passport-jwt';
-import GitHubStrategy from 'passport-github2';
-import { createHash, isValidPassword } from '../utils.js';
-import UserModel from '../models/user.model.js';
-
-const opts = {
-    usernameField: 'email',
-    passReqToCallback: true,
-};
-
-const githubOpts = {
-    clientID: process.env.GITHUB_ID,
-    clientSecret: process.env.GITHUB_CLIENT_SECRET,
-    callbackURL: "http://localhost:8080/api/sessions/github/callback"
-};
+import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 
 function cookieExtractor(req) {
     let token = null;
-    if (req && req.cookies) {
-        token = req.cookies.access_token;
+    if (req && req.signedCookies) {
+        token = req.signedCookies['access_token'];
     }
     return token;
 };
 
-export const init = () => {
+const opts = {
+    jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
+    secretOrKey: JWT_SECRET
+}
 
+export const init = () => {
+    passport.use('jwt', new JwtStrategy(opts, (payload, done) => {
+        return done (null, payload);
+    }))
+}
+
+/* export const init = () => {
     passport.use('jwt', new JWTStrategy({
         jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
         secretOrKey: JWT_SECRET,
@@ -95,4 +90,4 @@ export const init = () => {
         const user = await UserModel.findById(uid);
         done(null, user)
     })
-};
+}; */
