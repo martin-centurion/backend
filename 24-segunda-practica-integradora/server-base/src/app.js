@@ -6,7 +6,8 @@ import cookieParser from 'cookie-parser';
 
 import indexRouter from './routers/index.router.js';
 import authRouter from './routers/api/auth.router.js';
-import usersRouter from './routers/api/users.router.js'
+import usersRouter from './routers/api/users.router.js';
+import coursesRouter from './routers/api/courses.router.js';
 import { init as initPassport } from './config/passport.config.js';
 
 const app = express();
@@ -22,8 +23,7 @@ initPassport();
 app.use(passport.initialize());
 
 app.use('/', indexRouter);
-app.use('/api', authRouter);
-app.use('/api', usersRouter);
+app.use('/api', authRouter, usersRouter, coursesRouter);
 
 app.use((error, req, res, next) => {
     const message = `Ah ocurrido un error desconocido: ${error.message}`;
