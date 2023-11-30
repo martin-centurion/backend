@@ -7,9 +7,8 @@ import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 function cookieExtractor(req) {
     let token = null;
     if (req && req.signedCookies) {
-        token = req.signedCookies['access_token'];
+        return token = req.signedCookies['access_token'];
     }
-    return token;
 };
 
 const opts = {
