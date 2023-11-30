@@ -11,13 +11,13 @@ import UserModel from "../../models/user.model.js";
 
 const router = Router();
 
-router.get('/client', (req, res) => {
-    res.render('client', { title: 'Cliente Ecommerce' })
+router.get('/login', (req, res) => {
+    res.render('login', { title: 'Cliente Ecommerce' })
 });
 
-router.get('/loginTest', (req, res) => {
+/* router.get('/loginTest', (req, res) => {
     res.render('loginTest', { title: 'Cliente Ecommerce' })
-});
+}); */
 
 router.post('/auth/login', async (req, res) => {
     const { body: { email, password } } = req;
@@ -30,7 +30,6 @@ router.post('/auth/login', async (req, res) => {
       return res.status(401).json({ message: 'Email o pass invalidos.' });
     }
     const token = tokenGenerator(user);
-    //res.status(200).json({ access_token: token });
     res
       .cookie('access_token', token, {
         maxAge: 60000,
@@ -41,9 +40,13 @@ router.post('/auth/login', async (req, res) => {
   
   });
 
-router.get('/current', authenticationMiddleware('jwt'), authorizationMiddelware(['regular', 'seller', 'admin']), (req, res) => {
+router.get('/current', authenticationMiddleware('jwt'), (req, res) => {
     res.status(200).json(req.user);
 });
+
+/* router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
+  res.send(req.user);
+}); */
 
 router.get('/admin', authenticationMiddleware('jwt'), authorizationMiddelware('admin'), (req, res) => {
   res.status(200).json({ success: true });

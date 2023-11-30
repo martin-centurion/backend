@@ -22,7 +22,7 @@ export const tokenGenerator = (user) => {
         email,
         role
     };
-    return jwt.sign(payload, JWT_SECRET, { expiresIn: '10s' });
+    return jwt.sign(payload, JWT_SECRET, { expiresIn: '40s' });
 };
 
 export const verifyToken = (token) => {
@@ -34,13 +34,6 @@ export const verifyToken = (token) => {
             resolve(payload);
         })
     })
-};
-
-export class Exception extends Error {
-    constructor(message, status) {
-        super(message);
-        this.statusCode = status;
-    }
 };
 
 export const authenticationMiddleware = (strategy) => (req, res, next) => {
@@ -67,3 +60,10 @@ export const authorizationMiddelware = (roles) => (req, res, next) => {
     }
     next();
 }
+
+export class Exception extends Error {
+    constructor(message, status) {
+        super(message);
+        this.statusCode = status;
+    }
+};
