@@ -1,39 +1,23 @@
 import { Router } from 'express';
 import ProductManager from '../../dao/ProductManager.js';
 import ProductModel from '../../models/product.model.js';
-import UserModel from '../../models/user.model.js';
+import { 
+  authenticationMiddleware,
+  authorizationMiddelware
+} from "../../utils.js";
 
 const router = Router();
 
-router.get('/products', async (req, res) => {
+router.get('/products', authenticationMiddleware('jwt'), async (req, res) => {
   const { page = 1, limit = 4, group, sort } = req.query;
   const opts = { page, limit, sort: { price: sort || 'asc' } };
   const criteria = {};
-  const { user } = req.session;
-  if (!user) {
-    return res.status(401).send('Usuario no valido.')
-  }
-  let userData;
-  if (user.email === 'adminCoder@coder.com') {
-    userData = {
-      first_name: 'Admin',
-      last_name: 'Coderhouse',
-      role: 'admin',
-    };
-  } else {
-      userData = await UserModel.findOne({ email: user.email });
-      if (!userData) {
-        return res.status(404).send('Usuario no encontrado 😨.');
-      }}
-
-  const { first_name, last_name, role } = userData;
-  
+  const { first_name, last_name, role } = req.user;
   if (group) {
     criteria.category = group;
   };
-  console.log('group', group);
   const product = await ProductModel.paginate(criteria, opts);
-  res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role }));
+  res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role  }));
 });
 
 router.get('/products/:pid', async (req, res) => {
@@ -46,9 +30,9 @@ router.get('/products/:pid', async (req, res) => {
   }
 });
 
-router.post('/products', async (req, res) => {
+router.post('/products', authorizationMiddelware('admin'), async (req, res) => {
   const { body } = req;
-  const product = await ProductManager.create(body);
+  await ProductManager.create(body);
   res.render('register-product', { title: 'Registro de productos' })
 });
 
@@ -62,7 +46,7 @@ router.put('/products/:pid', async (req, res) => {
   }
 });
 
-router.delete('/products/:pid', async (req, res) => {
+router.delete('/products/:pid', authorizationMiddelware('admin'), async (req, res) => {
   try {
     const { params: { pid } } = req;
     await ProductManager.deleteById(pid);
@@ -82,7 +66,7 @@ const buildResponse = (data) => {
     page: data.page,
     userName: data.first_name,
     userLastName: data.last_name,
-    userRol: data.role,
+    userRole: data.role,
     hasPrevPage: data.hasPrevPage,
     hasNextPage: data.hasNextPage,
     prevLink: data.hasPrevPage ? `http://localhost:8080/products?limit=${data.limit}&page=${data.prevPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',

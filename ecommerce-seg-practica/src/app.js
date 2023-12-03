@@ -4,7 +4,7 @@ import handlebars from 'express-handlebars';
 import cookieParser from 'cookie-parser';
 import productApiRouter from './routers/api/productsApi.router.js';
 import cartApiRouter from './routers/api/cartsApi.router.js';
-import clientRouter from './routers/api/client.router.js';
+import authRouter from './routers/api/auth.router.js';
 import { init as initPassportConfig } from './config/passport.config.js';
 
 import { __dirname } from './utils.js';
@@ -24,6 +24,10 @@ app.set('view engine', 'handlebars');
 initPassportConfig();
 app.use(passport.initialize());
 
-app.use('/', cartApiRouter, productApiRouter, clientRouter);
+app.use('/', 
+    cartApiRouter, 
+    authRouter, 
+    productApiRouter
+    );
 
 export default app;

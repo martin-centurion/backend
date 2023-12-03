@@ -22,7 +22,7 @@ export const tokenGenerator = (user) => {
         email,
         role
     };
-    return jwt.sign(payload, JWT_SECRET, { expiresIn: '40s' });
+    return jwt.sign(payload, JWT_SECRET, { expiresIn: '1m' });
 };
 
 export const verifyToken = (token) => {
@@ -30,7 +30,7 @@ export const verifyToken = (token) => {
         jwt.verify(token, JWT_SECRET, (error, payload) => {
             if (error) {
                 return reject(error)
-            };
+            }
             resolve(payload);
         })
     })

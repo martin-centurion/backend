@@ -8,16 +8,13 @@ import {
     authorizationMiddelware
 } from "../../utils.js";
 import UserModel from "../../models/user.model.js";
+import ProductModel from "../../models/product.model.js";
 
 const router = Router();
 
 router.get('/login', (req, res) => {
-    res.render('login', { title: 'Cliente Ecommerce' })
+    res.render('login', { title: 'Login' })
 });
-
-/* router.get('/loginTest', (req, res) => {
-    res.render('loginTest', { title: 'Cliente Ecommerce' })
-}); */
 
 router.post('/auth/login', async (req, res) => {
     const { body: { email, password } } = req;
@@ -36,20 +33,8 @@ router.post('/auth/login', async (req, res) => {
         httpOnly: true,
       })
       .status(200)
-      .json({ status: 'success' });
+      .redirect('/products');
   
   });
-
-router.get('/current', authenticationMiddleware('jwt'), (req, res) => {
-    res.status(200).json(req.user);
-});
-
-/* router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
-  res.send(req.user);
-}); */
-
-router.get('/admin', authenticationMiddleware('jwt'), authorizationMiddelware('admin'), (req, res) => {
-  res.status(200).json({ success: true });
-})
-
-export default router;
+  
+  export default router;

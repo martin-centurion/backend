@@ -17,7 +17,7 @@
                     console.log('data', data);
                     console.log('cookies', document.cookie);
                     alert('Login successfully. Redirecting to profile page')
-                    window.location.href = '/profile';
+                    window.location.href = '/products';
                     //localStorage.setItem('token', data.access_token);
                 })
                 .catch((error) => {
