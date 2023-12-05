@@ -1,20 +1,52 @@
 import { Router } from "express";
-import passport from "passport";
 import { 
     isValidPassword, 
     tokenGenerator, 
-    verifyToken,
-    authenticationMiddleware,
-    authorizationMiddelware
+    createHash
 } from "../../utils.js";
 import UserModel from "../../models/user.model.js";
-import ProductModel from "../../models/product.model.js";
 
 const router = Router();
 
 router.get('/login', (req, res) => {
     res.render('login', { title: 'Login' })
 });
+
+router.get('/register', (req, res) => {
+  res.render('register', { title: 'Register' })
+});
+
+router.post('/auth/register', async (req, res) => {
+  const {
+    first_name,
+    last_name,
+    age,
+    email,
+    password,
+  } = req.body;
+  if (
+    !first_name ||
+    !last_name ||
+    !age ||
+    !email ||
+    !password
+  ) {
+    return res.status(400).json({ message: 'Todos los campos son requeridos 😨' });
+  }
+  let user = await UserModel.findOne({ email });
+  if (user) {
+    return res.status(400).json({ message: 'Correo ya registrado 😨. Intenta recuperar tu contraseña 😁.' });
+  }
+  user = await UserModel.create({
+    first_name,
+    last_name,
+    age,
+    email,
+    password: createHash(password),
+  });
+  res.redirect('/login');
+});
+
 
 router.post('/auth/login', async (req, res) => {
     const { body: { email, password } } = req;
@@ -34,7 +66,6 @@ router.post('/auth/login', async (req, res) => {
       })
       .status(200)
       .redirect('/products');
-  
   });
   
   export default router;

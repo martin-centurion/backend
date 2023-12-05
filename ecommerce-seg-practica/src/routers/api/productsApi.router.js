@@ -30,7 +30,7 @@ router.get('/products/:pid', async (req, res) => {
   }
 });
 
-router.post('/products', authorizationMiddelware('admin'), async (req, res) => {
+router.post('/register-product', authorizationMiddelware('admin'), async (req, res) => {
   const { body } = req;
   await ProductManager.create(body);
   res.render('register-product', { title: 'Registro de productos' })
