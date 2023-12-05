@@ -2,9 +2,10 @@ import express from 'express';
 import passport from 'passport';
 import handlebars from 'express-handlebars';
 import cookieParser from 'cookie-parser';
+import authRouter from './routers/api/auth.router.js';
+import indexRouter from './routers/api/index.router.js';
 import productApiRouter from './routers/api/productsApi.router.js';
 import cartApiRouter from './routers/api/cartsApi.router.js';
-import authRouter from './routers/api/auth.router.js';
 import { init as initPassportConfig } from './config/passport.config.js';
 
 import { __dirname } from './utils.js';
@@ -25,9 +26,10 @@ initPassportConfig();
 app.use(passport.initialize());
 
 app.use('/', 
+    authRouter,
+    indexRouter,
+    productApiRouter,
     cartApiRouter, 
-    authRouter, 
-    productApiRouter
     );
 
 export default app;

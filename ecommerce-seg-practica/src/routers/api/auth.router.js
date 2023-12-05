@@ -8,14 +8,6 @@ import UserModel from "../../models/user.model.js";
 
 const router = Router();
 
-router.get('/login', (req, res) => {
-    res.render('login', { title: 'Login' })
-});
-
-router.get('/register', (req, res) => {
-  res.render('register', { title: 'Register' })
-});
-
 router.post('/auth/register', async (req, res) => {
   const {
     first_name,
@@ -47,6 +39,16 @@ router.post('/auth/register', async (req, res) => {
   res.redirect('/login');
 });
 
+router.post('/auth/recovery-password', async (req, res) => {
+  const { email, newPassword } = req.body;
+  const user = await UserModel.findOne({ email });
+  if (!user) {
+      return res.status(401).send('Correo o contraseña invalidos.')
+  };
+  await UserModel.updateOne({ email }, { $set: { password: createHash(newPassword) }});
+  res.redirect('/login');
+});
+
 
 router.post('/auth/login', async (req, res) => {
     const { body: { email, password } } = req;
@@ -67,5 +69,7 @@ router.post('/auth/login', async (req, res) => {
       .status(200)
       .redirect('/products');
   });
+
+  
   
   export default router;
