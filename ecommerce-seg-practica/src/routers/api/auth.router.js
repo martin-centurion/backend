@@ -67,7 +67,8 @@ router.post('/auth/login', async (req, res) => {
         httpOnly: true,
       })
       .status(200)
-      .redirect('/products');
+      .json({ status: 'succes'})
+      //.redirect('/products');
   });
 
   

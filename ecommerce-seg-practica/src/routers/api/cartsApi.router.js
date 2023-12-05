@@ -1,12 +1,27 @@
 import { Router } from 'express';
 import CartManager from '../../dao/CartManager.js';
+import { 
+    authenticationMiddleware,
+    authorizationMiddelware
+  } from "../../utils.js";
+import CartModel from '../../models/cart.model.js';
 
 const router = Router();
 
-router.get('/carts', async (req, res) => {
-    const { query = {} } = req;
-    const carts = await CartManager.get(query);
-    res.render('carts', carts);
+router.get('/carts', authenticationMiddleware('jwt'), authorizationMiddelware('user'), async (req, res) => {
+    const carts = await CartModel.find({}).populate('user').populate('products.product');
+
+    res.status(200).json(carts)
+    //res.render('carts', carts);
+});
+
+router.post('/carts', authenticationMiddleware('jwt'), authorizationMiddelware('user'), async (req, res) => {
+    const body = req.body;
+    const cart = await CartModel.create({
+        ...body,
+        user: req.user.id,
+    });
+    res.status(201).json(cart);
 });
 
 router.get('/carts/:cid', async (req, res) => {
@@ -28,11 +43,6 @@ const buildResponse = (cid, data) => {
     }
 }
 
-router.post('/carts', async (req, res) => {
-    const { body } = req;
-    const cart = await CartManager.create(body);
-    res.status(201).json(cart);
-});
 
 router.post('/carts/:cid/product/:pid', async (req, res) => {
     const { params: { pid, cid }} = req;
