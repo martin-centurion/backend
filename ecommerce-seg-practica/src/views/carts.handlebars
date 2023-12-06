@@ -36,7 +36,6 @@
             <div class="container">
                 <div class="banner__content">
                     <h1 class="banner__content-titulo">Bienvenido, {{userName}} - {{userRole}}</h1>
-                    <h1>{{userRole}}</h1>
                 </div>
             </div>
         </section>
@@ -51,10 +50,8 @@
                 <div class="productos-img">
                   {{#each payload}}
                         <article>
-                          <img src={{ this.product.thumbnails }} alt={{ this.product.title }}>
-                          <p>{{ this.product.title }}</p>
-                          <p>${{ this.product.price }}</p>
-                          <p>Cantidad: {{ this.quantity }}u</p>
+                            <p>{{this.text}}</p>
+                            <p>{{data.products.title}}</p>
                         </article>
                   {{/each}}  
                 </div>
