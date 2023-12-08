@@ -3,18 +3,19 @@ import paginator from 'mongoose-paginate-v2';
 
 const productSubSchema = new mongoose.Schema({
     product:        { type: mongoose.Schema.Types.ObjectId, ref: 'Product' },
-    title:          { type: String },
-    description:    { type: String },
-    price:          { type: Number },
-    thumbnails:     { type: String },
     quantity:       { type: Number }   
 }, { _id: false });
 
 const cartSchema = new mongoose.Schema({
-    text:       { type: String },
     user:       { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     products:   { type: [productSubSchema], default: [] },
 }, { timestamps: true });
+
+cartSchema.pre('find', function () {
+    this.populate('products.productId')
+}).pre('findOne', function () {
+    this.populate('products.productId')
+});
 
 cartSchema.plugin(paginator);
 
