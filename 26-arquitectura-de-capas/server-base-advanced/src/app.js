@@ -5,6 +5,7 @@ import { __dirname } from './utils.js';
 
 import indexRouter from './routers/views/index.router.js';
 import usersRouter from './routers/api/users.router.js';
+import toysRouter from './routers/api/toys.router.js';
 
 const app = express();
 
@@ -17,7 +18,7 @@ app.set('view engine', 'handlebars');
 
 
 app.use('/', indexRouter);
-app.use('/api', usersRouter);
+app.use('/api', usersRouter, toysRouter);
 
 app.use((error, req, res, next) => {
     const message = `Ah ocurrido un error desconocido: ${error.message}`;
