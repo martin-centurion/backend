@@ -24,8 +24,7 @@ export default class ToysController {
         console.log('Producto actualizado correctamente');
     }
 
-
-    static async deleteById(tid, data) {
+    static async deleteById(tid) {
         console.log('Eliminando producto');
         await ToyModel.deleteOne({ id: tid });
         console.log('Producto eliminado correctamente');
