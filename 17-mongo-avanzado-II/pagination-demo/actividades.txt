@@ -1,0 +1,2 @@
+* Obtener el promedio de calificacion de los hombres
+* Obtener el promedio de calificacion de las mujeres

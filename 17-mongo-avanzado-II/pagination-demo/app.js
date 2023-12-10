@@ -202,6 +202,11 @@ const getData = async () => {
       }
     ]);
     console.log('getData Result', result);
+};
+
+const getDataPaginated = async () => {
+    const result = await StudentModel.paginate({}, { limit: 5, page: 2 } );
+    console.log('getDataPaginated result', result);
 }
 
 const test = async () => {
@@ -209,7 +214,8 @@ const test = async () => {
     await mongoose.connect(URI);
     console.log('Database connected 🚀');
     //insertData();
-    await getData();
+    // await getData();
+    await getDataPaginated();
 };
 
 test();

@@ -53,13 +53,57 @@ const data = [
     },
   ];
 
+  const getReport = async () => {
+    const result = await OrderModel.aggregate([
+        {
+            $match: {
+                size: 'medium',
+            },
+        },
+        {
+            $group: {
+                _id: '$name',
+                totalQuantity: { $sum: '$quantity' },
+                totalOrder: { $sum: 1 }
+            },
+        },
+        {
+            $sort: { totalQuantity: -1 }
+        },
+        {
+            $group: {
+                _id: 1,
+                orders: { $push: '$$ROOT' },
+            },
+        },
+        {
+            $project: {
+                '_id': 0,
+                orders: '$orders',
+            },
+        },
+        {
+            $merge: {
+                into: 'reports', // nombre de la
+            }
+        }
+    ]);
+    console.log('getReport result', result);
+};
+
+    const insertData = async () => {
+    await OrderModel.insertMany(data);
+    const result = await OrderModel.find({});
+    console.log('Result', result);
+}
+
 const test = async () => {
     const URI = 'mongodb+srv://developer:kuppyr-Nospuc-dubre8@cluster0.qnxcwcg.mongodb.net/pizzeria';
     await mongoose.connect(URI);
     console.log('Database connected 🚀');
-    await OrderModel.insertMany(data);
-    const result = await OrderModel.find({});
-    console.log('Result', result);
+    //insertData();
+    await getReport();
 };
 
 test();
+
