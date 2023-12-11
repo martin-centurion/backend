@@ -1,5 +1,4 @@
 import { Router } from 'express';
-import ProductManager from '../../dao/ProductManager.js';
 import ProductModel from '../../models/product.model.js';
 import { 
   authenticationMiddleware,
@@ -8,51 +7,63 @@ import {
 
 const router = Router();
 
-router.get('/products', authenticationMiddleware('jwt'), async (req, res) => {
-  const { page = 1, limit = 4, group, sort } = req.query;
-  const opts = { page, limit, sort: { price: sort || 'asc' } };
-  const criteria = {};
-  const { first_name, last_name, role } = req.user;
-  if (group) {
-    criteria.category = group;
-  };
-  const product = await ProductModel.paginate(criteria, opts);
-  res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role  }));
+router.get('/products', authenticationMiddleware('jwt'), async (req, res, next) => {
+  try {
+      const { page = 1, limit = 4, group, sort } = req.query;
+      const opts = { page, limit, sort: { price: sort || 'asc' } };
+      const criteria = {};
+      const { first_name, last_name, role } = req.user;
+      if (group) {
+        criteria.category = group;
+      };
+      const product = await ProductModel.paginate(criteria, opts);
+      res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role  }))
+  } catch (error) {
+      next(error);
+  }
 });
 
-router.get('/products/:pid', async (req, res) => {
+router.get('/products/:pid', authenticationMiddleware('jwt'), async (req, res, next) => {
   try {
     const { params: { pid } } = req;
-    const product = await ProductManager.getById(pid);
+    const product = await ProductModel.findById(pid);
+    if (!product) {
+      return res.status(401).json({ message: `Product id ${uid} not found 😨.` });
+    }
     res.status(200).json(product);
   } catch (error) {
-    res.status(error.statusCode || 500).json({ message: error.message });
+    next(error)
+    //res.status(error.statusCode || 500).json({ message: error.message });
   }
 });
 
-router.post('/register-product', authorizationMiddelware('admin'), async (req, res) => {
-  const { body } = req;
-  await ProductManager.create(body);
-  res.render('register-product', { title: 'Registro de productos' })
+router.post('/register-product', authenticationMiddleware('jwt'), authorizationMiddelware('admin'), async (req, res, next) => {
+  try {
+    const { body } = req;
+    const product = await ProductModel.create(body);
+    res.status(201).json(product);
+  } catch (error) {
+    next(error)
+  }
 });
 
-router.put('/products/:pid', async (req, res) => {
+router.put('/products/:pid', authenticationMiddleware('jwt'), authorizationMiddelware('admin'), async (req, res, next) => {
   try {
-    const { params: { pid }, body } = req;
-    await ProductManager.updateById(pid, body);
+    const { body, params: { pid } } = req;
+    await ProductModel.updateOne({ _id: pid }, { $set: body });
     res.status(204).end();
   } catch (error) {
-    res.status(error.statusCode || 500).json({ message: error.message });
+    next(error)
   }
 });
 
-router.delete('/products/:pid', authorizationMiddelware('admin'), async (req, res) => {
+router.delete('/products/:pid', authenticationMiddleware('jwt'), authorizationMiddelware('admin'), async (req, res, next) => {
   try {
     const { params: { pid } } = req;
-    await ProductManager.deleteById(pid);
+    await ProductModel.deleteOne({ _id: pid });
     res.status(204).end();
   } catch (error) {
-    res.status(error.statusCode || 500).json({ message: error.message });
+    next(error)
   }
 });
 
