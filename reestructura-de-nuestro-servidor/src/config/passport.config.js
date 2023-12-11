@@ -1,9 +1,6 @@
-import dotenv from 'dotenv';
-dotenv.config();
 import passport from 'passport';
-import { JWT_SECRET } from '../utils.js';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
-import UserModel from '../models/user.model.js';
+import config from '../config.js';
 
 function cookieExtractor(req) {
     let token = null;
@@ -14,7 +11,7 @@ function cookieExtractor(req) {
 
 const opts = {
     jwtFromRequest: ExtractJwt.fromExtractors([cookieExtractor]),
-    secretOrKey: JWT_SECRET
+    secretOrKey: config.jwtSecret
 };
 
 export const init = () => {

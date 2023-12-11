@@ -3,8 +3,8 @@ import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { fileURLToPath } from 'url';
+import config from './config.js';
 
-export const JWT_SECRET = process.env.KEY_JWT_SECRET;
 
 const __filename = fileURLToPath(import.meta.url);
 export const __dirname = path.dirname(__filename);
@@ -22,12 +22,12 @@ export const tokenGenerator = (user) => {
         email,
         role
     };
-    return jwt.sign(payload, JWT_SECRET, { expiresIn: '1m' });
+    return jwt.sign(payload, config.jwtSecret, { expiresIn: '1m' });
 };
 
 export const verifyToken = (token) => {
     return new Promise((resolve, reject) => {
-        jwt.verify(token, JWT_SECRET, (error, payload) => {
+        jwt.verify(token, config.jwtSecret, (error, payload) => {
             if (error) {
                 return reject(error)
             }
