@@ -1,48 +1,58 @@
 import { Router } from 'express';
-import CartManager from '../../dao/CartManager.js';
+import CartController from '../../controllers/cart.controller.js';
+import CartModel from '../../models/cart.model.js';
 import { 
     authenticationMiddleware,
     authorizationMiddelware
   } from "../../utils.js";
-import CartModel from '../../models/cart.model.js';
 
 const router = Router();
 
-router.get('/carts', authenticationMiddleware('jwt'), authorizationMiddelware('user'), async (req, res) => {
+router.get('/carts', authenticationMiddleware('jwt'), async (req, res) => {
     const carts = await CartModel.find().populate('user').populate('products.product');
-    const { first_name, last_name, role } = req.user;
     console.log('cart', carts);
     const criteria = {};
     const cart = await CartModel.paginate(criteria);
-    res.render('carts', buildResponse({ ...cart, first_name, last_name, role  }));
+    res.status(201).json(cart);
 });
 
-router.post('/carts', authenticationMiddleware('jwt'), authorizationMiddelware('user'), async (req, res) => {
+router.post('/carts', authenticationMiddleware('jwt'), async (req, res, next) => {
+  try {
     const body = req.body;
-    const cart = await CartModel.create({
+    const cart = await CartController.create({
         ...body,
         user: req.user.id,
     });
     res.status(201).json(cart);
+  } catch (error) {
+    next(error)
+  }
 });
-
-router.post('/carts/:cid/product/:pid', async (req, res) => {
-    const { params: { pid, cid }} = req;
-    const cart = await CartManager.addProductToCart(cid, pid);
-    res.status(201).json(cart)
-});
-
 router.get('/carts/:cid', authenticationMiddleware('jwt'), async (req, res) => {
   const { cid } = req.params;
   try {
-      const result = await CartModel.findById(cid)
-      res.render('carts', buildResponse(cid, result))
+      const result = await CartController.getById(cid)
+      console.log('result', result);
+      res.status(201).json({cid, result})
   } catch (error) {
       console.log('Error', error.message);
   }
 });
 
-const buildResponse = (data) => {
+/*   */
+
+router.post('/carts/:cid/product/:pid', async (req, res, next)=>{
+    try {
+      const { params: { pid, cid }}= req;
+      const cart = await CartController.addProductToCart(cid, pid);
+      res.status(201).json({ pid, cid });
+    } catch (error) {
+      next(error);
+    }
+});
+
+
+/* const buildResponse = (data) => {
   return {
     status: 'success',
     payload: data.docs.map(product => product.toJSON({})),
@@ -50,6 +60,6 @@ const buildResponse = (data) => {
     userLastName: data.last_name,
     userRole: data.role,
   }
-}
+} */
 
 export default router;
