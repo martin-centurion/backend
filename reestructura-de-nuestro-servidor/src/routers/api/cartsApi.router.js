@@ -41,6 +41,7 @@ router.get('/carts/:cid', authenticationMiddleware('jwt'), async (req, res) => {
 
 /*   */
 
+// ROUTER
 router.post('/carts/:cid/product/:pid', async (req, res, next)=>{
     try {
       const { params: { pid, cid }}= req;

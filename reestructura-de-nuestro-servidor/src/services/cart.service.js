@@ -27,6 +27,7 @@ export default class CartService {
         return CartDao.deleteById(cartid);
     }
 
+    // CART.SERVICE.JS
     static async addProductToCart(req, res) {
         try {
           const { cid, pid } = req.params;

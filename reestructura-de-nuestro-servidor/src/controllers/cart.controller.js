@@ -43,8 +43,7 @@ export default class CartController {
         console.log('Carrito eliminado correctamente.');
     }
 
-   
-
+    // CART.CONTROLLER
     static async addProductToCart(req, res) {
         try {
           const { cid, pid } = req.params;
@@ -53,6 +52,6 @@ export default class CartController {
         } catch (error) {
           console.log(`No se pudo agregar el producto al carrito`);
         }
-        
+
       }
 }
