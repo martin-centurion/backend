@@ -43,15 +43,8 @@ export default class CartController {
         console.log('Carrito eliminado correctamente.');
     }
 
-    // CART.CONTROLLER 
-    static async addProductToCart(req, res) {
-        try {
-          const { cid, pid } = req.params;
-          await CartService.addProductToCart(cid, pid);
-          console.log('Producto agregado correctamente');
-        } catch (error) {
-          console.log(`No se pudo agregar el producto al carrito`);
-        }
-
-      }
+    static async addProductToCart(cid, pid) {
+        await CartService.addProductToCart(cid, pid);
+        console.log("El producto fue agregado correctamente");
+    }
 }

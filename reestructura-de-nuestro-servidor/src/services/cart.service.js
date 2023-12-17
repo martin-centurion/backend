@@ -15,8 +15,6 @@ export default class CartService {
     static findById(cartid){
         console.log('CartDao', CartDao);
         return CartDao.getById(cartid);
-        
-        //return CartDao.getById(cartid).populate('products.product');
     }
 
     static updateById(cartid, payload) {
@@ -28,14 +26,8 @@ export default class CartService {
     }
 
     // CART.SERVICE.JS
-    static async addProductToCart(req, res) {
-        try {
-          const { cid, pid } = req.params;
-          await CartDao.addProductToCartById(cid, pid);
-          console.log('Producto agregado correctamente');
-        } catch (error) {
-          console.log(`No se pudo agregar el producto al carrito`);
-        }
+    static async addProductToCart(cid, pid) {
+        return CartDao.addProduct(cid, pid);
       }
 
     /* 

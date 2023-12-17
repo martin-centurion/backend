@@ -5,6 +5,15 @@ export default class ProductDao {
         return ProductModel.create(data);
     }
 
+    static async productExists(pid) {
+        console.log(await ProductModel.findOne({ _id: pid }));
+        try {
+          return await ProductModel.findOne({ _id: pid });
+        } catch (error) {
+          return false;
+        }
+      }
+
     static get( criteria = {} ) {
         return ProductModel.find(criteria);
     }

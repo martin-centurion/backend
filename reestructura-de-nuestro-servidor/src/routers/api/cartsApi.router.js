@@ -10,7 +10,6 @@ const router = Router();
 
 router.get('/carts', authenticationMiddleware('jwt'), async (req, res) => {
     const carts = await CartModel.find().populate('user').populate('products.product');
-    console.log('cart', carts);
     const criteria = {};
     const cart = await CartModel.paginate(criteria);
     res.status(201).json(cart);
@@ -39,28 +38,15 @@ router.get('/carts/:cid', authenticationMiddleware('jwt'), async (req, res) => {
   }
 });
 
-/*   */
-
-// ROUTER
 router.post('/carts/:cid/product/:pid', async (req, res, next)=>{
-    try {
-      const { params: { pid, cid }}= req;
-      const cart = await CartController.addProductToCart(cid, pid);
-      res.status(201).json({ pid, cid });
+    const { cid, pid } = req.params;
+
+  try {
+    const result = await CartController.addProductToCart(cid, pid);
+    res.status(201).json("Producto adherido al carrito correctamente.");
     } catch (error) {
       next(error);
     }
 });
-
-
-/* const buildResponse = (data) => {
-  return {
-    status: 'success',
-    payload: data.docs.map(product => product.toJSON({})),
-    userName: data.first_name,
-    userLastName: data.last_name,
-    userRole: data.role,
-  }
-} */
 
 export default router;
