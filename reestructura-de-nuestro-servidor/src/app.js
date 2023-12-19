@@ -3,7 +3,7 @@ import passport from 'passport';
 import handlebars from 'express-handlebars';
 import cookieParser from 'cookie-parser';
 import authRouter from './routers/api/auth.router.js';
-import indexRouter from './routers/api/index.router.js';
+import userRouter from './routers/api/user.router.js';
 import productApiRouter from './routers/api/productsApi.router.js';
 import cartApiRouter from './routers/api/cartsApi.router.js';
 import { init as initPassportConfig } from './config/passport.config.js';
@@ -27,7 +27,7 @@ app.use(passport.initialize());
 
 app.use('/', 
     authRouter,
-    indexRouter,
+    userRouter,
     productApiRouter,
     cartApiRouter, 
     );

@@ -39,7 +39,7 @@ export default class CartController {
             throw new Exception('No existe el carrito', 404)
         }
         console.log('Eliminando el carrito.');
-        await CartService.deleteById(cartid, cart);
+        await CartService.deleteById(cartid);
         console.log('Carrito eliminado correctamente.');
     }
 

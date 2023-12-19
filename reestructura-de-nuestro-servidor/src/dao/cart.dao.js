@@ -29,12 +29,9 @@ export default class CartDao {
         }
       }
     
-
     static deleteById(cartid) {
         return CartModel.deleteOne({ _id: cartid })
     }
-
-    // CART.DAO.JS
     static async addProduct(cid, pid, quantity = null) {
         const cart = await CartDao.getById(cid);
         const validProduct = ProductDao.productExists(pid);
