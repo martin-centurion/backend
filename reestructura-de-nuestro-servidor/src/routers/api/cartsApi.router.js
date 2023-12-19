@@ -38,6 +38,16 @@ router.get('/carts/:cid', authenticationMiddleware('jwt'), async (req, res) => {
   }
 });
 
+router.delete('/carts/:cid', authenticationMiddleware('jwt'), async (req, res, next) => {
+  try {
+      const { params: { cid } } = req;
+      await CartModel.deleteOne({ _id: cid });
+      res.status(204).end();
+  } catch (error) {
+      next(error)
+  }
+});
+
 router.post('/carts/:cid/product/:pid', async (req, res, next)=>{
     const { cid, pid } = req.params;
 

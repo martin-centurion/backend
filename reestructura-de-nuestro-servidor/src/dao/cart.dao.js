@@ -1,5 +1,4 @@
 import CartModel from "../models/cart.model.js";
-import ProductModel from '../models/product.model.js';
 import ProductDao from '../dao/product.dao.js';
 
 export default class CartDao {
