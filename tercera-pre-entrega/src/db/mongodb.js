@@ -1,11 +1,12 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
+import config from '../config.js';
 
 export const init = async () => {
     try {
-        const URI = 'mongodb+srv://developer:kuppyr-Nospuc-dubre8@cluster0.qnxcwcg.mongodb.net/';
+        const URI = config.db.mongodbUri;
         await mongoose.connect(URI);
-        console.log('Database connected.');
+        console.log('Database connected');
     } catch (error) {
-        console.error('Error to connect to database', error.message);
+        console.error('Ah ocurrido un error al intentar conectar a la BD.', error.message);
     }
-};
+}
