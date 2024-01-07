@@ -31,6 +31,10 @@ export default class CartDao {
     static deleteById(cartid) {
         return CartModel.deleteOne({ _id: cartid })
     }
+
+    static clearCart(cartid) {
+      return Ca
+    }
     static async addProduct(cid, pid, quantity = null) {
         const cart = await CartDao.getById(cid);
         const validProduct = ProductDao.productExists(pid);
@@ -57,5 +61,4 @@ export default class CartDao {
           throw new Exception(`Product with id "${pid}" doesn't exist.`, 404);
         }
       }
-
 }

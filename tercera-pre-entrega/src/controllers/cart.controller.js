@@ -43,8 +43,6 @@ export default class CartController {
         console.log('Carrito eliminado correctamente.');
     }
 
-    static async deleteProductFromCart(){};
-
     static async addProductToCart(cid, pid) {
         await CartService.addProductToCart(cid, pid);
         console.log("El producto fue agregado correctamente");
