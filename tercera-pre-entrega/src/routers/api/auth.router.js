@@ -1,72 +1,32 @@
 import { Router } from "express";
-import { 
-    isValidPassword, 
-    tokenGenerator, 
-    createHash
-} from "../../utils.js";
-import UserModel from "../../models/user.model.js";
+import passport from "passport";
+import { tokenGenerator } from "../../utils.js";
 
 const router = Router();
+// Rutas de google
+router.get("/auth/google", passport.authenticate('google', { scope: ['profile'] }));
 
-router.post('/auth/login', async (req, res) => {
-  const { body: { email, password } } = req;
-  const user = await UserModel.findOne({ email });
-  if (!user) {
-    return res.status(401).json({ message: 'Email o pass invalidos.' });
-  }
-  const isValidPass = isValidPassword(password, user);
-  if (!isValidPass) {
-    return res.status(401).json({ message: 'Email o pass invalidos.' });
-  }
-  const token = tokenGenerator(user);
-  res
-    .cookie('access_token', token, {
-      maxAge: 60000,
-      httpOnly: true,
-    })
-    .status(200)
-    .json({ status: 'succes'})
-});
+router.get("/auth/google/callback",
+  passport.authenticate("google", { failureRedirect: "/login" }),
+  (req, res, next) => {
+    try {
+      // Imprime información útil para depuración
+      console.log('req.user', req.user);
 
-router.post('/auth/register', async (req, res) => {
-  const {
-    first_name,
-    last_name,
-    age,
-    email,
-    password,
-  } = req.body;
-  if (
-    !first_name ||
-    !last_name ||
-    !age ||
-    !email ||
-    !password
-  ) {
-    return res.status(400).json({ message: 'Todos los campos son requeridos 😨' });
-  }
-  let user = await UserModel.findOne({ email });
-  if (user) {
-    return res.status(400).json({ message: 'Correo ya registrado 😨. Intenta recuperar tu contraseña 😁.' });
-  }
-  user = await UserModel.create({
-    first_name,
-    last_name,
-    age,
-    email,
-    password: createHash(password),
-  });
-  res.redirect('/login');
-});
+      const { _id, username, lastname, email } = req.user;
+      const token = tokenGenerator(req.user, '24h');
 
-router.post('/auth/recovery-password', async (req, res) => {
-  const { email, newPassword } = req.body;
-  const user = await UserModel.findOne({ email });
-  if (!user) {
-      return res.status(401).send('Correo o contraseña invalidos.')
-  };
-  await UserModel.updateOne({ email }, { $set: { password: createHash(newPassword) }});
-  res.redirect('/login');
-});
-    
-export default router;
+      // Configura la cookie con el token
+      res.cookie("accessToken", token, {
+        maxAge: 60 * 60 * 24,
+        httpOnly: true,
+        signed: true,
+      }).redirect("/");
+    } catch (error) {
+      // Manejo de errores
+      res.status(error.statusCode || 500).json({ message: error.message });
+      next(error);
+    }
+  }
+);
+  export default router;
