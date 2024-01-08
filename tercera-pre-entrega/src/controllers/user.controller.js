@@ -1,44 +1,58 @@
-import UserService from '../services/user.service.js';
+import userService from '../services/user.service.js';
 import { Exception } from '../utils.js';
 
 export default class UserController {
-    static async create (data) {
-        console.log('Creando un nuevo usuario');
-        const user = await UserService.create(data);
-        console.log('Se ha creado el carrito exitosamente.');
-        return user;
-    };
-
-    static async getAll (query = {}) {
-        const user = await UserService.findAll(query);
-        return user;
+    static async get(query = {}) {
+        try {
+          return await userService.getUsers(query);
+        } catch (error) {
+          throw new Exception(error.message, error.status);
+        }
     }
 
-    static async getById (uid) {
-        const user = await UserService.findById(uid);
-        /* if(!user) {
-            throw new Exception('No existe el usuario', 404)
-        } */
-        return user;
+    static async getById(uid) { 
+        try {
+          return await userService.getUserById(uid);
+        } catch (error) {
+          throw new Exception(error.message, error.status);
+        }
+    }
+
+    static async createUser(userData) {
+        try {
+          const user = await userService.createUser(userData);
+          console.log("Usuario creado");
+          return user.message;
+        } catch (error) {
+          throw new Exception(error.message, error.status);
+        }
     }
 
     static async updateById(uid, data) {
-        await UserController.getById(uid);
-        /* if(!user) {
-            throw new Exception('No existe el usuario', 404);
-        } */
-        await UserService.updateById(uid, data);
-        console.log('Usuario actualizado correctamente');
+        try {
+          await userService.updateById(uid, data);
+          console.log("Usuario actualizado");
+        } catch (error) {
+          throw new Exception(error.message, error.status);
+        }
+    }
+
+    static async updatePassword(uid, data) {
+        try {
+          await userService.updatePassword(uid, data);
+          console.log("Usuario actualizado");
+        } catch (error) {
+          throw new Exception(error.message, error.status);
+        }
     }
 
     static async deleteById(uid) {
-        await UserController.getById(uid);/* 
-        if(!user) {
-            throw new Exception('No existe el usuario', 404);
-        } */
-        console.log('Eliminando el usuario.');
-        await UserService.deleteById(uid);
-        console.log('Usuario eliminado correctamente');
-    }
+        try {
+          await userService.deleteById(uid);
+          console.log("Usuario eliminado");
+        } catch (error) {
+          throw new Exception(error.message, error.status);
+        }
+      }
 
   }
