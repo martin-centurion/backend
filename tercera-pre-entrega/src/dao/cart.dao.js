@@ -1,64 +1,96 @@
-import CartModel from "../models/cart.model.js";
-import ProductDao from '../dao/product.dao.js';
+import cartModel from "../models/cart.model.js";
+import { Exception } from "../utils.js";
 
-export default class CartDao {
-    static async create(data) {
-        return CartModel.create(data);
+export default class cartManager {
+  static async get(query) {
+    const carts = await cartModel.find(query).populate("items.pid");
+    return carts;
+  }
+
+  static async getOne(query) {
+    try {
+      const cart = await cartModel.findOne(query).populate("items.pid");
+      return cart;
+    } catch (error) {
+      throw new Exception(error.message, error.status);
     }
+  }
 
-    static get(criteria = {}) {
-        return CartModel.find(criteria)
-    } 
-
-    static getById(cartid){
-        return CartModel.findById(cartid).populate('products.product');
+  static async getById(cid) {
+    try {
+      const cart = await cartModel.findById(cid).populate("items.pid");
+      return cart;
+    } catch (error) {
+      throw new Exception(error.message, error.status);
     }
+  }
 
-    static async updateById(cid, products) {
-        try {
-          const result = await CartModel.updateOne({ _id: cid }, { products });
-    
-          if (result.matchedCount == 0) {
-            throw new Error();
-          }
-    
-          return await CartModel.findOne({ _id: cid });
-        } catch (error) {
-          throw new Exception(`Cart with id "${cid}" not found`);
-        }
-      }
-    
-    static deleteById(cartid) {
-        return CartModel.deleteOne({ _id: cartid })
+  static async create(cartData) {
+    try {
+      const cart = await cartModel.create(cartData);
+      console.log("Carrito creado");
+      return cart;
+    } catch (error) {
+      throw new Exception(error.message, error.status);
     }
+  }
 
-    static clearCart(cartid) {
-      return Ca
+  static async updateById(cid, data) {
+    try {
+      await cartModel.updateOne(cid, data);
+      console.log("Carrito actualizado");
+    } catch (error) {
+      throw new Exception(error.message, error.status);
     }
-    static async addProduct(cid, pid, quantity = null) {
-        const cart = await CartDao.getById(cid);
-        const validProduct = ProductDao.productExists(pid);
-    
-        if (validProduct) {
-          const productIndex = cart.products.findIndex(
-            (e) => e.product.toString() === pid
-          );
-    
-          if (productIndex != -1) {
-            quantity
-              ? (cart.products[productIndex].quantity = quantity)
-              : cart.products[productIndex].quantity++;
-          } else {
-            cart.products.push({
-              product: pid,
-              quantity: quantity ? quantity : 1,
-            });
-          }
-    
-          let result = await CartDao.updateById(cid, cart.products);
-          return result;
-        } else {
-          throw new Exception(`Product with id "${pid}" doesn't exist.`, 404);
-        }
-      }
+  }
+
+  static async updateOne(criterio, operation) {
+    try {
+      const cart = await cartModel.updateOne(criterio, operation);
+      console.log("Carrito actualizado");
+    } catch (error) {
+      throw new Exception(error.message, error.status);
+    }
+  }
+
+  static async findOneAndUpdate(userId, pid, data) {
+    try {
+      await cartModel.findOneAndUpdate(
+        { userId, "items.pid": pid },
+        { $inc: { "items.$.quantity": data || 1 } }
+      );
+      console.log("Cantidad actualizada en el carrito");
+      return { message: "Cantidad actualizada en el carrito" };
+    } catch (error) {
+      throw new Exception(error.message, error.status);
+    }
+  }
+
+  static async deleteOne(criterio) {
+    try {
+      const cart = await cartModel.deleteOne(criterio);
+      return {message: 'Carrito eliminado'}
+    } catch (error) {
+      throw new Exception(error.message, error.status);
+    }
+  }
+
+  static async deleteById(cid) {
+    try {
+      await cartModel.deleteOne(cid);
+      console.log("Carrito eliminado");
+      return { message: "Carrito eliminado" };
+    } catch (error) {
+      throw new Exception(error.message, error.status);
+    }
+  }
+
+  static async findByIdAndUpdate(id, query) {
+    try {
+      await cartModel.findByIdAndUpdate(id, query);
+      return { message: "Cantidad actualizada en el carrito" };
+    } catch (error) {
+      throw new Exception(error.message, error.status);
+    }
+  }
 }

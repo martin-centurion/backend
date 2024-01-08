@@ -1,31 +1,111 @@
-import CartDao from "../dao/cart.dao.js";
+import cartManager from "../dao/cart.dao.js";
+import { Exception } from "../utils.js";
 
-export default class CartService {
-    static findAll(filter = {}) {
-        return CartDao.find(filter)
+export default class cartService {
+  static async getCarts(query) {
+    try {
+      return await cartManager.get(query);
+    } catch (error) {
+      throw new Exception(error.message, error.status);
     }
+  }
 
-    static async create(payload) {
-        console.log('Creando un nuevo carrito.');
-        const cart = await CartDao.create(payload);
-        console.log('Se ha creado el carrito exitosamente');
-        return cart;
+  static async getOneCart(query) {
+    try {
+      const cart = await cartManager.getOne(query);
+      if (!cart) throw new Exception("No existe el Carrito", 404);
+      return cart;
+    } catch (error) {
+      throw new Exception(error.message, error.status);
     }
+  }
 
-    static findById(cartid){
-        console.log('CartDao', CartDao);
-        return CartDao.getById(cartid);
+  static async getCartById(cid) {
+    try {
+      const cart = await cartManager.getById(cid);
+      if (!cart) throw new Exception("No existe el Carrito", 404);
+      return cart;
+    } catch (error) {
+      throw new Exception(error.message, error.status);
     }
+  }
 
-    static updateById(cartid, payload) {
-        return CartDao.updateById(cartid, payload);
-    }
+  static async createCart(cartData) {
+    try {
+        const {
+            userId,
+            items: [{ pid, quantity }],
+          } = cartData;
 
-    static deleteById(cartid) {
-        return CartDao.deleteById(cartid);
-    }
+      const cartExist = await cartManager.getOne({ userId });
 
-    static async addProductToCart(cid, pid) {
-        return CartDao.addProduct(cid, pid);
+      if (!cartExist) throw new Exception("No existe el Carrito", 404);
+
+      if (cartExist) {
+        const existingItem = cartExist.items.find((item) => {
+          const id = item.pid._id.toString();
+          return id === pid;
+        });
+
+        if (existingItem) {
+          await cartManager.findOneAndUpdate(userId, pid, quantity);
+          console.log("Cantidad actualizada en el carrito");
+          return { message: "Cantidad actualizada en el carrito" };
+        } else {
+          cartExist.items.push({ pid, quantity: quantity });
+          await cartExist.save();
+          console.log("Producto agregado al carrito");
+          return { message: "Producto agregado al carrito" };
+        }
+      } else {
+        return await cartManager.create(cartData);
       }
+    } catch (error) {
+      throw new Exception(error.message, error.status);
+    }
+  }
+
+  static async updateCartById(uid, data) {
+    try {
+      const cart = await cartManager.getById(uid);
+      if (!cart) throw new Exception("Carrito no encontrado", 401);
+      return await cartManager.updateById(uid, data);
+    } catch (error) {
+      throw new Exception(error.message, error.status);
+    }
+  }
+
+  static async findOneAndUpdateCart(userId, pid, data) {
+    try {
+      return await cartManager.findOneAndUpdate(userId, pid, data);
+    } catch (error) {
+      throw new Exception(error.message, error.status);
+    }
+  }
+
+  static async deleteCartById(cid) {
+    try {
+      const cart = await cartManager.getById(cid);
+      if (!cart) throw new Exception("Carrito no encontrado", 401);
+      return await cartManager.deleteById(cid);
+    } catch (error) {
+      throw new Exception(error.message, error.status);
+    }
+  }
+
+  static async findByIdAndUpdateCart(cid, data) {
+    try {
+      return await cartManager.findByIdAndUpdate(cid, data);
+    } catch (error) {
+      throw new Exception(error.message, error.status);
+    }
+  }
+
+  static async deleteOneCart(criterio) {
+    try {
+      return await cartManager.deleteOne(criterio);
+    } catch (error) {
+      throw new Exception(error.message, error.status);
+    }
+  }
 }

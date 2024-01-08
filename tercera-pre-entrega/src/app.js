@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import authRouter from './routers/api/auth.router.js';
 import userRouter from './routers/api/user.router.js';
 import productApiRouter from './routers/api/productsDB.router.js';
-import cartApiRouter from './routers/api/cartsApi.router.js';
+import cartApiRouter from './routers/api/cartsDB.router.js';
 import { init as initPassportConfig } from './config/passport.config.js';
 
 import { __dirname } from './utils.js';
