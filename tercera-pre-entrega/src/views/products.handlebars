@@ -1,68 +1,39 @@
-<header class="header container">
-        <h1 class="header__logo">Swatch</h1>
-        <nav class="nav-menu">
-            <button class="open-menu" id="open-menu"><i class="bi bi-list"></i></button>
-            <ul id="nav-list" class="nav-list">
-                <button class="close-menu" id="close-menu"><i class="bi bi-x-lg"></i></button>
-                <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">Nosotros</a></li>
-            </ul>    
-        </nav>
-        <nav class="nav-icon">
-              <li class="nav-item"><a href="http://localhost:8080/register"><i class="bi bi-person"></i></a></li>
-              <li class="nav-item"><a href="/logout"><i class="bi bi-person-dash"></i></a></li>
-              <li class="nav-item"><a href="/carts/"><i class="bi bi-bag"></i></a></li>
-        </nav>
-    </header>
-    <main>
-        <section class="banner">
-            <div class="container">
-                <div class="banner__content">
-                    <h1 class="banner__content-titulo">Bienvenido, {{userName}} - {{userRole}}</h1>
-                    <h1>{{userRole}}</h1>
-                </div>
-            </div>
-        </section>
-        <section class="container">
-            <div class="productos__content container">
-                <div class="productos__content-title">
-                    <h2>Productos</h2>
-                </div>
-
-                <div class="productos__content-nav">
-                    <ul>
-                        <li><a class="nav-link-portfolio" href="http://localhost:8080/products">todos</a></li>
-                        <li><a class="nav-link-portfolio" href="http://localhost:8080/products?group=Mujer">mujer</a></li>
-                        <li><a class="nav-link-portfolio" href="http://localhost:8080/products?group=Hombres">hombres</a></li>
-                        <li><a class="nav-link-portfolio" href="http://localhost:8080/products?group=Niños">niños</a></li>
-                        <li><a class="nav-link-portfolio" href="http://localhost:8080/products?group=Accesorios">accesorios</a></li>
-                        <li><a class="nav-link-portfolio" href="http://localhost:8080/products?sort=asc">Menor Precio</a></li>
-                        <li><a class="nav-link-portfolio" href="http://localhost:8080/products?sort=desc">Mayor precio</a></li>
-                    </ul>
-                </div>
-            </div>
-
+<nav>
+  <ul>
+    <li><strong>Furniture</strong></li>
+  </ul>
+  <ul>
+    <li><a href="http://localhost:8080/products">All</a></li>
+    <li><a href="http://localhost:8080/products?group=Table">Table</a></li>
+    <li><a href="http://localhost:8080/products?group=Lightning">Lightning</a></li>
+    <li><a href="http://localhost:8080/products?group=Garden">Garden</a></li>
+    <li><a href="#">Registro</a></li>
+  </ul>
+</nav>
+<h1>Nuestros productos</h1>
+    <nav>
+    <ul>
+        <li><a href="http://localhost:8080/products?sort=asc">Asc</a></li>
+        <li><a href="http://localhost:8080/products?sort=desc">Des</a></li>
+    </ul>
+    </nav>
+    <div  class="grid">
+    {{#each payload}}
+        <div>
             <div>
-                <div class="productos-img">
-                  {{#each payload}}
-                        <article>
-                          <img src={{ this.thumbnails }} alt={{ this.title }}>
-                          <p>{{ this.title }}</p>
-                          <p><strong>${{ this.price }}</strong></p>
-                          <a href="#">Agregar al Carrito</a>
-                        </article>
-                  {{/each}}  
-                </div>
+                <p>{{ this.title }}</p>
+                <small>${{ this.price }} / </small>
+                <small>Stock: {{ this.stock }}</small>
+                <hr/>
             </div>
-            
-        </section>
-    </main>
-    <footer class="footer">
-          <div>
-              <p class="footer__page">Pagina actual: {{page}}</p>
-              <div class="footer__content-social">
-                  <a href="{{prevLink}}" role="button" class="contrast outline" {{#unless hasPrevPage}}disabled{{/unless}}>Anterior</a>
-                  <a href="{{nextLink}}" role="button" class="contrast outline" {{#unless hasNextPage}}disabled{{/unless}}>Siguiente</a>
-              </div>
-          </div>
-    </footer>
+        </div>
+    {{/each}}
+    </div>
+    <br/>
+
+<h6>Pagina actual: {{page}}</h6>
+<a href="{{prevLink}}" role="button" class="contrast outline" {{#unless hasPrevPage}}disabled{{/unless}}>Anterior</a>
+<a href="{{nextLink}}" role="button" class="contrast outline" {{#unless hasNextPage}}disabled{{/unless}}>Siguiente</a>
+
+
+
