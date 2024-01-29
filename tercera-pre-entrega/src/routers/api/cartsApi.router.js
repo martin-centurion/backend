@@ -1,43 +1,74 @@
 import { Router } from 'express';
-import CartManager from '../../dao/CartManager.js';
+import CartController from '../../controllers/cart.controller.js';
+import CartModel from '../../models/cart.model.js';
+import { 
+    authenticationMiddleware,
+    authorizationMiddleware
+  } from "../../utils.js";
 
 const router = Router();
 
-router.get('/carts', async (req, res) => {
-    const { query = {} } = req;
-    const carts = await CartManager.get(query);
-    res.status(200).json(carts);
+router.get('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => { 
+  try {
+    const carts = await CartModel.find().populate('user').populate('products.product');
+    res.status(201).json(carts);
+  } catch (error) {
+    next(error);
+  }
+    
 });
 
-router.get('/carts/:cid', async (req, res) => {
-    const { params: { cid }} = req;
+router.get('/carts/:cid', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => {
+  const { cid } = req.params;
+  try {
+      const result = await CartController.getById(cid)
+      console.log('result', result);
+      res.status(201).json({cid, result})
+  } catch (error) {
+      next(error);
+  }
+});
+
+router.post('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => {
+  try {
+      const body = req.body;
+      const cart = await CartController.create({
+          ...body,
+          user: req.user.id,
+      });
+      res.status(201).json(cart);
+  } catch (error) {
+      next(error)
+  }
+});
+
+router.delete('/carts/:cid/product/:pid', async (req, res, next) => {
     try {
-        const cart = await CartManager.getById(cid);
-        res.render('carts', buildResponse(cid, cart));
+        const { params: { pid, cid }} = req;
+        const cart = await CartController
     } catch (error) {
-        res.status(error.statusCode || 500).json({ message: error.message });
+        next(error);
     }
+})
+
+router.delete('/carts/:cid', authenticationMiddleware('jwt'), async (req, res, next) => {
+  try {
+      const { params: { cid } } = req;
+      await CartModel.deleteOne({ _id: cid });
+      res.status(204).end();
+  } catch (error) {
+      next(error)
+  }
 });
 
-const buildResponse = (cid, data) => {
-    const payload = data.products.map(product => product.toJSON());
-    console.log('payload', payload);
-    return {
-        cartId: cid,
-        payload
+router.post('/carts/:cid/product/:pid', async (req, res, next)=>{
+    const { cid, pid } = req.params;
+    try {
+    await CartController.addProductToCart(cid, pid);
+    res.status(201).json("Producto adherido al carrito correctamente.");
+    } catch (error) {
+      next(error);
     }
-}
-
-router.post('/carts', async (req, res) => {
-    const { body } = req;
-    const cart = await CartManager.create(body);
-    res.status(201).json(cart);
-});
-
-router.post('/carts/:cid/product/:pid', async (req, res) => {
-    const { params: { pid, cid }} = req;
-    const cart = await CartManager.addProductToCart(cid, pid);
-    res.status(201).json(cart)
 });
 
 export default router;
