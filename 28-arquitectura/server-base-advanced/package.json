@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node .",
-    "dev": "nodemon ."
+    "dev": "nodemon --exec 'node -r dotenv/config' ."
   },
   "keywords": [],
   "author": "",
@@ -17,6 +17,6 @@
     "mongoose": "^8.0.3"
   },
   "devDependencies": {
-    "dotenv": "^16.3.1"
+    "dotenv": "^16.4.1"
   }
 }
