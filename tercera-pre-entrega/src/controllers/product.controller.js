@@ -2,44 +2,27 @@ import ProductService from "../services/product.service.js";
 import { Exception } from "../utils.js";
 
 export default class ProductController {
+    static findAll(filter = {}) {
+        return ProductService.findAll(filter);
+    }
 
     static async create(data) {
-        console.log('Creando el nuevo producto.');
-        const newProduct = await ProductService.create(data);
-        console.log('Producto creado corretamente.');
-        return newProduct;
-      }
+        return ProductService.create(data);
+    }
     
-      static async get(query = {}) {
-        const product = await ProductService.findAll(query); 
-        return product;
-      }
-    
-      static async getById(pid) {
+    static async findById(pid) {
         const product = await ProductService.findById(pid);
         if (!product) {
             throw new Exception('No existe el producto', 404);
         }
         return product;
-      }
+    }
     
-      static async updateById(pid, data) {
-        await ProductController.getById(pid);
-        if(!product) {
-          throw new Exception('No existe el producto.', 404);
-        };
-        console.log('Actualizando el producto.');
-        await ProductService.updateById(pid, data);
-        console.log('Actualizado el producto corretamente.');
-      }
+    static async updateById(pid, data) {
+        return ProductService.updateById(pid, data);
+     }
     
-      static async deleteById(pid) {
-        await ProductController.getById(pid);
-        if(!product) {
-          throw new Exception('No existe el producto', 404);
-        };
-        console.log('Eliminando el producto.');
-        await ProductService.deleteById(pid);
-        console.log('Producto eliminado corretamente.');
-      }
+    static async deleteById(pid) {
+        return ProductService.deleteById(pid);
+    }
 }
