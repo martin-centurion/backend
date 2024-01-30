@@ -1,18 +1,16 @@
-import ContactDao from "../dao/contact.mongodb.dao.js";
-
-const dao = new ContactDao();
+import { contactRepository } from "../repositories/index.js";
 
 export default class ContactService {
     static findAll(filter = {}) {
-        return dao.get(filter)
+        return contactRepository.get(filter);
     }
     static create(data) {
-        return dao.create(data)
+        return contactRepository.create(data);
     }
     static updateById(id, data) {
-        return dao.updateById(id, data)
+        return contactRepository.updateById(id, data);
     }
     static deleteById(id) {
-        return dao.deleteById(id);
+        return contactRepository.deleteById(id);
     }
 }
