@@ -3,21 +3,17 @@ import { Exception } from "../utils.js";
 
 export default class CartController {
 
-    static async create(data) {
-        console.log('Creando el nuevo carrito.');
-        const cart = await CartService.create(data);
-        console.log('Se ha creado el carrito exitosamente');
-        return cart;
+    static create(data) {
+        return cart = CartService.create(data);
     }
 
-    static async getAllCarts(query = {}) {
+    static async getCarts(query = {}) {
         const cart = await CartService.findAll(query);
         return cart;
     }
 
-    static async getById(cartid){
+    static async findById(cartid){
         const cart = await CartService.findById(cartid);
-        //const cart = await CartService.findById(cartid).populate('products.product');
         if(!cart) {
             throw new Exception('No existe el carrito', 404)
         }

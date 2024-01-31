@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import CartController from '../../controllers/cart.controller.js';
-import CartModel from '../../models/cart.model.js';
 import { 
     authenticationMiddleware,
     authorizationMiddleware
@@ -10,7 +9,7 @@ const router = Router();
 
 router.get('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => { 
   try {
-    const carts = await CartModel.find().populate('user').populate('products.product');
+    const carts = await CartController.getCarts(req.query);
     res.status(201).json(carts);
   } catch (error) {
     next(error);
@@ -42,19 +41,19 @@ router.post('/carts', authenticationMiddleware('jwt'), authorizationMiddleware([
   }
 });
 
-router.delete('/carts/:cid/product/:pid', async (req, res, next) => {
+/* router.delete('/carts/:cid/product/:pid', async (req, res, next) => {
     try {
         const { params: { pid, cid }} = req;
         const cart = await CartController
     } catch (error) {
         next(error);
     }
-})
+}) */
 
 router.delete('/carts/:cid', authenticationMiddleware('jwt'), async (req, res, next) => {
   try {
       const { params: { cid } } = req;
-      await CartModel.deleteOne({ _id: cid });
+      await CartController.deleteById({ _id: cid });
       res.status(204).end();
   } catch (error) {
       next(error)
