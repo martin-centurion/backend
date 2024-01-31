@@ -10,6 +10,10 @@ export default class Product {
         return products.map(product => new ProductDTO(product));
     }
 
+    getById(pid) {
+        return this.dao.getById(pid);
+    }
+
     async create(data) {
         const newData = {
             title: data.title,

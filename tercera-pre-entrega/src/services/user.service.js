@@ -1,27 +1,27 @@
-import UserDao from "../dao/user.dao.js";
+import { userRepository } from "../repositories/index.js";
 
 export default class UserService {
     static findAll(filter = {}) {
-        return UserDao.getAll(filter)
+        return userRepository.get(filter)
     }
 
     static findById(uid) {
         console.log('User', uid);
-        return UserDao.getById(uid);
+        return userRepository.getById(uid);
     }
 
     static async create(data) {
         console.log('Creando un nuevo usuario.');
-        const user = await UserDao.create(data);
+        const user = await userRepository.create(data);
         console.log('se ha creado el usuario exitosamente.');
         return user;
     }
 
     static updateById(uid, data) {
-        return UserDao.updateById(uid, data);
+        return userRepository.updateById(uid, data);
     }
 
     static deleteById(uid) {
-        return UserDao.deleteById(uid);
+        return userRepository.deleteById(uid);
     }
 }

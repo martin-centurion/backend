@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import ProductModel from '../../models/product.model.js';
+import ProductsController from '../../controllers/product.controller.js';
 import { 
   authenticationMiddleware,
   authorizationMiddleware
@@ -9,15 +9,18 @@ const router = Router();
 
 router.get('/products', authenticationMiddleware('jwt'), async (req, res, next) => {
   try {
-      const { page = 1, limit = 4, group, sort } = req.query;
+      const { query } = req;
+      const products = await ProductsController.findAll(query);
+      res.status(200).json(products);
+      /* const { page = 1, limit = 4, group, sort } = req.query;
       const opts = { page, limit, sort: { price: sort || 'asc' } };
       const criteria = {};
       const { first_name, last_name, role } = req.user;
       if (group) {
         criteria.category = group;
       };
-      const product = await ProductModel.paginate(criteria, opts);
-      res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role  }))
+      const product = await ProductsController.paginate(criteria, opts);
+      res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role  })) */
   } catch (error) {
       next(error);
   }
@@ -26,21 +29,20 @@ router.get('/products', authenticationMiddleware('jwt'), async (req, res, next) 
 router.get('/products/:pid', authenticationMiddleware('jwt'), async (req, res, next) => {
   try {
     const { params: { pid } } = req;
-    const product = await ProductModel.findById(pid);
+    const product = await ProductsController.findById(pid);
     if (!product) {
-      return res.status(401).json({ message: `Product id ${uid} not found 😨.` });
+      return res.status(401).json({ message: `Product id ${pid} not found 😨.` });
     }
     res.status(200).json(product);
   } catch (error) {
-    next(error)
-    //res.status(error.statusCode || 500).json({ message: error.message });
+    next(error);
   }
 });
 
 router.post('/register-product', authenticationMiddleware('jwt'), authorizationMiddleware('admin'), async (req, res, next) => {
   try {
     const { body } = req;
-    const product = await ProductModel.create(body);
+    const product = await ProductsController.create(body);
     res.status(201).json(product);
   } catch (error) {
     next(error)
@@ -50,7 +52,7 @@ router.post('/register-product', authenticationMiddleware('jwt'), authorizationM
 router.put('/products/:pid', authenticationMiddleware('jwt'), authorizationMiddleware('admin'), async (req, res, next) => {
   try {
     const { body, params: { pid } } = req;
-    await ProductModel.updateOne({ _id: pid }, { $set: body });
+    await ProductsController.updateById({ _id: pid }, { $set: body });
     res.status(204).end();
   } catch (error) {
     next(error)
@@ -60,14 +62,14 @@ router.put('/products/:pid', authenticationMiddleware('jwt'), authorizationMiddl
 router.delete('/products/:pid', authenticationMiddleware('jwt'), authorizationMiddleware('admin'), async (req, res, next) => {
   try {
     const { params: { pid } } = req;
-    await ProductModel.deleteOne({ _id: pid });
+    await ProductsController.deleteById({ _id: pid });
     res.status(204).end();
   } catch (error) {
     next(error)
   }
 });
 
-const buildResponse = (data) => {
+/* const buildResponse = (data) => {
   return {
     status: 'success',
     payload: data.docs.map(product => product.toJSON()),
@@ -83,6 +85,6 @@ const buildResponse = (data) => {
     prevLink: data.hasPrevPage ? `http://localhost:8080/products?limit=${data.limit}&page=${data.prevPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',
     nextLink: data.hasNextPage ? `http://localhost:8080/products?limit=${data.limit}&page=${data.nextPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',
   }
-}
+} */
 
 export default router;

@@ -56,7 +56,7 @@ router.post('/auth/register', async (req, res) => {
     email,
     password: createHash(password),
   });
-  res.redirect('/login');
+  res.status(400).json(user);
 });
 
 router.post('/auth/recovery-password', async (req, res) => {

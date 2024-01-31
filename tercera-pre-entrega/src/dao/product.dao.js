@@ -8,28 +8,20 @@ export default class ProductDao {
         }
         return ProductModel.find(criteria);
     }
+
     create(data) {
         return ProductModel.create(data);
     }
-
-    /* static async productExists(pid) {
-        console.log(await ProductModel.findOne({ _id: pid }));
-        try {
-          return await ProductModel.findOne({ _id: pid });
-        } catch (error) {
-          return false;
-        }
-      } */
 
     getById(pid) {
         return ProductModel.findById(pid);
     }
 
     updateById(pid, data) {
-        return ProductModel.updateOne({ id: pid }, { $set: data });
+        return ProductModel.updateOne({ _id: pid }, { $set: data });
     }
 
     deleteById(pid) {
-        return ProductModel.deleteOne({ id: pid });
+        return ProductModel.deleteOne({ _id: pid });
     }
 }

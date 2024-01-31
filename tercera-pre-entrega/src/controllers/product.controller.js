@@ -18,11 +18,11 @@ export default class ProductController {
         return product;
     }
     
-    static async updateById(pid, data) {
+    static updateById(pid, data) {
         return ProductService.updateById(pid, data);
      }
     
-    static async deleteById(pid) {
+    static deleteById(pid) {
         return ProductService.deleteById(pid);
     }
 }
