@@ -20,7 +20,7 @@ router.get('/users', authenticationMiddleware('jwt'), async (req, res, next) => 
 router.get('/users/:uid', authenticationMiddleware('jwt'), async (req, res, next) => {
     const { uid } = req.params;
     try {
-        const result = await UserModel.findById(uid);
+        const result = await UserController.findById(uid);
         console.log('result', result);
         res.status(201).json({ uid, result })
     } catch (error) {
@@ -31,7 +31,7 @@ router.get('/users/:uid', authenticationMiddleware('jwt'), async (req, res, next
 router.put('/users/:uid', authenticationMiddleware('jwt'), async (req, res, next) => {
     try {
         const { body, params: { uid } } = req;
-        await UserModel.updateOne({ _id: uid }, { $set: body});
+        await UserController.updateById({ _id: uid }, { $set: body});
         res.status(204).end();
     } catch (error) {
         next(error);
@@ -41,7 +41,7 @@ router.put('/users/:uid', authenticationMiddleware('jwt'), async (req, res, next
 router.delete('/users/:uid', authenticationMiddleware('jwt'), async (req, res, next) => {
     try {
         const { params: { uid } } = req;
-        await UserModel.deleteById({ _id: uid }); 
+        await UserController.deleteById({ _id: uid }); 
         res.status(204).end();
     } catch (error) {
         next(error)
