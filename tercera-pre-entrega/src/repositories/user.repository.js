@@ -10,6 +10,10 @@ export default class User {
         return users.map(user => new UserDTO(user));
     }
 
+    getById(uid) {
+        return this.dao.getById(uid);
+    }
+
     async create(data) {
         const [first_name, last_name] = data.fullname.split(' ');
         const newData = {

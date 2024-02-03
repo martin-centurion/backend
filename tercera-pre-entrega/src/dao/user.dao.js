@@ -2,7 +2,11 @@ import UserModel from '../models/user.model.js'
 
 export default class UserDao {
     get(filter = {}) {
-        return UserModel.find(filter);
+        const criteria = {};
+        if (filter.id) {
+            criteria._id = id;
+        }
+        return UserModel.find(criteria);
     }
     getById (uid) {
         return UserModel.findById(uid);

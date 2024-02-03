@@ -13,8 +13,11 @@ switch (config.persistence) {
     case 'memory':
         ProductDao = (await import('./product.memory.dao.js')).default;
         UserDao = (await import('./user.memory.dao.js')).default;
-        CartDao = (await import('./cart.memory.dao.js')).default;
+        CartDao = (await import('./cart.dao.js')).default;
         break;
     default:
+        ProductDao = (await import('./product.dao.js')).default;
+        UserDao = (await import('./user.dao.js')).default;
+        CartDao = (await import('./cart.dao.js')).default;
         break;
 }

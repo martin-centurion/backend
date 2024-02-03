@@ -1,5 +1,7 @@
 import CartService from "../services/cart.service.js";
-import { Exception } from "../utils.js";
+import { productRepository } from "../repositories/index.js";
+import TicketController from '../controllers/ticket.controller.js';
+import { Exception, getNewId } from "../utils.js";
 
 export default class CartController {
 
@@ -44,5 +46,58 @@ export default class CartController {
     static async addProductToCart(cid, pid) {
         await CartService.addProductToCart(cid, pid);
         console.log("El producto fue agregado correctamente");
+    }
+
+    static async purchaseCart(req, res) {
+      try {
+        const { cid } = req.params;
+        const cart = await CartController.findById(cid, true);
+        console.log('cart purchase', cart);
+  
+        const failedProductIds = [];
+        const purchasedProducts = [];
+        let totalAmount = 0;
+  
+        for (const cartProduct of cart.products) {
+          const product = await productRepository.getById(cartProduct.product);
+          console.log('product by id', product);
+  
+          if (product.stock >= cartProduct.quantity) {
+            // Suficiente stock, procesar la compra
+            product.stock -= cartProduct.quantity;
+            await product.save();
+  
+            purchasedProducts.push({
+              product: cartProduct.product,
+              quantity: cartProduct.quantity,
+            });
+  
+            totalAmount += product.price * cartProduct.quantity;
+          } else {
+            // No hay suficiente stock, agregar a la lista de productos fallidos
+            failedProductIds.push(cartProduct.product);
+          }
+        }
+  
+        // Actualizar el carrito con productos no comprados
+        const remainingProducts = cart.products.filter(
+          (cartProduct) => !failedProductIds.includes(cartProduct.product.toString())
+        );
+  
+        cart.products = remainingProducts;
+        await cart.save();
+  
+        // Generar el ticket
+        const ticket = await TicketController.createTicket({
+          code: getNewId(),
+          amount: totalAmount,
+          purchaser: req.user.email,
+        });
+  
+        res.status(200).json({ ticket, failedProductIds });
+      } catch (error) {
+        console.error('Error al procesar la compra:', error.message);
+        res.status(500).json({ error: 'Error interno del servidor' });
+      }
     }
 }

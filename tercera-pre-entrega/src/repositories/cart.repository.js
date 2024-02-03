@@ -10,8 +10,8 @@ export default class Cart {
         return carts.map(cart => new CartDTO(cart));
     }
 
-    getById(pid) {
-        return this.dao.getById(pid);
+    getById(cid) {
+        return this.dao.getById(cid);
     }
 
     create(data) {

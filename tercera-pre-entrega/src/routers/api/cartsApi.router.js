@@ -7,6 +7,8 @@ import {
 
 const router = Router();
 
+router.post('/carts/:cid/purchase', authenticationMiddleware('jwt'), CartController.purchaseCart);
+
 router.get('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => { 
   try {
     const carts = await CartController.getCarts(req.query);
@@ -20,7 +22,7 @@ router.get('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['
 router.get('/carts/:cid', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => {
   const { cid } = req.params;
   try {
-      const result = await CartController.getById(cid)
+      const result = await CartController.findById(cid)
       console.log('result', result);
       res.status(201).json({cid, result})
   } catch (error) {

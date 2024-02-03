@@ -4,6 +4,9 @@ import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { fileURLToPath } from 'url';
 import config from './config.js';
+import { v4 as uuidv4 } from 'uuid';
+
+export const getNewId = () => uuidv4();
 
 
 const __filename = fileURLToPath(import.meta.url);

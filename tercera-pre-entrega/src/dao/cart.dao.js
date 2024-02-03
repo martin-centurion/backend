@@ -1,4 +1,5 @@
-import CartModel from "../models/cart.model.js";
+import CartModel from '../models/cart.model.js';
+import { Exception } from "../utils.js";
 
 export default class CartDao {
     create(data) {
@@ -9,8 +10,19 @@ export default class CartDao {
         return CartModel.find(criteria)
     } 
 
-    getById(cartid){
-        return CartModel.findById(cartid).populate('user').populate('products.product');
+    /* getById(cartid) {
+      return CartModel.find({ _id: cartid })
+    } */
+    async getById(cartid, populate = false){
+        try {
+          const cart = await CartModel.findOne({ _id: cartid });
+          if (populate) {
+            return await cart.populate('user').populate('products.product')
+          }
+          return cart;
+        } catch (error) {
+          throw new Exception(`Cart with id "${cartid}" not found`, 404);
+        }
     }
 
     deleteById(cartid) {
