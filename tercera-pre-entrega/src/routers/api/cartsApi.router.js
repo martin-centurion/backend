@@ -11,12 +11,12 @@ router.post('/carts/:cid/purchase', authenticationMiddleware('jwt'), CartControl
 
 router.get('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => { 
   try {
-    const carts = await CartController.getCarts(req.query);
+    const { query } = req;
+    const carts = await CartController.getCarts(query);
     res.status(201).json(carts);
   } catch (error) {
     next(error);
   }
-    
 });
 
 router.get('/carts/:cid', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => {
@@ -32,30 +32,21 @@ router.get('/carts/:cid', authenticationMiddleware('jwt'), authorizationMiddlewa
 
 router.post('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => {
   try {
-      const body = req.body;
-      const cart = await CartController.create({
-          ...body,
-          user: req.user.id,
-      });
-      res.status(201).json(cart);
+    const body = req.body;
+    const cart = await CartController.create({
+        ...body,
+        user: req.user.id,
+    });
+    res.status(201).json(cart);
   } catch (error) {
-      next(error)
+    next(error)
   }
 });
-
-/* router.delete('/carts/:cid/product/:pid', async (req, res, next) => {
-    try {
-        const { params: { pid, cid }} = req;
-        const cart = await CartController
-    } catch (error) {
-        next(error);
-    }
-}) */
 
 router.delete('/carts/:cid', authenticationMiddleware('jwt'), async (req, res, next) => {
   try {
       const { params: { cid } } = req;
-      await CartController.deleteById({ _id: cid });
+      await CartController.deleteById(cid);
       res.status(204).end();
   } catch (error) {
       next(error)
@@ -63,8 +54,8 @@ router.delete('/carts/:cid', authenticationMiddleware('jwt'), async (req, res, n
 });
 
 router.post('/carts/:cid/product/:pid', async (req, res, next)=>{
+  try {
     const { cid, pid } = req.params;
-    try {
     await CartController.addProductToCart(cid, pid);
     res.status(201).json("Producto adherido al carrito correctamente.");
     } catch (error) {

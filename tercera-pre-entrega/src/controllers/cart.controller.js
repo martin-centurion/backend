@@ -1,16 +1,16 @@
 import CartService from "../services/cart.service.js";
-import { productRepository } from "../repositories/index.js";
+import ProductDao from "../dao/product.dao.js";
 import TicketController from '../controllers/ticket.controller.js';
 import { Exception, getNewId } from "../utils.js";
 
 export default class CartController {
 
     static create(data) {
-        return cart = CartService.create(data);
+        return CartService.create(data);
     }
 
     static async getCarts(query = {}) {
-        const cart = await CartService.findAll(query);
+        const cart = await CartService.get(query);
         return cart;
     }
 
@@ -59,7 +59,7 @@ export default class CartController {
         let totalAmount = 0;
   
         for (const cartProduct of cart.products) {
-          const product = await productRepository.getById(cartProduct.product);
+          const product = await ProductDao.getById(cartProduct.product);
           console.log('product by id', product);
   
           if (product.stock >= cartProduct.quantity) {

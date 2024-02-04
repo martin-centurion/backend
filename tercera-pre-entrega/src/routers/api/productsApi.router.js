@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import ProductsController from '../../controllers/product.controller.js';
+import ProductModel from '../../models/product.model.js';
 import { 
   authenticationMiddleware,
   authorizationMiddleware
@@ -9,27 +10,24 @@ const router = Router();
 
 router.get('/products', authenticationMiddleware('jwt'), async (req, res, next) => {
   try {
-      const { query } = req;
-      const products = await ProductsController.findAll(query);
-      res.status(200).json(products);
-      /* const { page = 1, limit = 4, group, sort } = req.query;
-      const opts = { page, limit, sort: { price: sort || 'asc' } };
-      const criteria = {};
-      const { first_name, last_name, role } = req.user;
-      if (group) {
-        criteria.category = group;
-      };
-      const product = await ProductsController.paginate(criteria, opts);
-      res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role  })) */
-  } catch (error) {
-      next(error);
-  }
+    const { page = 1, limit = 4, group, sort } = req.query;
+    const opts = { page, limit, sort: { price: sort || 'asc' } };
+    const criteria = {};
+    const { first_name, last_name, role } = req.user;
+    if (group) {
+      criteria.category = group;
+    };
+    const product = await ProductModel.paginate(criteria, opts);
+    res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role  }))
+} catch (error) {
+    next(error);
+}
 });
 
 router.get('/products/:pid', authenticationMiddleware('jwt'), async (req, res, next) => {
   try {
     const { params: { pid } } = req;
-    const product = await ProductsController.findById(pid);
+    const product = await ProductsController.getById(pid);
     if (!product) {
       return res.status(401).json({ message: `Product id ${pid} not found 😨.` });
     }
@@ -69,7 +67,7 @@ router.delete('/products/:pid', authenticationMiddleware('jwt'), authorizationMi
   }
 });
 
-/* const buildResponse = (data) => {
+const buildResponse = (data) => {
   return {
     status: 'success',
     payload: data.docs.map(product => product.toJSON()),
@@ -85,6 +83,6 @@ router.delete('/products/:pid', authenticationMiddleware('jwt'), authorizationMi
     prevLink: data.hasPrevPage ? `http://localhost:8080/products?limit=${data.limit}&page=${data.prevPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',
     nextLink: data.hasNextPage ? `http://localhost:8080/products?limit=${data.limit}&page=${data.nextPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',
   }
-} */
+}
 
 export default router;

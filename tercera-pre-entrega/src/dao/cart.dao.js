@@ -1,43 +1,20 @@
-import CartModel from '../models/cart.model.js';
-import { Exception } from "../utils.js";
+import CartModel from "../models/cart.model.js";
+import ProductDao from '../dao/product.dao.js';
 
 export default class CartDao {
-    create(data) {
+    static async create(data) {
         return CartModel.create(data);
     }
 
-    get(criteria = {}) {
+    static get(criteria = {}) {
         return CartModel.find(criteria)
     } 
 
-    /* getById(cartid) {
-      return CartModel.find({ _id: cartid })
-    } */
-    async getById(cartid, populate = false){
-        try {
-          const cart = await CartModel.findOne({ _id: cartid });
-          if (populate) {
-            return await cart.populate('user').populate('products.product')
-          }
-          return cart;
-        } catch (error) {
-          throw new Exception(`Cart with id "${cartid}" not found`, 404);
-        }
+    static getById(cartid){
+        return CartModel.findById(cartid).populate('products.product');
     }
 
-    deleteById(cartid) {
-        return CartModel.deleteOne({ _id: cartid })
-    }
-
-    updateById(cid, products) {
-        CartModel.updateOne({ _id: cid }, { products });
-    }
-
-    addProduct(cid, pid, quantity = null) {
-
-    }
-
-    /* static async updateById(cid, products) {
+    static async updateById(cid, products) {
         try {
           const result = await CartModel.updateOne({ _id: cid }, { products });
     
@@ -49,10 +26,12 @@ export default class CartDao {
         } catch (error) {
           throw new Exception(`Cart with id "${cid}" not found`);
         }
-      } */
+      }
     
-    
-    /* static async addProduct(cid, pid, quantity = null) {
+    static deleteById(cartid) {
+        return CartModel.deleteOne({ _id: cartid })
+    }
+    static async addProduct(cid, pid, quantity = null) {
         const cart = await CartDao.getById(cid);
         const validProduct = ProductDao.productExists(pid);
     
@@ -77,6 +56,6 @@ export default class CartDao {
         } else {
           throw new Exception(`Product with id "${pid}" doesn't exist.`, 404);
         }
-      } */
+      }
 
 }

@@ -1,23 +1,26 @@
-import { productRepository } from "../repositories/index.js";
+import ProductDao from "../dao/product.dao.js";
 
 export default class ProductService {
     static findAll(filter = {}) {
-      return productRepository.get(filter);
-    }
+        return ProductDao.get(filter);
+      }
     
-    static async create(data) {
-      return productRepository.create(data);
-    }
+      static async create(payload) {
+        console.log('Creando un nuevo producto.');
+        const toy = await ProductDao.create(payload);
+        console.log(`Producto creado correctamente (${toy._id}).`);
+        return toy;
+      }
     
-    static findById(pid) {
-      return productRepository.getById(pid);
-    }
+      static findById(uid) {
+        return ProductDao.getById(uid);
+      }
     
-    static updateById(pid, data) {
-      return productRepository.updateById(pid, data);
-    }
+      static updateById(uid, payload) {
+        return ProductDao.updateById(uid, payload);
+      }
     
-    static deleteById(pid) {
-      return productRepository.deleteById(pid);
-    }
+      static deleteById(uid) {
+        return ProductDao.deleteById(uid);
+      }
 }
