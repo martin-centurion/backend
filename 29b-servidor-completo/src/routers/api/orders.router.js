@@ -46,7 +46,7 @@ router.post('/:oid/resolve', async (req, res, next) => {
     try {
         const { params: { oid }, body } = req;
         await OrdersController.resolve(oid, body);
-        res.status(200).end();
+        res.status(204).end();
     } catch (error) {
         next(error);
     }

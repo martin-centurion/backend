@@ -1,6 +1,6 @@
 import OrderService from '../dao/order.mdb.dao.js';
 import BusinessServices from '../dao/business.mdb.dao.js';
-import UserService from '../dao/user.mdb.dao.js';
+import UserServices from '../dao/user.mdb.dao.js';
 
 import { NotFoundException } from '../utils.js';
 
@@ -12,8 +12,8 @@ export default class OrdersController {
     static async create(data){
         const { user: uid, business: bid , products } = data;
         const business = await BusinessServices.getById(bid);
-        const user = await UserService.getById(uid);
-        const productsResult = business.products.filter(p => products.include(p.id));
+        const user = await UserServices.getById(uid);
+        const productsResult = business.products.filter(p => products.includes(p.id));
         const newOrder = {
             code: Date.now(),
             business: business._id,
@@ -39,6 +39,6 @@ export default class OrdersController {
 
     static async resolve(oid, data){
         const { status } = data;
-        return OrderService.getAll(oid, { status });
+        return OrderService.updateById(oid, { status });
     };
 }
