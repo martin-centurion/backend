@@ -6,17 +6,17 @@ const router = Router();
 router.get('/', async (req, res, next) => {
     try {
         const users = await UsersController.getAll();
-        res.status(200).json({ message: users })
+        res.status(200).json(users)
     } catch (error) {
         next(error);
     }
 });
 
-router.get('/:oid', async (req, res, next) => {
+router.get('/:uid', async (req, res, next) => {
     try {
-        const { params: { oid }} = req;
-        const users = await UsersController.getById(oid);
-        res.status(200).json({ message: users })
+        const { params: { uid }} = req;
+        const users = await UsersController.getById(uid);
+        res.status(200).json(users)
     } catch (error) {
         next(error);
     }
@@ -25,18 +25,18 @@ router.get('/:oid', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
     try {
         const { body } = req;
-        const user = await UsersController.updateById(body);
-        res.status(201).json({ message: user })
+        const user = await UsersController.create(body);
+        res.status(201).json(user)
     } catch (error) {
         next(error);
     }
 });
 
-router.put('/:oid', async (req, res, next) => {
+router.put('/:uid', async (req, res, next) => {
     try {
-        const { params: { oid }, body } = req;
-        await UsersController.updateById(oid, body);
-        res.status(200).json({ message: 'Todo Oki!' })
+        const { params: { uid }, body } = req;
+        await UsersController.updateById(uid, body);
+        res.status(200).end();
     } catch (error) {
         next(error);
     }

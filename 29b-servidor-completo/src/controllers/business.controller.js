@@ -26,7 +26,7 @@ export default class BusinessController {
         return business;
     }
 
-    static updateById(pid, oid){
+    static updateById(bid, data){
         return BusinessService.updateById(bid, data);
     }
 }
