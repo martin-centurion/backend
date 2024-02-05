@@ -5,6 +5,10 @@ export default class UserService {
         return userRepository.get(filter)
     }
 
+    static getEmail(criteria = {}) {
+        return userRepository.getEmail(criteria);
+      }
+
     static findById(uid) {
         console.log('User', uid);
         return userRepository.getById(uid);

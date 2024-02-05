@@ -8,8 +8,8 @@ export default class UserDao {
         }
         return UserModel.find(criteria);
     }
-    getById (uid) {
-        return UserModel.findById(uid);
+    getById (data) {
+        return UserModel.findById(data);
     }
     create (data) {
         return UserModel.create(data);
