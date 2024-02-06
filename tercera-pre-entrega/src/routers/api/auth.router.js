@@ -6,6 +6,9 @@ import {
 } from "../../utils.js";
 import UserModel from "../../models/user.model.js";
 import AuthController from "../../controllers/auth.controller.js";
+import EmailService from "../../services/email.service.js";
+import path from 'path';
+import { __dirname } from "../../utils.js";
 
 const router = Router();
 
@@ -47,5 +50,38 @@ router.post('/auth/recovery-password', async (req, res) => {
   await UserModel.updateOne({ email }, { $set: { password: createHash(newPassword) }});
   res.redirect('/login');
 });
+
+// Practica clase 30: Mailing Mensajeria
+// twilio: XWQ8AR7EFPJV9AEUQGEDDBAF
+
+const urlRecoveryPassStep2 = 'https://google.com.ar';
+
+router.post('/auth/pass-email', async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const result = EmailService.sendEmail(
+      email,
+      'Recuperacion de contraseña',
+      `
+        <div>
+            <h1>Recuperar contraseña</h1>
+            <p>Debes acceder al siguiente enlace: <a href="${urlRecoveryPassStep2}">Link</a></p>
+            <img src="cid:pantalla-001" />
+        </div>,
+      `,
+      [
+        {
+            filename: 'img-pantalla.png',
+            path: path.join(__dirname, './images/pantalla.png'),
+            cid: 'pantalla-001'
+        }
+      ]
+    );
+    console.log('result', result);
+    res.status(200).json({ message: 'correo enviado correctamente' })
+  } catch (error) {
+    next(error);
+  }
+})
     
 export default router;

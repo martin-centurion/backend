@@ -1,12 +1,17 @@
 import express from 'express';
 import passport from 'passport';
 import handlebars from 'express-handlebars';
+import { init as initPassportConfig } from './config/passport.config.js';
+
+// Api
 import cookieParser from 'cookie-parser';
 import authRouter from './routers/api/auth.router.js';
 import userRouter from './routers/api/user.router.js';
 import productApiRouter from './routers/api/productsApi.router.js';
 import cartApiRouter from './routers/api/cartsApi.router.js';
-import { init as initPassportConfig } from './config/passport.config.js';
+import emailRouter from './routers/api/email.router.js';
+
+//Views
 
 import { __dirname } from './utils.js';
 import path from 'path';
@@ -29,8 +34,10 @@ app.use('/',
     authRouter,
     userRouter,
     productApiRouter,
-    cartApiRouter, 
+    cartApiRouter,
+    emailRouter
     );
+
 
 
 export default app;
