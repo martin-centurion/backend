@@ -18,6 +18,9 @@ export const generateUser = () => {
         last_name: faker.person.lastName(),
         birthDate: faker.date.birthdate(),
         email: faker.internet.email(),
+        role: faker.datatype.boolean() ? 'client' : 'seller',
+        premium: faker.datatype.boolean(),
+        ocupation: faker.person.jobTitle(),
         products,
     }
 };
@@ -26,6 +29,8 @@ export const generateProduct = () => {
     return {
         id: faker.database.mongodbObjectId(),
         title: faker.commerce.productName(),
+        description: faker.lorem.paragraph(),
+        code: faker.string.alphanumeric({ length: 10 }),
         price: faker.commerce.price(),
         department: faker.commerce.department(),
         stock: faker.number.int({ min:10000, max: 99999}),
