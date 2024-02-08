@@ -6,6 +6,7 @@ const router = Router();
 router.get('/users', async (req, res, next) => {
   try {
     const users = await UserModel.find({});
+    //req.logger.info(`Esta es la respuesta de los usuarios ${JSON.stringify(users)}`); // Apliacion de logger en router
     res.status(200).json(users);
   } catch (error) {
     next(error);

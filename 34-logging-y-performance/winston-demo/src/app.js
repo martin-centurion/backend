@@ -5,9 +5,11 @@ import { __dirname } from './utils.js';
 
 import indexRouter from './routers/views/index.router.js';
 import usersRouter from './routers/api/users.router.js';
+import { addLogger } from './config/logger.js'
 
 const app = express();
 
+app.use(addLogger);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
