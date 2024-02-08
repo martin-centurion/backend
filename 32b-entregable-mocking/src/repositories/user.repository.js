@@ -6,13 +6,9 @@ export default class User {
     }
 
     async getEmail(email) {
-        console.log('typeof this.dao.getEmail (inside get method):', typeof this.dao.getEmail);
-        const user = new UserDTO(await this.dao.get(email));
-        console.log('pass', user.password);
-
-        return user
-        /* return new UserDTO(await this.dao.get(email)); */
-        
+        return this.dao.getEmail(email)
+        /* const user = new UserDTO(await this.dao.getEmail(email));
+        return user   */
     }
     async get(filter = {}) {
         const users = await this.dao.get(filter);
@@ -34,6 +30,10 @@ export default class User {
         }
         const user = await this.dao.create(newData);
         return new UserDTO(user);
+    }
+
+    updatePassById(id, userUpdated) {
+        return this.dao.updateById(id, userUpdated);
     }
 
     updateById(id, data) {

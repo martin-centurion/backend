@@ -8,6 +8,9 @@ export default class UserDao {
         }
         return UserModel.find(criteria);
     }
+    getEmail(criteria = {}) {
+        return UserModel.findOne(criteria);
+    }
     getById (data) {
         return UserModel.findById(data);
     }

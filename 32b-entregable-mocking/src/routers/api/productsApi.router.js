@@ -24,6 +24,15 @@ router.get('/products', authenticationMiddleware('jwt'), async (req, res, next) 
 }
 });
 
+router.get('/mockingproducts', authenticationMiddleware('jwt'), async (req, res, next) => {
+  try { 
+    const productMock = await ProductsController.createFakeProducts();
+    res.status(200).json(productMock)
+  } catch (error) {
+    next(error);
+  }
+});
+
 router.get('/products/:pid', authenticationMiddleware('jwt'), async (req, res, next) => {
   try {
     const { params: { pid } } = req;
