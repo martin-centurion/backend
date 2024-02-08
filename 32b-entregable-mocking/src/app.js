@@ -2,6 +2,7 @@ import express from 'express';
 import passport from 'passport';
 import handlebars from 'express-handlebars';
 import { init as initPassportConfig } from './config/passport.config.js';
+import expressCompression from 'express-compression';
 
 // Api
 import cookieParser from 'cookie-parser';
@@ -18,6 +19,7 @@ import path from 'path';
 
 const app = express();
 
+app.use(expressCompression());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));

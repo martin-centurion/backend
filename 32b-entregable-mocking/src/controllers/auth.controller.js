@@ -84,9 +84,7 @@ export default class AuthController {
 
     static async recovery(data) {
       const { email, newPassword } = data;
-      console.log('data', data);
       const user = await UserService.get({ email });
-      console.log('user', user);
       if (!user) {
         CustomError.createError({
           name: 'Error accediendo al usuario ',
