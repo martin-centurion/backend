@@ -19,7 +19,9 @@ import path from 'path';
 
 const app = express();
 
-app.use(expressCompression());
+app.use(expressCompression({
+    brotli: { enabled: true, zlib: {}}
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../public')));
