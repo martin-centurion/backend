@@ -21,7 +21,7 @@ router.post('/auth/login', async (req, res) => {
         .status(200)
         .json({ status: 'succes'})
   } catch (error) {
-    res.status(404).json({ message: 'Error al loguear'})
+    res.status(404).json({ message: error.message })
   }
   
   

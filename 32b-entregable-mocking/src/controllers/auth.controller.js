@@ -57,12 +57,12 @@ export default class AuthController {
         const user = await AuthService.getEmail({ email });
         if (!user) {
           CustomError.createError({
-            name: 'Error accediendo al usuario ',
+            name: 'Error accediendo al usuario',
             cause: validatorUserError({
               email,
               password,
             }),
-            message: 'Contraseña o email invalidos😨.',
+            message: 'Contraseña o email invalidos.',
             code: EnumsError.INVALID_PARAMS_ERROR,
           })
         }
@@ -74,7 +74,7 @@ export default class AuthController {
               email,
               password,
             }),
-            message: 'Contraseña o email invalidos😨.',
+            message: 'Contraseña o email invalidos.',
             code: EnumsError.INVALID_PARAMS_ERROR,
           })
         }
