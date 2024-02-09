@@ -32,6 +32,7 @@ export default class CartDao {
         return CartModel.deleteOne({ _id: cartid })
     }
     static async addProduct(cid, pid, quantity = null) {
+      //La logica de negocio debe ir en el controlador, hay que mudarlo
         const cart = await CartDao.getById(cid);
         const validProduct = ProductDao.productExists(pid);
     

@@ -10,7 +10,7 @@ export default class CartController {
         return cart;
     }
 
-    static async get(query = {}) {
+    static async getAllCarts(query = {}) {
         const cart = await CartService.findAll(query);
         return cart;
     }
@@ -42,6 +42,8 @@ export default class CartController {
         await CartService.deleteById(cartid);
         console.log('Carrito eliminado correctamente.');
     }
+
+    static async deleteProductFromCart(){};
 
     static async addProductToCart(cid, pid) {
         await CartService.addProductToCart(cid, pid);

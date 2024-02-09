@@ -49,7 +49,7 @@ export const authenticationMiddleware = (strategy) => (req, res, next) => {
     })(req, res, next);
 };
 
-export const authorizationMiddelware = (roles) => (req, res, next) => {
+export const authorizationMiddleware = (roles) => (req, res, next) => {
     if (!req.user) {
         return res.status(401).json({ message: 'Unauthorized'});
     };

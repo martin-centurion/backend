@@ -3,7 +3,7 @@ import UserController from "../../controllers/user.controller.js";
 import UserModel from "../../models/user.model.js";
 import { 
     authenticationMiddleware, 
-    authorizationMiddelware 
+    authorizationMiddleware 
 } from "../../utils.js";
 
 const router = Router();

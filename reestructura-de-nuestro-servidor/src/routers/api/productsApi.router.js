@@ -2,7 +2,7 @@ import { Router } from 'express';
 import ProductModel from '../../models/product.model.js';
 import { 
   authenticationMiddleware,
-  authorizationMiddelware
+  authorizationMiddleware
 } from "../../utils.js";
 
 const router = Router();
@@ -37,7 +37,7 @@ router.get('/products/:pid', authenticationMiddleware('jwt'), async (req, res, n
   }
 });
 
-router.post('/register-product', authenticationMiddleware('jwt'), authorizationMiddelware('admin'), async (req, res, next) => {
+router.post('/register-product', authenticationMiddleware('jwt'), authorizationMiddleware('admin'), async (req, res, next) => {
   try {
     const { body } = req;
     const product = await ProductModel.create(body);
@@ -47,7 +47,7 @@ router.post('/register-product', authenticationMiddleware('jwt'), authorizationM
   }
 });
 
-router.put('/products/:pid', authenticationMiddleware('jwt'), authorizationMiddelware('admin'), async (req, res, next) => {
+router.put('/products/:pid', authenticationMiddleware('jwt'), authorizationMiddleware('admin'), async (req, res, next) => {
   try {
     const { body, params: { pid } } = req;
     await ProductModel.updateOne({ _id: pid }, { $set: body });
@@ -57,7 +57,7 @@ router.put('/products/:pid', authenticationMiddleware('jwt'), authorizationMidde
   }
 });
 
-router.delete('/products/:pid', authenticationMiddleware('jwt'), authorizationMiddelware('admin'), async (req, res, next) => {
+router.delete('/products/:pid', authenticationMiddleware('jwt'), authorizationMiddleware('admin'), async (req, res, next) => {
   try {
     const { params: { pid } } = req;
     await ProductModel.deleteOne({ _id: pid });

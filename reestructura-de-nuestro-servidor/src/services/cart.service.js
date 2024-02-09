@@ -25,42 +25,7 @@ export default class CartService {
         return CartDao.deleteById(cartid);
     }
 
-    // CART.SERVICE.JS
     static async addProductToCart(cid, pid) {
         return CartDao.addProduct(cid, pid);
       }
-
-    /* 
-
-    static async deleteProductFromCart(cartid, pid) {
-        const cart = await cartModel.findById(cid);
-        console.log('cart', cart);
-        if(!cart) {
-            throw new Exception('No existe ese carrito', 404);
-        }
-        const index = cart.products.findIndex((product) => String(product._id) === pid);
-        console.log(index);
-        if(index === -1) {
-            cart.products.splice([index]);
-        } else {
-            throw new Exception('No existe ese producto dentro del carrito.')
-        }
-        await cartModel.updateOne({ _id: cartid }, cart );
-    };
-
-    static async updateProductById(cartid, pid, data) {
-        const cart = await cartModel.findById(cid);
-        const operation = { $set: data };
-        if(!cart) {
-            throw new Exception('No existe ese carrito', 404)
-        };
-        const index = cart.products.findIndex((product) => String(product.product) === pid);
-        console.log('index', index);
-        if(index === -1 || !data.quantity){
-            throw new Exception('Solo se puede modificar la cantidad de productos');
-        } else {
-            cart.products[index].quantity = data.quantity;
-        };
-        await cartModel.updateOne({ _id: cartid }, cart)
-    } */
 }
