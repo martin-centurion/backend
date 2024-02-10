@@ -19,6 +19,9 @@ import loggerRouter from './routers/api/logger.router.js'
 
 //Views
 
+import productViewRouter from './routers/views/products.router.js';
+import indexViewsRouter from './routers/views/index.router.js';
+
 import { __dirname } from './utils.js';
 import path from 'path';
 
@@ -40,7 +43,8 @@ app.set('view engine', 'handlebars');
 initPassportConfig();
 app.use(passport.initialize());
 
-app.use('/', 
+app.use('/',
+    indexViewsRouter,
     authRouter,
     userRouter,
     productApiRouter,
@@ -49,6 +53,7 @@ app.use('/',
     loggerRouter
     );
 
+app.use('/views', productViewRouter);
 
 
 export default app;

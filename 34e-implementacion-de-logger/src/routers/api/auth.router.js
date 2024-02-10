@@ -19,8 +19,10 @@ router.post('/auth/login', async (req, res) => {
           httpOnly: true,
         })
         .status(200)
-        .json({ status: 'succes'})
+        .redirect('/products')
+        //.json({ status: 'succes'})
   } catch (error) {
+    //res.redirect('/')
     res.status(404).json({ message: error.message })
   }
   

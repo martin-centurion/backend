@@ -18,10 +18,12 @@ router.get('/products', authenticationMiddleware('jwt'), async (req, res, next) 
       criteria.category = group;
     };
     const product = await ProductModel.paginate(criteria, opts);
-    res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role  }))
-} catch (error) {
-    next(error);
-}
+    res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role }));
+    //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cartId}));
+    //res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role  }))
+    } catch (error) {
+        next(error);
+    }
 });
 
 router.get('/mockingproducts', authenticationMiddleware('jwt'), async (req, res, next) => {
@@ -89,8 +91,8 @@ const buildResponse = (data) => {
     userRole: data.role,
     hasPrevPage: data.hasPrevPage,
     hasNextPage: data.hasNextPage,
-    prevLink: data.hasPrevPage ? `http://localhost:8080/products?limit=${data.limit}&page=${data.prevPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',
-    nextLink: data.hasNextPage ? `http://localhost:8080/products?limit=${data.limit}&page=${data.nextPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',
+    prevLink: data.hasPrevPage ? `http://localhost:8081/products?limit=${data.limit}&page=${data.prevPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',
+    nextLink: data.hasNextPage ? `http://localhost:8081/products?limit=${data.limit}&page=${data.nextPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',
   }
 }
 
