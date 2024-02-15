@@ -34,9 +34,11 @@ router.get('/sendEmail', async (req, res, next) => {
 });
 
 router.get('/sendSms', async (req, res, next) => {
-    const { query: { fullname, product }} = req;
+    const { query: { first_name, product }} = req;
+    console.log('first_name', first_name);
+    console.log('product', product);
     try {
-        const message = `Gracias, ${fullname}, tu solicitud del producto ${product} ha sido aprobada.`
+        const message = `Gracias, ${first_name}, tu solicitud del producto ${product} ha sido aprobada.`
         const result = await TwilioService.sendSMS('+5491156355415', message);
         console.log('result', result);
         res.status(200).json({ message: 'Mensaje enviado correctamente.'})
