@@ -1,2 +1,9 @@
+# NODE
+
 node_modules
-.env
+
+
+# VARIABLES DE ENTORNO
+
+.env.dev
+.env.prod
