@@ -1,7 +1,7 @@
 import express from 'express';
 import handlebars from 'express-handlebars';
 import path from 'path'; 
-import { __dirname } from './utils.js';
+import { Exception, __dirname } from './utils.js';
 
 import indexRouter from './routers/views/index.router.js';
 import studentsRouter from './routers/api/students.router.js';
@@ -20,9 +20,11 @@ app.use('/', indexRouter);
 app.use('/api', studentsRouter);
 
 app.use((error, req, res, next) => {
-    const message = `Ah ocurrido un error desconocido: ${error.message}`;
+    const message = error instanceof Exception ? 
+    error.message :
+    `Ah ocurrido un error desconocido: ${error.message}`;
     console.log(message);
-    res.status(500).json({ status: 'error', message });
+    res.status(error.statusCode || 500).json({ status: 'error', message });
 });
 
 export default app;

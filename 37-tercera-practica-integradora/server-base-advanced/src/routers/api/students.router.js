@@ -1,26 +1,23 @@
 import { Router } from 'express';
-import { StudentDao } from '../../dao/factory.js';
-import StudentModel from '../../dao/models/student.model.js';
+import StudentsController from '../../controllers/students.controller.js';
 
 const router = Router();
 
 router.get('/students', async (req, res, next) => {
   try {
-    const students = await StudentDao.get();
+    const { query } = req;
+    const students = await StudentsController.getAll(query);
     res.status(200).json(students);
   } catch (error) {
     next(error);
   }
 });
 
-router.get('/students/:uid', async (req, res, next) => {
+router.get('/students/:sid', async (req, res, next) => {
   try {
-    const { params: { uid } } = req;
-    const user = await StudentModel.findById(uid);
-    if (!user) {
-      return res.status(401).json({ message: `User id ${uid} not found 😨.` });
-    }
-    res.status(200).json(user);
+    const { params: { sid } } = req;
+    const student = await StudentsController.getById(sid);
+    res.status(200).json(student);
   } catch (error) {
     next(error);
   }
@@ -29,8 +26,8 @@ router.get('/students/:uid', async (req, res, next) => {
 router.post('/students/', async (req, res, next) => {
   try {
     const { body } = req;
-    const user = await StudentModel.create(body);
-    res.status(201).json(user);
+    const student = await StudentsController.create(body);
+    res.status(201).json(student);
   } catch (error) {
     next(error);
   }
@@ -38,18 +35,18 @@ router.post('/students/', async (req, res, next) => {
 
 router.put('/students/:uid', async (req, res, next) => {
   try {
-    const { body, params: { uid } } = req;
-    await StudentModel.updateOne({ _id: uid }, { $set: body });
+    const { body, params: { sid } } = req;
+    await StudentsController.updateById(sid, body);
     res.status(204).end();
   } catch (error) {
     next(error);
   }
 });
 
-router.delete('/students/:uid', async (req, res, next) => {
+router.delete('/students/:sid', async (req, res, next) => {
   try {
-    const { params: { uid } } = req;
-    await StudentModel.deleteOne({ _id: uid });
+    const { params: { sid } } = req;
+    await StudentsController.deleteById(sid);
     res.status(204).end();
   } catch (error) {
     next(error);

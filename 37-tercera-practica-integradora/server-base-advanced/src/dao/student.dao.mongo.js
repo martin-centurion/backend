@@ -6,7 +6,7 @@ export default class StudentDao {
     }
 
     static getById(sid, opts = {}) {
-        return StudentModel.getById(sid);
+        return StudentModel.findById(sid);
     }
 
     static create(data) {
