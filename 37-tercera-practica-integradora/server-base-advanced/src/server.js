@@ -1,9 +1,9 @@
 import http from 'http';
-import { init as initMongoDB } from './db/mongodb.js';
+import Mongodb from './db/mongodb.js';
 import app from './app.js';
 import config from './config/config.js';
 
-await initMongoDB();
+await Mongodb.getIntance();
 
 const server = http.createServer(app);
 const PORT = config.PORT;

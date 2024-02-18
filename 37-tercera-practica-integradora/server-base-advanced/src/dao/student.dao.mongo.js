@@ -1,8 +1,8 @@
 import StudentModel from "./models/student.model.js";
 
-export class StudentDao {
+export default class StudentDao {
     static get(criteria = {}, opts = {}) {
-        return StudentModel.get(criteria);
+        return StudentModel.find(criteria);
     }
 
     static getById(sid, opts = {}) {

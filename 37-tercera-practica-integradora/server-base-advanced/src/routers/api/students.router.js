@@ -1,11 +1,12 @@
 import { Router } from 'express';
+import { StudentDao } from '../../dao/factory.js';
 import StudentModel from '../../dao/models/student.model.js';
 
 const router = Router();
 
 router.get('/students', async (req, res, next) => {
   try {
-    const students = await StudentModel.find({});
+    const students = await StudentDao.get();
     res.status(200).json(students);
   } catch (error) {
     next(error);
