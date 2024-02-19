@@ -6,7 +6,7 @@ function cookieExtractor(req) {
     let token = null;
     if (req && req.cookies) {
         return token = req.cookies.access_token;
-    }
+    };
 };
 
 const opts = {

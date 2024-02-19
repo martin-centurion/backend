@@ -3,7 +3,7 @@ import passport from 'passport';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 import { fileURLToPath } from 'url';
-import config from './config.js';
+import config from '../config.js';
 import { v4 as uuidv4 } from 'uuid';
 
 export const getNewId = () => uuidv4();
@@ -65,8 +65,26 @@ export const authorizationMiddleware = (roles) => (req, res, next) => {
 }
 
 export class Exception extends Error {
-    constructor(message, status) {
+    constructor(message, statusCode) {
         super(message);
-        this.statusCode = status;
+        this.statusCode = statusCode;
     }
-};
+}
+
+export class NotFoundException extends Exception {
+    constructor(message) {
+        super(message, 404);
+    }
+}
+
+export class InvalidDataException extends Exception {
+    constructor(message) {
+        super(message, 400);
+    }
+}
+
+export class UnauthorizedException extends Exception {
+    constructor(message) {
+        super(message, 401);
+    }
+}

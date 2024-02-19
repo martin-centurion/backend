@@ -1,11 +1,6 @@
 import { Router } from "express";
-import { 
-    isValidPassword, 
-    tokenGenerator, 
-    createHash
-} from "../../utils.js";
-import UserModel from "../../models/user.model.js";
 import AuthController from "../../controllers/auth.controller.js";
+import { log } from "console";
 
 const router = Router();
 
@@ -19,11 +14,12 @@ router.post('/auth/login', async (req, res) => {
           httpOnly: true,
         })
         .status(200)
-        .redirect('/products')
-        //.json({ status: 'succes'})
+        .json({ status: 'succes'})
+        //.redirect('/products')
   } catch (error) {
     //res.redirect('/')
     res.status(404).json({ message: error.message })
+    console.error(error.cause);
   }
   
   
@@ -35,6 +31,7 @@ router.post('/auth/register', async (req, res) => {
       res.status(201).json({ message: 'Usuario creado correctamente.' });
   } catch (error) {
       res.status(400).json({ message: error.message });
+      console.error(error.cause);
   }
 });
 

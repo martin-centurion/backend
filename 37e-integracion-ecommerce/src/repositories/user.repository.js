@@ -20,6 +20,10 @@ export default class User {
     }
 
     async create(data) {
+        return this.dao.create(data);
+    }
+
+    /* async create(data) {
         const newData = {
             first_name: data.first_name,
             last_name: data.last_name,
@@ -30,7 +34,7 @@ export default class User {
         }
         const user = await this.dao.create(newData);
         return new UserDTO(user);
-    }
+    } */
 
     updatePassById(id, userUpdated) {
         return this.dao.updateById(id, userUpdated);

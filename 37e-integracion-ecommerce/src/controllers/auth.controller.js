@@ -4,10 +4,11 @@ import {
     isValidPassword, 
     tokenGenerator, 
     createHash
-} from "../utils.js";
+} from "../utils/utils.js";
 import { CustomError } from "../utils/CustomError.js"
-import EnumsError from '../utils/enumError.js'
-import { generatorUserError, validatorUserError} from "../utils/CauseMessageError.js"
+import EnumsError from '../utils/EnumsError.js'
+import { generatorUserError, validatorUserError} from "../utils/CauseMessageError.js";
+import { log } from "console";
 
 export default class AuthController {
     static async register(data) {
@@ -42,45 +43,49 @@ export default class AuthController {
           if (!user) {
             throw new Error('Correo ya registrado 😨. Intenta recuperar tu contraseña 😁.');
           }
-          user = await AuthService.create({
+          let registeredUser = await AuthService.create({
             first_name,
             last_name,
             age,
             email,
             password: createHash(password),
           });
+          console.log('registeredUser', registeredUser);
           return user;
     }
 
     static async login(data) {
-        const { email, password } = data;
-        const user = await AuthService.getEmail({ email });
-        if (!user) {
-          CustomError.createError({
-            name: 'Error accediendo al usuario',
-            cause: validatorUserError({
-              email,
-              password,
-            }),
-            message: 'Contraseña o email invalidos.',
-            code: EnumsError.INVALID_PARAMS_ERROR,
-          })
-        }
-        const isValidPass = isValidPassword(password, user);
-        if (!isValidPass) {
-          CustomError.createError({
-            name: 'Error accediendo al usuario ',
-            cause: validatorUserError({
-              email,
-              password,
-            }),
-            message: 'Contraseña o email invalidos.',
-            code: EnumsError.INVALID_PARAMS_ERROR,
-          })
-        }
-        const token = tokenGenerator(user);
-        return token;
-    }
+      const { 
+          email, 
+          password 
+      } = data;
+      if (!email || !password) {
+        CustomError.createError({
+          name: 'Error accediendo al usuario',
+          cause: validatorUserError({
+            email,
+            password,
+          }),
+          message: 'Contraseña o email invalidos.',
+          code: EnumsError.INVALID_PARAMS_ERROR,
+        })
+      }
+      const user = await AuthService.getEmail({ email });
+      const isValidPass = isValidPassword(password, user);
+      if (!isValidPass) {
+        CustomError.createError({
+          name: 'Error accediendo al usuario ',
+          cause: validatorUserError({
+            email,
+            password,
+          }),
+          message: 'Contraseña o email invalidos.',
+          code: EnumsError.INVALID_PARAMS_ERROR,
+        })
+      }
+      const token = tokenGenerator(user);
+      return token;
+  }
 
     static async recovery(data) {
       const { email, newPassword } = data;

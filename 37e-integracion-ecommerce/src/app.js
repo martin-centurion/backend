@@ -22,7 +22,8 @@ import loggerRouter from './routers/api/logger.router.js'
 import productViewRouter from './routers/views/products.router.js';
 import indexViewsRouter from './routers/views/index.router.js';
 
-import { __dirname } from './utils.js';
+import ErrorHandlers from './middlewares/ErrorHandlers.js';
+import { __dirname } from './utils/utils.js';
 import path from 'path';
 
 const app = express();
@@ -54,6 +55,8 @@ app.use('/',
     );
 
 app.use('/views', productViewRouter);
+
+app.use(ErrorHandlers);
 
 
 export default app;

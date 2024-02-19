@@ -1,7 +1,7 @@
 import { Router } from 'express';
 import EmailService from '../../services/email.service.js';
 import TwilioService from '../../services/twilio.service.js';
-import { __dirname } from '../../utils.js';
+import { __dirname } from '../../utils/utils.js';
 import path from 'path';
 
 const router = Router();

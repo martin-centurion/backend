@@ -1,8 +1,6 @@
 import winston from "winston";
 import config from "../config.js";
 
-
-
 const customLevelsOptions = {
     levels: {
       fatal: 0,
@@ -48,6 +46,5 @@ const customLevelsOptions = {
   
   export const addLogger = (req, res, next) => {
     req.logger = config.env === 'prod' ? loggerProd : loggerDev;
-    console.log('config req levels', req.logger.levels);
     next();
   };
