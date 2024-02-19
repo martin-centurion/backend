@@ -19,7 +19,7 @@ const customLevelsOptions = {
       debug: 'black',
     }
   };
-  const loggerProd = winston.createLogger({
+  export const loggerProd = winston.createLogger({
     levels:customLevelsOptions.levels,
     transports: [
       new winston.transports.Console({
@@ -29,17 +29,20 @@ const customLevelsOptions = {
           winston.format.simple(),
         ),
       }),
-      new winston.transports.File({ filename: './error.log', level: 'info' })
+      new winston.transports.File({ filename: './errorProd.log', level: 'info' })
     ],
   });
-  const loggerDev = winston.createLogger({
+  export const loggerDev = winston.createLogger({
   levels: customLevelsOptions.levels,
     transports: [
       new winston.transports.Console({
       level: 'debug',
       format: winston.format.combine(
         winston.format.colorize({ colors: customLevelsOptions.colors }),
-        winston.format.simple(),) }),
+        winston.format.simple(),
+        ),
+       }),
+       new winston.transports.File({ filename: './errorDev.log', level: 'debug' })
     ],
   });
 

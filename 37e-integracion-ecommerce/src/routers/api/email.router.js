@@ -3,6 +3,7 @@ import EmailService from '../../services/email.service.js';
 import TwilioService from '../../services/twilio.service.js';
 import { __dirname } from '../../utils/utils.js';
 import path from 'path';
+import { loggerDev } from '../../config/logger.js';
 
 const router = Router();
 
@@ -26,7 +27,7 @@ router.get('/sendEmail', async (req, res, next) => {
                 }
             ]
         );
-        console.log('result', result);
+        loggerDev.info('result', result);
         res.status(200).json({ message: 'Correo enviado correctamente'})
     } catch (error) {
         next();
@@ -35,12 +36,9 @@ router.get('/sendEmail', async (req, res, next) => {
 
 router.get('/sendSms', async (req, res, next) => {
     const { query: { first_name, product }} = req;
-    console.log('first_name', first_name);
-    console.log('product', product);
     try {
         const message = `Gracias, ${first_name}, tu solicitud del producto ${product} ha sido aprobada.`
         const result = await TwilioService.sendSMS('+5491156355415', message);
-        console.log('result', result);
         res.status(200).json({ message: 'Mensaje enviado correctamente.'})
     } catch (error) {
         next(error)

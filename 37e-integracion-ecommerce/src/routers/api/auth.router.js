@@ -1,13 +1,12 @@
 import { Router } from "express";
 import AuthController from "../../controllers/auth.controller.js";
-import { log } from "console";
+import { loggerDev } from "../../config/logger.js";
 
 const router = Router();
 
 router.post('/auth/login', async (req, res) => {
   try {
     const token = await AuthController.login(req.body);
-    console.log('token', token);
       res
         .cookie('access_token', token, {
           maxAge: 60000,
@@ -19,7 +18,7 @@ router.post('/auth/login', async (req, res) => {
   } catch (error) {
     //res.redirect('/')
     res.status(404).json({ message: error.message })
-    console.error(error.cause);
+    loggerDev.error(error.cause);
   }
   
   
@@ -31,7 +30,7 @@ router.post('/auth/register', async (req, res) => {
       res.status(201).json({ message: 'Usuario creado correctamente.' });
   } catch (error) {
       res.status(400).json({ message: error.message });
-      console.error(error.cause);
+      loggerDev.error(error.cause);
   }
 });
 

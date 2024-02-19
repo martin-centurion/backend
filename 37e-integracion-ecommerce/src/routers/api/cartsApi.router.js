@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import CartController from '../../controllers/cart.controller.js';
 import { authenticationMiddleware, authorizationMiddleware } from "../../utils/utils.js";
+import { loggerDev } from '../../config/logger.js';
 
 const router = Router();
 
@@ -20,7 +21,7 @@ router.get('/carts/:cid', authenticationMiddleware('jwt'), authorizationMiddlewa
   const { cid } = req.params;
   try {
       const result = await CartController.findById(cid)
-      console.log('result', result);
+      loggerDev.info('result', result);
       res.status(201).json({cid, result})
   } catch (error) {
       next(error);

@@ -1,4 +1,5 @@
 import CartDao from "../dao/cart.dao.js";
+import { loggerDev } from "../config/logger.js";
 
 export default class CartService {
     static get(filter = {}) {
@@ -6,14 +7,14 @@ export default class CartService {
     }
 
     static async create(payload) {
-        console.log('Creando un nuevo carrito.');
+        loggerDev.info('Creando un nuevo carrito.');
         const cart = await CartDao.create(payload);
-        console.log('Se ha creado el carrito exitosamente');
+        loggerDev.info('Se ha creado el carrito exitosamente');
         return cart;
     }
 
     static findById(cartid){
-        console.log('CartDao', CartDao);
+        loggerDev.info('CartDao', CartDao);
         return CartDao.getById(cartid);
     }
 

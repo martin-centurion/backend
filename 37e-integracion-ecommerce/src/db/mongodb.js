@@ -1,5 +1,6 @@
 import mongoose from "mongoose";
 import config from '../config.js';
+import { loggerDev } from "../config/logger.js";
 
 
 export default class Mongodb {
@@ -11,10 +12,10 @@ export default class Mongodb {
         if (!Mongodb.#instance) {
         try {
             const connection = await mongoose.connect(config.db.mongodbUri);
-            console.log('Database connected.');
+            loggerDev.info('Database connected.');
             Mongodb.#instance = new Mongodb(connection);
         } catch (error) {
-            console.error('Error to connect to database', error.message);
+            loggerDev.error('Error to connect to database', error.message);
         }
         }
         return Mongodb.#instance;

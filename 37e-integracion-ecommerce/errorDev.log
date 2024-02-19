@@ -1,0 +1,12 @@
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"Database connected."}
+{"level":"error","message":"Todos lo campos son requeridos y deben ser valido.\n  Lista de campos recibidos en la solicitud:\n    - first_name  : Martin\n    - last_name   : undefined\n    - age         : 37\n    - email       : martinalejandrocenturion@gmail.com\n    - password    : 1111\n    "}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"Database connected."}

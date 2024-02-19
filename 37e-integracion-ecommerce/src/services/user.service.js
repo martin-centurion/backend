@@ -14,13 +14,6 @@ export default class UserService {
         return userRepository.getById(uid);
     }
 
-    /* static async create(data) {
-        console.log('Creando un nuevo usuario.');
-        const user = await userRepository.create(data);
-        console.log('se ha creado el usuario exitosamente.');
-        return user;
-    } */
-
     static updatePassById(uid, data) {
         return userRepository.updatePassById({ _id: uid }, { $set: data });
     }

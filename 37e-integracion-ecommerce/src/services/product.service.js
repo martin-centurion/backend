@@ -1,4 +1,5 @@
 import ProductDao from "../dao/product.dao.js";
+import { loggerDev } from "../config/logger.js";
 
 export default class ProductService {
     static findAll(filter = {}) {
@@ -6,10 +7,10 @@ export default class ProductService {
       }
     
       static async create(payload) {
-        console.log('Creando un nuevo producto.');
-        const toy = await ProductDao.create(payload);
-        console.log(`Producto creado correctamente (${toy._id}).`);
-        return toy;
+        loggerDev.info('Creando un nuevo producto.');
+        const product = await ProductDao.create(payload);
+        loggerDev.info(`Producto creado correctamente (${product._id}).`);
+        return product;
       }
     
       static findById(uid) {
