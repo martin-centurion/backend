@@ -20,8 +20,12 @@ export default {
     jwtSecret: process.env.JWT_SECRET,
     cookieSecret: process.env.COOKIE_SECRET,
     sessionSecret: process.env.SESSION_SECRET,
-    user_email: process.env.GMAIL_USER,
-    user_pass: process.env.GMAIL_PASS,
+    mail: {
+        service: process.env.EMAIL_SERVICE || 'gmail',
+        port: process.env.EMAIL_PORT || 587,
+        user: process.env.EMAIL_USER,
+        password: process.env.EMAIL_PASSWORD,
+    },
     twilio: {
         accountSID: process.env.TWILIO_ACCOUNT_SID,
         authToken: process.env.TWILIO_AUTH_TOKEN,

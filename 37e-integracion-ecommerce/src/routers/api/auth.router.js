@@ -43,14 +43,6 @@ router.post('/auth/recovery-password', async (req, res) => {
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
-  /* const { email, newPassword } = req.body;
-  const user = await UserModel.findOne({ email });
-  if (!user) {
-      return res.status(401).send('Correo o contraseña invalidos.')
-  };
-  await UserModel.updateOne({ email }, { $set: { password: createHash(newPassword) }});
-  res.status(400).json({ message: error.message }); */
-  //res.redirect('/login');
 });
 
 

@@ -1,5 +1,6 @@
 import AuthService from "../services/auth.service.js";
 import UserService from "../services/user.service.js";
+import EmailService from "../services/email.service.js";
 import { 
     isValidPassword, 
     tokenGenerator, 
@@ -8,7 +9,6 @@ import {
 import { CustomError } from "../utils/CustomError.js"
 import EnumsError from '../utils/EnumsError.js'
 import { generatorUserError, validatorUserError} from "../utils/CauseMessageError.js";
-import { log } from "console";
 
 export default class AuthController {
     static async register(data) {
@@ -50,7 +50,8 @@ export default class AuthController {
             email,
             password: createHash(password),
           });
-          console.log('registeredUser', registeredUser);
+          const emailService = EmailService.getInstance();
+          await emailService.sendWelcomeEmail(registeredUser);
           return user;
     }
 

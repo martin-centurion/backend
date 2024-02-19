@@ -1,12 +1,22 @@
 import mongoose from "mongoose";
 import config from '../config.js';
 
-export const init = async () => {
-    try {
-        const URI = config.db.mongodbUri;
-        await mongoose.connect(URI);
-        console.log('Database connected');
-    } catch (error) {
-        console.error('Ah ocurrido un error al intentar conectar a la BD.', error.message);
+
+export default class Mongodb {
+    static #instance = null;
+    constructor(connection) {
+        this.connection = this.connection;
+    }
+    static async getInstance() {
+        if (!Mongodb.#instance) {
+        try {
+            const connection = await mongoose.connect(config.db.mongodbUri);
+            console.log('Database connected.');
+            Mongodb.#instance = new Mongodb(connection);
+        } catch (error) {
+            console.error('Error to connect to database', error.message);
+        }
+        }
+        return Mongodb.#instance;
     }
 }
