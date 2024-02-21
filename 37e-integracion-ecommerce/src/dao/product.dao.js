@@ -20,13 +20,13 @@ export default class ProductDao {
 
     static async getById(pid) {
         return ProductModel.findById(pid);
-    }
+    } 
 
     static async updateById(pid, data) {
-        return ProductModel.findById({ id: pid }, { $set: data });
+        return ProductModel.updateOne({ _id: pid }, { $set: data });
     }
 
     static async deleteById(pid) {
-        return ProductModel.deleteOne({ id: pid });
+        return ProductModel.deleteOne({ _id: pid });
     }
 }

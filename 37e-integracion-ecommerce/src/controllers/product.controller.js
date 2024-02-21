@@ -34,7 +34,7 @@ export default class ProductController {
       }
     
       static async deleteById(pid) {
-        await ProductController.getById(pid);
+        const product = await ProductController.getById(pid);
         if(!product) {
           throw new Exception('No existe el producto', 404);
         };

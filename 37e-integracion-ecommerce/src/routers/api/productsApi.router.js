@@ -15,9 +15,9 @@ router.get('/products', authenticationMiddleware('jwt'), async (req, res, next) 
       criteria.category = group;
     };
     const product = await ProductModel.paginate(criteria, opts);
-    res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cartId }));
+    //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cartId }));
     //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cartId}));
-    //res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role  }))
+    res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role, cartId  }))
     } catch (error) {
         next(error);
     }
@@ -60,20 +60,20 @@ router.put('/products/:pid', authenticationMiddleware('jwt'), authorizationMiddl
   }
 });
 
-router.delete('/products/:pid', authenticationMiddleware('jwt'), authorizationMiddleware('admin'), async (req, res, next) => {
+router.delete('/products/:pid', authenticationMiddleware('jwt'), authorizationMiddleware(['admin','premium']), async (req, res) => {
   try {
     const { params: { pid } } = req;
     if (req.user.role !== 'admin' && req.user.role !== 'premium') {
-        return res.status(403).json({ message: 'No tiene permisos para eliminar productos' });
+      return res.status(403).json({ message: 'No tiene permisos para eliminar productos' });
     } 
-    const productToDelete= await ProductsController.getById(pid)
+   const productToDelete= await ProductsController.getById(pid)
     if (req.user.role === 'premium' && productToDelete.owner !== req.user.email) {
         return res.status(403).json({ message: 'No tienes permisos para borrar productos que no hayas creado.' });
-    }
+         } 
     await ProductsController.deleteById(pid);
     res.status(204).end();
   } catch (error) {
-    next(error)
+    res.status(error.statusCode || 500).json({ message: error.message });
   }
 });
 
