@@ -5,7 +5,7 @@ import {
     isValidPassword, 
     tokenGenerator, 
     createHash
-} from "../utils/utils.js";
+} from "../utils.js";
 import { CustomError } from "../utils/CustomError.js"
 import EnumsError from '../utils/EnumsError.js'
 import { generatorUserError, validatorUserError} from "../utils/CauseMessageError.js";
@@ -88,6 +88,7 @@ export default class AuthController {
       return token;
   }
 
+  // Corregir no funciona
     static async recovery(data) {
       const { email, newPassword } = data;
       const user = await UserService.get({ email });
@@ -106,5 +107,40 @@ export default class AuthController {
       await UserService.updatePassById({ email }, { $set: { password: createHash(newPassword) }});
       return user;
     }
-}
+
+    static async restorePassword(data) {
+      const { email } = data;
+      const user = await UserService.get({ email });
+        if (!user) {
+          CustomError.createError({
+            name: 'Error accediendo al usuario ',
+            cause: validatorUserError({
+              email,
+              password,
+            }),
+            message: 'No hay ningun ususario registrado con ese email 😨.',
+            code: EnumsError.INVALID_PARAMS_ERROR,
+          })
+        };
+      const emailService = EmailService.getInstance();
+      await emailService.sendRecoveryPasswordEmail(user);
+  
+      return user
+    };
+
+    static async changeUserRole(uid){
+      const userToUpdate = await UserService.findById(uid);
+      if (!userToUpdate) {
+        return res.status(404).json({ message: 'Usuario no encontrado' });
+      }
+      const userRole =  userToUpdate.role
+      const userUpdate = userRole === 'user' ? 'premium' : 'user';
+      const userToUp = {
+          ...userToUpdate,
+           role: userUpdate
+          };
+      await AuthService.updateById(uid, userToUp);
+      return userUpdate
+  }}
+
 

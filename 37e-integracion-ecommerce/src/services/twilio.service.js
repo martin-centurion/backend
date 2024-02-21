@@ -1,4 +1,4 @@
-import twilio from 'twilio';
+/* import twilio from 'twilio';
 import config from '../config.js';
 
 class TwilioService {
@@ -17,4 +17,4 @@ class TwilioService {
     }
 }
 
-export default new TwilioService();
+export default new TwilioService(); */

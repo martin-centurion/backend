@@ -1,5 +1,5 @@
 import UserService from '../services/user.service.js';
-import { Exception } from '../utils/utils.js';
+import { Exception } from '../utils.js';
 
 export default class UserController {
     static findAll (filter = {}) {

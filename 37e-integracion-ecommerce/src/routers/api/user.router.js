@@ -1,7 +1,7 @@
 import { Router } from "express";
 import UserController from "../../controllers/user.controller.js";
-import UserModel from "../../models/user.model.js";
-import { authenticationMiddleware, authorizationMiddleware } from "../../utils/utils.js";
+import AuthController from "../../controllers/auth.controller.js";
+import { authenticationMiddleware, authorizationMiddleware } from "../../utils.js";
 
 const router = Router();
 
@@ -32,7 +32,7 @@ router.put('/users/:uid', authenticationMiddleware('jwt'), async (req, res, next
     } catch (error) {
         next(error);
     }
-})
+});
 
 router.delete('/users/:uid', authenticationMiddleware('jwt'), async (req, res, next) => {
     try {
@@ -42,7 +42,19 @@ router.delete('/users/:uid', authenticationMiddleware('jwt'), async (req, res, n
     } catch (error) {
         next(error)
     }
-})
+});
+
+router.put('/users/premium/:uid', authenticationMiddleware('jwt'), authorizationMiddleware(['premium']), async (req, res)=>{
+    try{
+        const { params: { uid } } = req;
+        const userToUpdate = await AuthController.changeUserRole(uid)
+        res.status(200).json({ message: `Rol de usuario actualizado con éxito, user: ${userToUpdate} `});
+    } catch (error) {
+    req.logger.error(error);
+    res.status(500).json({ message: 'Error al actualizar el rol del usuario' });
+}
+  
+  })
 
 
 export default router;

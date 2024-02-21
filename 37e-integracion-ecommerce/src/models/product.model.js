@@ -9,6 +9,7 @@ const productSchema = new mongoose.Schema({
     thumbnails:     { type: String },
     code:           { type: String },
     category:       { type: String, required: true },
+    owner:          { type: String, required: true, default: 'admin'},
     status:         { type: Boolean, required: true, default: true },
 }, { timestamps: true });
 

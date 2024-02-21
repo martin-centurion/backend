@@ -1,5 +1,5 @@
 import ProductService from "../services/product.service.js";
-import { Exception } from "../utils/utils.js";
+import { Exception } from "../utils.js";
 import { faker } from '@faker-js/faker';
 
 export default class ProductController {

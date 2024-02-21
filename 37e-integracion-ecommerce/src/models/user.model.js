@@ -6,8 +6,10 @@ const userSchema = new mongoose.Schema({
     email:       { type: String, unique: true },
     age:         { type: Number, required: true },
     password:    { type: String, required: true },
+    provider: String,
     cart:        { type: mongoose.Schema.Types.ObjectId, ref: 'Cart' },
-    role:        { type: String, default: 'user', enum: ['user', 'seller', 'admin'] }
+    role:        { type: String, enum: ['user', 'admin', 'premium'], default: 'user' },
+    jwtTocken:   { type: String },
 }, { timestamps: true });
 
 userSchema.pre('find', function () {

@@ -1,7 +1,7 @@
 import CartService from "../services/cart.service.js";
 import ProductDao from "../dao/product.dao.js";
 import TicketController from './ticket.controller.js';
-import { Exception, getNewId } from "../utils/utils.js";
+import { Exception, getNewId } from "../utils.js";
 
 export default class CartController {
 

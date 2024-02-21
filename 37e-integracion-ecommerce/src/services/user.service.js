@@ -10,7 +10,6 @@ export default class UserService {
     }
 
     static findById(uid) {
-        console.log('User', uid);
         return userRepository.getById(uid);
     }
 
@@ -19,8 +18,9 @@ export default class UserService {
     }
 
     static updateById(uid, data) {
+        console.log('data service', data);
         return userRepository.updateById({ _id: uid }, { $set: data });
-    }
+      }
 
     static deleteById(uid) {
         return userRepository.deleteById(uid);

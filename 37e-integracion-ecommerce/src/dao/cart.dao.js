@@ -29,7 +29,7 @@ export default class CartDao {
       }
     
     static deleteById(cartid) {
-        return CartModel.deleteOne({ _id: cartid })
+        return CartModel.deleteOne({ _id: cartid });
     }
     static async addProduct(cid, pid, quantity = null) {
         const cart = await CartDao.getById(cid);

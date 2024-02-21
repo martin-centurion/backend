@@ -14,6 +14,6 @@ export default class AuthService {
     }
 
     static updateById(uid, data) {
-        return UserModel.updateOne(uid, data);
+        return UserModel.updateOne({ _id: uid }, { $set: data });
     }
 }

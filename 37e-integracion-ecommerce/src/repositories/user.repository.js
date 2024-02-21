@@ -15,9 +15,8 @@ export default class User {
         return users.map(user => new UserDTO(user));
     }
 
-    getById(uid) {
-        return this.dao.getById(uid);
-    }
+    async getById(id) {
+        return new UserDTO(await this.dao.getById(id));}
 
     async create(data) {
         return this.dao.create(data);
@@ -39,9 +38,13 @@ export default class User {
     updatePassById(id, userUpdated) {
         return this.dao.updateById(id, userUpdated);
     }
-
-    updateById(id, data) {
-        const [first_name, last_name] = data.fullname.split(' ');
+    
+    async updateById(id, data) {
+        const updateResult = await this.dao.updateById(id,  data);
+        console.log('upd resul', updateResult);
+        return updateResult;  
+        // Devuelve directamente el resultado de la actualización
+/*         const [first_name, last_name] = data.fullname.split(' ');
         const newData = {
             first_name,
             last_name,
@@ -49,7 +52,7 @@ export default class User {
             email: data.email,
             cart: data.cart
         }
-        return this.dao.updateById(id, newData)
+        return this.dao.updateById(id, newData) */
     }
 
     deleteById(id) {

@@ -32,6 +32,14 @@ export default class EmailService {
             `<h1>Hola, ${user.first_name}. Te damos la bienvenida a nuestra institución!</h1>`
         );
     }
+
+    sendRecoveryPasswordEmail(user) {
+        return this.sendEmail(
+          user.email,
+          `Recuperación de contraseña`,
+          `<h1>Hola!, ${user.first_name}. Ingresa a este <a href='http://localhost:8081/recovery-password'>link</a> para recuperar tu contraseña</h1>`
+        );
+      }
     
     static getInstance() {
         if (!EmailService.#instance) {

@@ -13,7 +13,7 @@ import productApiRouter from './routers/api/productsApi.router.js';
 import cartApiRouter from './routers/api/cartsApi.router.js';
 import emailRouter from './routers/api/email.router.js';
 
-// Loger
+// Logger
 
 import loggerRouter from './routers/api/logger.router.js'
 
@@ -23,12 +23,12 @@ import productViewRouter from './routers/views/products.router.js';
 import indexViewsRouter from './routers/views/index.router.js';
 
 import ErrorHandlers from './middlewares/ErrorHandlers.js';
-import { __dirname } from './utils/utils.js';
+import { __dirname } from './utils.js';
 import path from 'path';
 
 const app = express();
 
-app.use(addLogger)
+app.use(addLogger);
 app.use(expressCompression({
     brotli: { enabled: true, zlib: {}}
 }));
@@ -57,6 +57,5 @@ app.use('/',
 app.use('/views', productViewRouter);
 
 app.use(ErrorHandlers);
-
 
 export default app;

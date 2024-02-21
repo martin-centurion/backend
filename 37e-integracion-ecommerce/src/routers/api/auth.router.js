@@ -1,6 +1,5 @@
 import { Router } from "express";
 import AuthController from "../../controllers/auth.controller.js";
-import { loggerDev } from "../../config/logger.js";
 
 const router = Router();
 
@@ -18,7 +17,7 @@ router.post('/auth/login', async (req, res) => {
   } catch (error) {
     //res.redirect('/')
     res.status(404).json({ message: error.message })
-    loggerDev.error(error.cause);
+    req.logger.error(error.cause);
   }
   
   
@@ -30,7 +29,7 @@ router.post('/auth/register', async (req, res) => {
       res.status(201).json({ message: 'Usuario creado correctamente.' });
   } catch (error) {
       res.status(400).json({ message: error.message });
-      loggerDev.error(error.cause);
+      req.logger.error(error.cause);
   }
 });
 
@@ -44,5 +43,15 @@ router.post('/auth/recovery-password', async (req, res) => {
   }
 });
 
+router.post('/auth/restore-password', async (req, res) => {
+  try {
+    const user = await AuthController.restorePassword(req.body)
+    res.
+    //status(201).json({ message: 'Correo enviado para reestablecer la contraseña.' });
+    redirect('/');
+  } catch (error) {
+    res.status(400).json({  message: error.message  })
+  }
+});
 
 export default router;
