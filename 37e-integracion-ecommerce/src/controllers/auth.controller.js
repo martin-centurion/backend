@@ -10,7 +10,7 @@ import {
 import { CustomError } from "../utils/CustomError.js"
 import EnumsError from '../utils/EnumsError.js'
 import { generatorUserError, validatorUserError} from "../utils/CauseMessageError.js";
-import userModel from "../models/user.model.js";
+import { config } from "dotenv";
 
 export default class AuthController {
     static async register(data) {
@@ -62,17 +62,17 @@ export default class AuthController {
           email, 
           password 
       } = data;
-        /* if (email === Admin.email && password === Admin.password) {
+        if (email === config.adminEmail && password === config.adminPassword) {
          
           const token = tokenGenerator({
-              first_name: 'admin',
-              last_name: 'admin',
-              email: 'admin@gmail.com',
-              role: 'admin'
+              first_name: config.adminName,
+              last_name: config.adminLastname,
+              email: config.adminEmail,
+              role: config.adminRole
           });
   
           return token;
-        } */
+        }
       if (!email || !password) {
         CustomError.createError({
           name: 'Error accediendo al usuario',

@@ -14,6 +14,11 @@ export default {
     port: process.env.PORT,
     env: process.env.ENV,
     persistence: process.env.PERSISTENCE || 'memory',
+    adminName:process.env.ADMIN_NAME,
+    adminLastname: process.env.ADMIN_LASTNAME,
+    adminEmail: process.env.ADMIN_LASTNAME,
+    adminPassword: process.env.ADMIN_PASSWORD,
+    adminRole: process.env.ADMIN_ROLE,
     db: {
         mongodbUri: process.env.MONGODB_URI,
     },
