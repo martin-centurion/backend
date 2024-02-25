@@ -44,7 +44,7 @@ router.delete('/users/:uid', authenticationMiddleware('jwt'), async (req, res, n
     }
 });
 
-router.put('/users/premium/:uid', authenticationMiddleware('jwt'), authorizationMiddleware(['premium']), async (req, res)=>{
+router.put('/users/premium/:uid', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'premium']), async (req, res)=>{
     try{
         const { params: { uid } } = req;
         const userToUpdate = await AuthController.changeUserRole(uid)
