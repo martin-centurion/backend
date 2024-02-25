@@ -13,12 +13,11 @@ export default class UserService {
         return userRepository.getById(uid);
     }
 
-    static updatePassById(uid, data) {
-        return userRepository.updatePassById({ _id: uid }, { $set: data });
-    }
+    /* static updatePassById(uid, data) {
+        return userRepository.updatePassById(uid, data);
+    } */
 
     static updateById(uid, data) {
-        console.log('data service', data);
         return userRepository.updateById({ _id: uid }, { $set: data });
       }
 

@@ -20,13 +20,17 @@ router.get('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['
 router.get('/carts/:cid', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => {
   const { cid } = req.params;
   try {
-      const result = await CartController.findById(cid)
-      loggerDev.info('result', result);
-      res.status(201).json({cid, result})
+      const user = req.user;
+      const cartId =user.cartId
+      const result = await CartController.findById(cid);
+      res.render('cart', buildResponse(cartId, result));
+      //res.status(201).json({cid, result})
   } catch (error) {
-      next(error);
+      req.logger.error(error.message)
   }
 });
+
+
 
 router.post('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => {
   try {

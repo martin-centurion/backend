@@ -15,9 +15,9 @@ router.get('/products', authenticationMiddleware('jwt'), async (req, res, next) 
       criteria.category = group;
     };
     const product = await ProductModel.paginate(criteria, opts);
-    //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cartId }));
+    res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cartId }));
     //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cartId}));
-    res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role, cartId  }))
+    //res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role, cartId  }))
     } catch (error) {
         next(error);
     }

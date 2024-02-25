@@ -1,6 +1,7 @@
 import AuthService from "../services/auth.service.js";
 import UserService from "../services/user.service.js";
 import EmailService from "../services/email.service.js";
+import UserModel from "../models/user.model.js";
 import { 
     isValidPassword, 
     tokenGenerator, 
@@ -9,6 +10,7 @@ import {
 import { CustomError } from "../utils/CustomError.js"
 import EnumsError from '../utils/EnumsError.js'
 import { generatorUserError, validatorUserError} from "../utils/CauseMessageError.js";
+import userModel from "../models/user.model.js";
 
 export default class AuthController {
     static async register(data) {
@@ -60,6 +62,17 @@ export default class AuthController {
           email, 
           password 
       } = data;
+        /* if (email === Admin.email && password === Admin.password) {
+         
+          const token = tokenGenerator({
+              first_name: 'admin',
+              last_name: 'admin',
+              email: 'admin@gmail.com',
+              role: 'admin'
+          });
+  
+          return token;
+        } */
       if (!email || !password) {
         CustomError.createError({
           name: 'Error accediendo al usuario',
@@ -103,8 +116,7 @@ export default class AuthController {
           code: EnumsError.INVALID_PARAMS_ERROR,
         })
       }
-      const userId = user._id;
-      await UserService.updatePassById({ email }, { $set: { password: createHash(newPassword) }});
+      await UserModel.updateOne({ email }, { $set: { password: createHash(newPassword) }});
       return user;
     }
 

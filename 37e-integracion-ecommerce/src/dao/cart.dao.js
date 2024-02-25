@@ -10,8 +10,16 @@ export default class CartDao {
         return CartModel.find(criteria)
     } 
 
-    static getById(cartid){
-        return CartModel.findById(cartid).populate('products.product');
+    static async getById(cid, populate = false) {
+      try {
+        const cart = await CartModel.findOne({ _id: cid });
+        if (populate) {
+          return await cart.populate("products.product");
+        }
+        return cart;
+      } catch (error) {
+        throw new Exception(`Cart with id "${cid}" not found`, 404);
+      }
     }
 
     static async updateById(cid, products) {
