@@ -704,3 +704,159 @@
 {"level":"info","message":"Database connected."}
 {"level":"info","message":"PORT: 8081"}
 {"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 user is not defined","stack":"ReferenceError: user is not defined\n    at ProductService.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/services/product.service.js:10:31)\n    at ProductController.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/controllers/product.controller.js:8:49)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/routers/api/productsApi.router.js:45:46\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:63:5\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:50:9\n    at strategy.success (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/passport/lib/middleware/authenticate.js:222:18)"}
+{"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 user is not defined","stack":"ReferenceError: user is not defined\n    at ProductService.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/services/product.service.js:10:31)\n    at ProductController.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/controllers/product.controller.js:8:49)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/routers/api/productsApi.router.js:45:46\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:63:5\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:50:9\n    at strategy.success (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/passport/lib/middleware/authenticate.js:222:18)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 user is not defined","stack":"ReferenceError: user is not defined\n    at ProductService.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/services/product.service.js:10:31)\n    at ProductController.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/controllers/product.controller.js:8:49)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/routers/api/productsApi.router.js:45:46\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:63:5\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:50:9\n    at strategy.success (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/passport/lib/middleware/authenticate.js:222:18)"}
+{"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 user is not defined","stack":"ReferenceError: user is not defined\n    at ProductService.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/services/product.service.js:10:31)\n    at ProductController.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/controllers/product.controller.js:8:49)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/routers/api/productsApi.router.js:45:46\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:63:5\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:50:9\n    at strategy.success (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/passport/lib/middleware/authenticate.js:222:18)"}
+{"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 user is not defined","stack":"ReferenceError: user is not defined\n    at ProductService.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/services/product.service.js:10:31)\n    at ProductController.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/controllers/product.controller.js:8:49)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/routers/api/productsApi.router.js:45:46\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:63:5\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:50:9\n    at strategy.success (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/passport/lib/middleware/authenticate.js:222:18)"}
+{"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 user is not defined","stack":"ReferenceError: user is not defined\n    at ProductService.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/services/product.service.js:10:31)\n    at ProductController.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/controllers/product.controller.js:8:49)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/routers/api/productsApi.router.js:45:46\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:63:5\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:50:9\n    at strategy.success (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/passport/lib/middleware/authenticate.js:222:18)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 user is not defined","stack":"ReferenceError: user is not defined\n    at ProductService.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/services/product.service.js:10:31)\n    at ProductController.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/controllers/product.controller.js:8:49)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/routers/api/productsApi.router.js:45:46\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:63:5\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:50:9\n    at strategy.success (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/passport/lib/middleware/authenticate.js:222:18)"}
+{"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 user is not defined","stack":"ReferenceError: user is not defined\n    at ProductService.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/services/product.service.js:10:31)\n    at ProductController.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/controllers/product.controller.js:8:49)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/routers/api/productsApi.router.js:45:46\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:63:5\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:50:9\n    at strategy.success (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/passport/lib/middleware/authenticate.js:222:18)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 user is not defined","stack":"ReferenceError: user is not defined\n    at ProductService.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/services/product.service.js:10:31)\n    at ProductController.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/controllers/product.controller.js:8:49)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/routers/api/productsApi.router.js:45:46\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:63:5\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:50:9\n    at strategy.success (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/passport/lib/middleware/authenticate.js:222:18)"}
+{"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 user is not defined","stack":"ReferenceError: user is not defined\n    at ProductService.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/services/product.service.js:10:31)\n    at ProductController.create (file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/controllers/product.controller.js:8:49)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/routers/api/productsApi.router.js:45:46\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:63:5\n    at Layer.handle [as handle_request] (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/layer.js:95:5)\n    at next (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/express/lib/router/route.js:144:13)\n    at file:///Users/martincenturion/Desktop/app-backend/39e-Documentar-API/src/utils.js:50:9\n    at strategy.success (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/passport/lib/middleware/authenticate.js:222:18)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"_message":"Product validation failed","errors":{"code":{"kind":"required","message":"Path `code` is required.","name":"ValidatorError","path":"code","properties":{"message":"Path `code` is required.","path":"code","type":"required"}}},"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 Product validation failed: code: Path `code` is required.","stack":"ValidationError: Product validation failed: code: Path `code` is required.\n    at Document.invalidate (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/mongoose/lib/document.js:3187:32)\n    at /Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/mongoose/lib/document.js:2980:17\n    at /Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/mongoose/lib/schemaType.js:1368:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)"}
+{"_message":"Product validation failed","errors":{"code":{"kind":"required","message":"Path `code` is required.","name":"ValidatorError","path":"code","properties":{"message":"Path `code` is required.","path":"code","type":"required"}}},"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 Product validation failed: code: Path `code` is required.","stack":"ValidationError: Product validation failed: code: Path `code` is required.\n    at Document.invalidate (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/mongoose/lib/document.js:3187:32)\n    at /Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/mongoose/lib/document.js:2980:17\n    at /Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/mongoose/lib/schemaType.js:1368:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)"}
+{"_message":"Product validation failed","errors":{"stock":{"kind":"required","message":"Path `stock` is required.","name":"ValidatorError","path":"stock","properties":{"message":"Path `stock` is required.","path":"stock","type":"required"}}},"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 Product validation failed: stock: Path `stock` is required.","stack":"ValidationError: Product validation failed: stock: Path `stock` is required.\n    at Document.invalidate (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/mongoose/lib/document.js:3187:32)\n    at /Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/mongoose/lib/document.js:2980:17\n    at /Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/mongoose/lib/schemaType.js:1368:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)"}
+{"_message":"Product validation failed","errors":{"stock":{"kind":"required","message":"Path `stock` is required.","name":"ValidatorError","path":"stock","properties":{"message":"Path `stock` is required.","path":"stock","type":"required"}}},"level":"fatal","message":"Ha ocurrido un error durante la creación del producto 😨 Product validation failed: stock: Path `stock` is required.","stack":"ValidationError: Product validation failed: stock: Path `stock` is required.\n    at Document.invalidate (/Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/mongoose/lib/document.js:3187:32)\n    at /Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/mongoose/lib/document.js:2980:17\n    at /Users/martincenturion/Desktop/app-backend/39e-Documentar-API/node_modules/mongoose/lib/schemaType.js:1368:9\n    at process.processTicksAndRejections (node:internal/process/task_queues:77:11)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error","message":"El email o contraseña son incorrectos.\n   - email       : admin@admin.com\n   - password    : undefined"}
+{"level":"error","message":"El email o contraseña son incorrectos.\n   - email       : admin@admin.com\n   - password    : undefined"}
+{"level":"error","message":"El email o contraseña son incorrectos.\n   - email       : martinalejandrocenturion@.com\n   - password    : undefined"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}

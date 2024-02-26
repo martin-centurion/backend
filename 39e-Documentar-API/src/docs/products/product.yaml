@@ -1,7 +1,7 @@
 paths:
   /products:
     get:
-      summary: Obtiene todos los productos paginados, 5 por página
+      summary: Obtiene todos los productos paginados, 4 por página
       tags:
         - Products
       responses:
@@ -145,16 +145,15 @@ components:
           type: string
           description: Id del dueño del producto, si no posee por defecto se asigna un admin con id 6591bd964c892e7ada705733
       example:
-        _id: 6597fb34efbf5c1124f14073
-        title: Chicken
-        description: Carbonite web goalkeeper gloves are ergonomically designed to give easy fit
-        code: d5b14d3f-eb86-4fea-9122-ab6603c67998
-        price: 50
+        _id: 65db8491bcdb27b1b34f8e3d
+        title: Red Graphite
+        description: Este reloj ultrafino de acero inoxidable tiene un estilo atemporal. El acero pulido de este elegante reloj realza la esfera negra satinada con estampados rojos y detalles de Swatch plateados. El elegante brazalete incluye una hebilla con forma de mariposa.
+        price: 104.995
         status: true
-        stock: 235
-        category: Food
-        thumbnails: hola
-        owner: 6591bdb14c892e7ada705738
+        stock: 94
+        category: Hombres
+        thumbnails: https://static.swatch.com/images/product/SS07S129G/sa200/SS07S129G_sa200_er005.png
+        owner: 65db84bbc412c75b8df481a9
   
   requestBodies:
     createProduct:
@@ -189,10 +188,10 @@ components:
           description: Link a las imágenes
         owner:
           type: string
-          description: Id del dueño del producto, si no posee por defecto se asigna un admin con id 6591bd964c892e7ada705733
+          description: Id del dueño del producto, si no posee por defecto se asigna un admin con id 65db84bbc412c75b8df481a9
       example:
-        title: Chicken
-        description: Carbonite web goalkeeper gloves are ergonomically designed to give easy fit
+        title: Red Graphite
+        description: Este reloj ultrafino de acero inoxidable tiene un estilo atemporal. El acero pulido de este elegante reloj realza la esfera negra satinada con estampados rojos y detalles de Swatch plateados. El elegante brazalete incluye una hebilla con forma de mariposa.
         code: d5b14d3f-eb86-4fea-9122-ab6603c67998
         price: 50
         status: true

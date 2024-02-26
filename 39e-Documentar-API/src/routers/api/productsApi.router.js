@@ -36,13 +36,13 @@ router.get('/products/:pid', authenticationMiddleware('jwt'), async (req, res, n
   }
 });
 
-router.post('/register-product', authenticationMiddleware('jwt'), authorizationMiddleware(['admin','premium']), async (req, res, next) => {
+router.post('/register-product', authenticationMiddleware('jwt'), authorizationMiddleware(['admin', 'premium']), async (req, res, next) => {
   try {
-    const { body } = req;
+    const { body, user } = req;
     if (req.user.role !== 'admin' && req.user.role !== 'premium') {
       return res.status(403).json({ message: 'No tienes permisos para crear productos' });
     }
-    const product = await ProductsController.create(body);
+    const product = await ProductsController.create(body, user);
     res.status(201).json(product);
   } catch (error) {
     req.logger.fatal('Ha ocurrido un error durante la creación del producto 😨', error);

@@ -26,7 +26,7 @@ router.post('/auth/login', async (req, res) => {
 
 router.post('/auth/register', async (req, res) => {
   try {
-      const user = await AuthController.register(req.body);
+      await AuthController.register(req.body);
       res.status(201).json({ message: 'Usuario creado correctamente.' });
   } catch (error) {
       res.status(400).json({ message: error.message });

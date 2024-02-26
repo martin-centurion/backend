@@ -10,7 +10,7 @@ import {
 import { CustomError } from "../utils/CustomError.js"
 import EnumsError from '../utils/EnumsError.js'
 import { generatorUserError, validatorUserError} from "../utils/CauseMessageError.js";
-import { config } from "dotenv";
+import config from "../config.js";
 
 export default class AuthController {
     static async register(data) {
@@ -62,13 +62,12 @@ export default class AuthController {
           email, 
           password 
       } = data;
-        if (email === config.adminEmail && password === config.adminPassword) {
-         
-          const token = tokenGenerator({
-              first_name: config.adminName,
-              last_name: config.adminLastname,
-              email: config.adminEmail,
-              role: config.adminRole
+        if (email === config.admin.email && password === config.admin.password) {
+          const token = tokenGenerator ({
+              first_name: config.admin.name,
+              last_name: config.admin.lastname,
+              email: config.admin.email,
+              role: config.admin.role
           });
   
           return token;
@@ -101,7 +100,6 @@ export default class AuthController {
       return token;
   }
 
-  // Corregir no funciona
     static async recovery(data) {
       const { email, newPassword } = data;
       const user = await UserService.get({ email });
