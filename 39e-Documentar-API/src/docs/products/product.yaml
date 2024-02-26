@@ -32,14 +32,14 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
-        404:
-          description: Producto no creado.
+        403:
+          description: No tienes permiso para crear productos
         500:
           description: Error interno del servidor.
 
   /products/{pid}:
     get:
-      summary: Permite obtener un usuario por su identificador.
+      summary: Permite obtener un producto por su identificador.
       tags:
         - Products
       parameters:
@@ -56,8 +56,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Product'
-        404:
-          description: Producto no encontrado.
+        401:
+          description: Producto con id no encontrado.
         500:
           description: Error interno del servidor.
     put:
@@ -143,7 +143,7 @@ components:
           description: Link a las imágenes
         owner:
           type: string
-          description: Id del dueño del producto, si no posee por defecto se asigna un admin con id 6591bd964c892e7ada705733
+          description: Id del dueño del producto, si no posee por defecto se asigna un admin con id 65db84bbc412c75b8df481a9
       example:
         _id: 65db8491bcdb27b1b34f8e3d
         title: Red Graphite
@@ -192,13 +192,13 @@ components:
       example:
         title: Red Graphite
         description: Este reloj ultrafino de acero inoxidable tiene un estilo atemporal. El acero pulido de este elegante reloj realza la esfera negra satinada con estampados rojos y detalles de Swatch plateados. El elegante brazalete incluye una hebilla con forma de mariposa.
-        code: d5b14d3f-eb86-4fea-9122-ab6603c67998
-        price: 50
+        code: abc1
+        price: 104.995
         status: true
-        stock: 235
-        category: Food
-        thumbnails: hola
-        owner: 6591bdb14c892e7ada705738
+        stock: 94
+        category: Hombres
+        thumbnails: url
+        owner: 65db84bbc412c75b8df481a9
     updateProduct:
       type: object
       properties:
@@ -231,7 +231,7 @@ components:
           description: Link a las imágenes
         owner:
           type: string
-          description: Id del dueño del producto, si no posee por defecto se asigna un admin con id 6591bd964c892e7ada705733
+          description: Id del dueño del producto, si no posee por defecto se asigna un admin con id 65db84bbc412c75b8df481a9
       example:
         title: Chicken
         description: Carbonite web goalkeeper gloves are ergonomically designed to give easy fit
@@ -241,4 +241,4 @@ components:
         stock: 235
         category: Food
         thumbnails: hola
-        owner: 6591bdb14c892e7ada705738
+        owner: 65db84bbc412c75b8df481a9

@@ -45,8 +45,8 @@ router.post('/register-product', authenticationMiddleware('jwt'), authorizationM
     const product = await ProductsController.create(body, user);
     res.status(201).json(product);
   } catch (error) {
-    req.logger.fatal('Ha ocurrido un error durante la creación del producto 😨', error);
-    next(error);req.logger.fatal('Ha ocurrido un error durante la creación del producto 😨', error);
+    req.logger.fatal('Ha ocurrido un error durante la creación del producto.', error);
+    next(error);
   }
 });
 
