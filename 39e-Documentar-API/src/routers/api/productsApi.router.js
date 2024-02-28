@@ -28,7 +28,7 @@ router.get('/products/:pid', authenticationMiddleware('jwt'), async (req, res, n
     const { params: { pid } } = req;
     const product = await ProductsController.getById(pid);
     if (!product) {
-      return res.status(401).json({ message: `Product id ${pid} not found 😨.` });
+      return res.status(401).json({ message: `Producto con id:${pid} no encontrado.` });
     }
     res.status(200).json(product);
   } catch (error) {
