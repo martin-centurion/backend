@@ -23,6 +23,7 @@ export default {
     },
     db: {
         mongodbUri: process.env.MONGODB_URI,
+        mongodbUriTest: process.env.MONGODB_TEST,
     },
     jwtSecret: process.env.JWT_SECRET,
     cookieSecret: process.env.COOKIE_SECRET,
