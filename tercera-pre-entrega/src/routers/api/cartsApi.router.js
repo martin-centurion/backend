@@ -43,7 +43,7 @@ router.post('/carts', authenticationMiddleware('jwt'), authorizationMiddleware([
   }
 });
 
-router.delete('/carts/:cid', authenticationMiddleware('jwt'), async (req, res, next) => {
+router.delete('/carts/:cid', authenticationMiddleware('jwt'), authorizationMiddleware(['admin']), async (req, res, next) => {
   try {
       const { params: { cid } } = req;
       await CartController.deleteById(cid);
@@ -53,7 +53,7 @@ router.delete('/carts/:cid', authenticationMiddleware('jwt'), async (req, res, n
   }
 });
 
-router.post('/carts/:cid/product/:pid', async (req, res, next)=>{
+router.post('/carts/:cid/product/:pid', authorizationMiddleware(['user']), async (req, res, next)=>{
   try {
     const { cid, pid } = req.params;
     await CartController.addProductToCart(cid, pid);
