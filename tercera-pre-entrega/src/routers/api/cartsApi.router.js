@@ -9,7 +9,7 @@ const router = Router();
 
 router.post('/carts/:cid/purchase', authenticationMiddleware('jwt'), CartController.purchaseCart);
 
-router.get('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => { 
+router.get('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin', 'premium']), async (req, res, next) => { 
   try {
     const { query } = req;
     const carts = await CartController.getCarts(query);
