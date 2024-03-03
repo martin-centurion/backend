@@ -15,16 +15,6 @@ export default class CartController {
         return cart;
     }
 
-    static async getOrCreateCart(req, res) {
-      try {
-        const { userId } = req.params;
-        const cart = await CartDao.getOrCreateCart(userId);
-        console.log(`Carrito creado/autenticado correctamente:  ${cart}`);
-      } catch (error) {
-        console.log(`Ocurrio un error al traer/crear el carrito deseado`);
-      }
-    }
-
     static async findById(cartid){
         const cart = await CartService.findById(cartid);
         if(!cart) {

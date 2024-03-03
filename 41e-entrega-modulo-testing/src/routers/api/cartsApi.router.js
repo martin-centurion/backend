@@ -38,9 +38,7 @@ const buildResponse = (cid, data) => {
 }
 };
 
-
-
-/* router.post('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => {
+router.post('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => {
   try {
     const body = req.body;
     const cart = await CartController.create({
@@ -51,13 +49,7 @@ const buildResponse = (cid, data) => {
   } catch (error) {
     next(error)
   }
-}); */
-
-router.post('/carts', async(req, res)=>{
-  const {body}= req
-  const cart = await CartController.getOrCreateCart(body)
-  res.status(201).send('carrito agregado correctamente').json({cart})
-  })
+});
 
 router.delete('/carts/:cid', authenticationMiddleware('jwt'), async (req, res, next) => {
   try {
