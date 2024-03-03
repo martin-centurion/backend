@@ -65,7 +65,7 @@ router.post('/carts/:cid/product/:pid', async (req, res, next)=>{
   try {
     const { cid, pid } = req.params;
     await CartController.addProductToCart(cid, pid);
-    res.status(201).json("Producto adherido al carrito correctamente.");
+    res.status(201).json({ message: 'Producto adherido al carrito correctamente.' });
     } catch (error) {
       next(error);
     }

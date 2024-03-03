@@ -13,9 +13,10 @@ import { generatorUserError, validatorUserError} from "../utils/CauseMessageErro
 import config from "../config.js";
 import CartDao from "../dao/cart.dao.js";
 import { log } from "console";
+import CartService from "../services/cart.service.js";
 
 export default class AuthController {
-    static async register(data) {
+  static async register(data) {
         const {
             first_name,
             last_name,
@@ -50,7 +51,8 @@ export default class AuthController {
           if (!user) {
             throw new Error('Correo ya registrado 😨. Intenta recuperar tu contraseña 😁.');
           }
-          let registeredUser = await AuthService.create({
+          //const cart = await CartService.create();
+          user = await AuthService.create({
             first_name,
             last_name,
             age,
@@ -58,9 +60,11 @@ export default class AuthController {
             password: createHash(password),
             role
           });
+          console.log('user', user);
+          const token = tokenGenerator(user)
           const emailService = EmailService.getInstance();
-          await emailService.sendWelcomeEmail(registeredUser);
-          return user;
+          await emailService.sendWelcomeEmail(user);
+          return token;
     }
 
     static async login(data) {

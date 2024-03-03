@@ -2074,3 +2074,409 @@
 {"level":"info","message":"Database connected."}
 {"level":"info","message":"PORT: 8081"}
 {"level":"info","message":"Server running in http://localhost:8081 (test)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"CartDao"}
+{"level":"error","message":"Todos lo campos son requeridos y deben ser valido.\n  Lista de campos recibidos en la solicitud:\n    - first_name  : admin\n    - last_name   : admin\n    - age         : 20\n    - email       : admin@admin.com\n    - password    : 1111\n    - role        : undefined\n    "}
+{"level":"error","message":"Todos lo campos son requeridos y deben ser valido.\n  Lista de campos recibidos en la solicitud:\n    - first_name  : Nico\n    - last_name   : Hafez\n    - age         : 20\n    - email       : nh@gmail.com\n    - password    : 1111\n    - role        : undefined\n    "}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error","message":"Todos lo campos son requeridos y deben ser valido.\n  Lista de campos recibidos en la solicitud:\n    - first_name  : Nico\n    - last_name   : Hafez\n    - age         : 20\n    - email       : nh@gmail.com\n    - password    : 1111\n    - role        : undefined\n    "}
+{"level":"error","message":"Todos lo campos son requeridos y deben ser valido.\n  Lista de campos recibidos en la solicitud:\n    - first_name  : Nico\n    - last_name   : Hafez\n    - age         : 20\n    - email       : nh@gmail.com\n    - password    : 1111\n    - role        : undefined\n    "}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error","message":"Todos lo campos son requeridos y deben ser valido.\n  Lista de campos recibidos en la solicitud:\n    - first_name  : Nico\n    - last_name   : Hafez\n    - age         : 20\n    - email       : nh@gmail.com\n    - password    : 1111\n    - role        : undefined\n    "}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error","message":"Todos lo campos son requeridos y deben ser valido.\n  Lista de campos recibidos en la solicitud:\n    - first_name  : Nico\n    - last_name   : Hafez\n    - age         : 20\n    - email       : nh@gmail.com\n    - password    : 1111\n    "}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error","message":"Todos lo campos son requeridos y deben ser valido.\n  Lista de campos recibidos en la solicitud:\n    - first_name  : Nico\n    - last_name   : Hafez\n    - age         : undefined\n    - email       : nh@gmail.com\n    - password    : 1111\n    - role        : undefined\n    "}
+{"level":"error","message":"Todos lo campos son requeridos y deben ser valido.\n  Lista de campos recibidos en la solicitud:\n    - first_name  : Nico\n    - last_name   : Hafez\n    - age         : undefined\n    - email       : nh@gmail.com\n    - password    : 1111\n    - role        : undefined\n    "}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Creando un nuevo carrito."}
+{"level":"info","message":"Se ha creado el carrito exitosamente"}
+{"level":"error"}
+{"level":"error","message":"Todos lo campos son requeridos y deben ser valido.\n  Lista de campos recibidos en la solicitud:\n    - first_name  : Rami\n    - last_name   : Puche\n    - age         : 20\n    - email       : rp@gmail.com\n    - password    : 1111\n    - role        : undefined\n    "}
+{"level":"info","message":"Creando un nuevo carrito."}
+{"level":"info","message":"Se ha creado el carrito exitosamente"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Creando un nuevo carrito."}
+{"level":"info","message":"Se ha creado el carrito exitosamente"}
+{"level":"error"}
+{"level":"info","message":"Creando un nuevo carrito."}
+{"level":"info","message":"Se ha creado el carrito exitosamente"}
+{"level":"info","message":"Creando un nuevo carrito."}
+{"level":"info","message":"Se ha creado el carrito exitosamente"}
+{"level":"info","message":"Creando un nuevo carrito."}
+{"level":"info","message":"Se ha creado el carrito exitosamente"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Creando un nuevo carrito."}
+{"level":"info","message":"Se ha creado el carrito exitosamente"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Creando un nuevo carrito."}
+{"level":"info","message":"Se ha creado el carrito exitosamente"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Creando un nuevo carrito."}
+{"level":"info","message":"Se ha creado el carrito exitosamente"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (test)"}
+{"level":"error"}
+{"level":"info","message":"CartDao"}

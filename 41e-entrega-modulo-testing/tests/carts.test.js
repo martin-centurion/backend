@@ -58,17 +58,14 @@ describe('Test del modulo de carts', function () {
     console.log("bodyCurrent", bodyCurrent)
 
         cid = bodyCurrent.userCart;
-        pid = bodyCurrent.payload[0]._id
-        console.log('cid', cid);
-        console.log('pid', pid);
+        pid = bodyCurrent.payload[0]._id;
 
         const {
             statusCode,
             ok,
             _body,
         } = await requester.post('/products').send(productMock)
-            .set('Cookie', [`${cookie.key}=${cookie.value}`]);;
-        console.log('body b', _body);
+            .set('Cookie', [`${cookie.key}=${cookie.value}`]);
         
 
     })
@@ -90,5 +87,52 @@ describe('Test del modulo de carts', function () {
         expect(Array.isArray(_body)).to.be.true;
 
     });
+
+    it('Obtiene un carrito por su id', async function () {
+        const {
+            statusCode: firstStatusCode,
+            ok: firstOK,
+            _body: response1,
+        } = await requester.get('/products')
+            .set('Cookie', [`${cookie.key}=${cookie.value}`]);
+
+        const cid = response1.userCart;
+        const {body, statusCode, ok}= await requester.get(`/carts/${cid}`).set('Cookie', [`${cookie.key}=${cookie.value}`]);
+
+
+        console.log('response2', body);
+         expect(statusCode).to.be.equals(200);
+        //expect(body).to.have.property("{ payload: []} ");
+        expect(Array.isArray(body.payload)).to.be.true
+
+    });
+
+    it('Agrega un producto al carrito', async function () {
+        let productAndQuantity = {
+            productId: pid,
+            quantity: 4
+        }
+        console.log('pid', pid);
+        const {statusCode, _body, ok} = await requester.post(`/carts/${cid}/product/${pid}`)
+            .set('Cookie', [`${cookie.key}=${cookie.value}`])
+            .send(productAndQuantity);
+
+         console.log("_body", _body)
+        expect(statusCode).to.be.equals(201);
+        expect(_body).to.be.has.property('message', 'Producto adherido al carrito correctamente.');
+       
+    });
+    
+    it('Genera una compra', async function () {
+        const {
+            statusCode,
+            ok,
+            _body
+        } = await requester.post(`/carts/${cid}/purchase`).set('Cookie', [`${cookie.key}=${cookie.value}`])
+        console.log('body', _body);
+        expect(statusCode).to.be.equals(200);
+
+    });
+
 
 });

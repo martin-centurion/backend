@@ -11,19 +11,19 @@ router.get('/products', authenticationMiddleware('jwt'), async (req, res, next) 
     const { page = 1, limit = 4, group, sort } = req.query;
     const opts = { page, limit, sort: { price: sort || 'asc' } };
     const criteria = {};
-    const { first_name, last_name, role, cartId } = req.user;
+    const { first_name, last_name, role, cart } = req.user;
     console.log(
-      first_name, last_name, role, cartId
+      first_name, last_name, role, cart
     );
     console.log('req.user', req.user);
     if (group) {
       criteria.category = group;
     };
     const product = await ProductModel.paginate(criteria, opts);
-    console.log('cart id user', cartId)
-    //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cartId }));
-    //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cartId}));
-    res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role, cartId  }))
+    console.log('cart id user', cart)
+    //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cart }));
+    //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cart}));
+    res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role, cart  }))
     } catch (error) {
         next(error);
     }
@@ -91,7 +91,7 @@ const buildResponse = (data) => {
     prevPage: data.prevPage,
     nextPage: data.nextPage,
     page: data.page,
-    userCart: data.cartId,
+    userCart: data.cart,
     userName: data.first_name,
     userLastName: data.last_name,
     userRole: data.role,

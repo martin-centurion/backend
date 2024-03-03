@@ -6,7 +6,7 @@ export default class ProductController {
     static async create(data, user) {
         console.log('Creando el nuevo producto.');
         const newProduct = await ProductService.create(data, user);
-        console.log('Producto creado corretamente.');
+        console.log('Producto creado correctamente.');
         return newProduct;
       }
     

@@ -16,13 +16,14 @@ export const createHash = (password) => bcrypt.hashSync(password, bcrypt.genSalt
 export const isValidPassword = (password, user) => bcrypt.compareSync(password, user.password)
 
 export const tokenGenerator = (user) => {
-    const { _id, first_name, last_name, email, role } = user;
+    const { _id, first_name, last_name, email, role, cart } = user;
     const payload = {
         id: _id,
         first_name,
         last_name,
         email,
-        role
+        role,
+        cart
     };
     return jwt.sign(payload, config.jwtSecret, { expiresIn: '1m' });
 };
