@@ -2480,3 +2480,96 @@
 {"level":"info","message":"Server running in http://localhost:8081 (test)"}
 {"level":"error"}
 {"level":"info","message":"CartDao"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8080"}
+{"level":"info","message":"Server running in http://localhost:8080 (production)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (test)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 8080"}
+{"level":"info","message":"Server running in http://localhost:8080 (production)"}
+{"level":"error","message":"Error to connect to database"}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (test)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (test)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (test)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8080"}
+{"level":"info","message":"Server running in http://localhost:8080 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8080"}
+{"level":"info","message":"Server running in http://localhost:8080 (production)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 3000"}
+{"level":"info","message":"Server running in http://localhost:3000 (test)"}
