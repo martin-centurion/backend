@@ -2,6 +2,7 @@ import CartService from "../services/cart.service.js";
 import ProductDao from "../dao/product.dao.js";
 import TicketController from './ticket.controller.js';
 import { Exception, getNewId } from "../utils.js";
+import CartDao from "../dao/cart.dao.js";
 
 export default class CartController {
 
@@ -12,6 +13,16 @@ export default class CartController {
     static async getCarts(query = {}) {
         const cart = await CartService.get(query);
         return cart;
+    }
+
+    static async getOrCreateCart(req, res) {
+      try {
+        const { userId } = req.params;
+        const cart = await CartDao.getOrCreateCart(userId);
+        console.log(`Carrito creado/autenticado correctamente:  ${cart}`);
+      } catch (error) {
+        console.log(`Ocurrio un error al traer/crear el carrito deseado`);
+      }
     }
 
     static async findById(cartid){

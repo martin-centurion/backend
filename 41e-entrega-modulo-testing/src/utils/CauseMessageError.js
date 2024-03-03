@@ -6,6 +6,7 @@ export const generatorUserError = (user) => {
     - age         : ${user.age}
     - email       : ${user.email}
     - password    : ${user.password}
+    - role        : ${user.role}
     `;
 };
   

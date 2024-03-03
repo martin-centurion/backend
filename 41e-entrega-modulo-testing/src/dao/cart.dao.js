@@ -10,6 +10,16 @@ export default class CartDao {
         return CartModel.find(criteria)
     } 
 
+    static async getOrCreateCart(userId) {
+      console.log('UserId:', userId);
+      const existingCart = await CartModel.findOne({ user: userId });
+      if (existingCart) {
+        return existingCart;
+      } else {
+        const newCart = await CartModel.create({ user: userId, products: [] });
+        return newCart;
+      }}
+
     static async getById(cid, populate = false) {
       try {
         const cart = await CartModel.findOne({ _id: cid });

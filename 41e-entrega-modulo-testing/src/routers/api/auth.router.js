@@ -8,7 +8,7 @@ router.post('/auth/login', async (req, res) => {
     const token = await AuthController.login(req.body);
       res
         .cookie('access_token', token, {
-          maxAge: 60000,
+          maxAge: 600000,
           httpOnly: true,
         })
         .status(200)
@@ -26,22 +26,14 @@ router.post('/auth/login', async (req, res) => {
 
 router.post('/auth/register', async (req, res) => {
   try {
-      await AuthController.register(req.body);
+      const { body } = req
+      await AuthController.register(body);
       res.status(201).json({ message: 'Usuario creado correctamente.' });
   } catch (error) {
       res.status(400).json({ message: error.message });
       req.logger.error(error.cause);
   }
 });
-
-router.get('/auth/app', (req, res, next) => {
-  try {
-    console.log({ message: 'app connected'});
-  } catch (error) {
-    next();
-  }
-})
-
 
 router.post('/auth/recovery-password', async (req, res) => {
   try {
@@ -63,6 +55,9 @@ router.post('/auth/restore-password', async (req, res) => {
   } catch (error) {
     res.status(400).json({  message: error.message  })
   }
+
 });
+
+
 
 export default router;

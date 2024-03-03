@@ -1,13 +1,12 @@
 import { Router } from 'express';
 import CartController from '../../controllers/cart.controller.js';
 import { authenticationMiddleware, authorizationMiddleware } from "../../utils.js";
-import { loggerDev } from '../../config/logger.js';
 
 const router = Router();
 
 router.post('/carts/:cid/purchase', authenticationMiddleware('jwt'), CartController.purchaseCart);
 
-router.get('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => { 
+router.get('/carts', authenticationMiddleware('jwt'), async (req, res, next) => { 
   try {
     const { query } = req;
     const carts = await CartController.getCarts(query);
@@ -17,22 +16,31 @@ router.get('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['
   }
 });
 
-router.get('/carts/:cid', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => {
+router.get('/carts/:cid', authenticationMiddleware('jwt'), async (req, res, next) => {
   const { cid } = req.params;
   try {
       const user = req.user;
+      console.log('user', user);
       const cartId = user.cartId
       const result = await CartController.findById(cid);
-      res.render('cart', buildResponse(cartId, result));
-      //res.status(201).json({cid, result})
+      //res.render('cart', buildResponse(cartId, result));
+      res.status(200).json(buildResponse(cartId, result))
   } catch (error) {
       req.logger.error(error.message)
   }
 });
 
+const buildResponse = (cid, data) => {
+  const payload = data.products.map(product => product.toJSON())
+    return {
+        cartId: cid,
+        payload
+}
+};
 
 
-router.post('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => {
+
+/* router.post('/carts', authenticationMiddleware('jwt'), authorizationMiddleware(['user', 'admin']), async (req, res, next) => {
   try {
     const body = req.body;
     const cart = await CartController.create({
@@ -43,7 +51,13 @@ router.post('/carts', authenticationMiddleware('jwt'), authorizationMiddleware([
   } catch (error) {
     next(error)
   }
-});
+}); */
+
+router.post('/carts', async(req, res)=>{
+  const {body}= req
+  const cart = await CartController.getOrCreateCart(body)
+  res.status(201).send('carrito agregado correctamente').json({cart})
+  })
 
 router.delete('/carts/:cid', authenticationMiddleware('jwt'), async (req, res, next) => {
   try {

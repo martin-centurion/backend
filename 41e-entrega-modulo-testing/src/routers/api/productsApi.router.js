@@ -2,6 +2,7 @@ import { Router } from 'express';
 import ProductsController from '../../controllers/product.controller.js';
 import ProductModel from '../../models/product.model.js';
 import { authenticationMiddleware, authorizationMiddleware } from "../../utils.js";
+import config from '../../config.js';
 
 const router = Router();
 
@@ -11,13 +12,18 @@ router.get('/products', authenticationMiddleware('jwt'), async (req, res, next) 
     const opts = { page, limit, sort: { price: sort || 'asc' } };
     const criteria = {};
     const { first_name, last_name, role, cartId } = req.user;
+    console.log(
+      first_name, last_name, role, cartId
+    );
+    console.log('req.user', req.user);
     if (group) {
       criteria.category = group;
     };
     const product = await ProductModel.paginate(criteria, opts);
-    res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cartId }));
+    console.log('cart id user', cartId)
+    //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cartId }));
     //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cartId}));
-    //res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role, cartId  }))
+    res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role, cartId  }))
     } catch (error) {
         next(error);
     }
@@ -42,8 +48,8 @@ router.post('/register-product', authenticationMiddleware('jwt'), authorizationM
     if (req.user.role !== 'admin' && req.user.role !== 'premium') {
       return res.status(403).json({ message: 'No tienes permisos para crear productos' });
     }
-    const product = await ProductsController.create(body, user);
-    res.status(201).json(product);
+    await ProductsController.create(body, user);
+    res.status(201).json({ message: 'Producto creado correctamente.' });
   } catch (error) {
     req.logger.fatal('Ha ocurrido un error durante la creación del producto.', error);
     next(error);
@@ -73,7 +79,7 @@ router.delete('/products/:pid', authenticationMiddleware('jwt'), authorizationMi
     await ProductsController.deleteById(pid);
     res.status(204).end();
   } catch (error) {
-    res.status(error.statusCode || 500).json({ message: error.message });
+    res.status(500).json({ message: error.message });
   }
 });
 
@@ -85,13 +91,14 @@ const buildResponse = (data) => {
     prevPage: data.prevPage,
     nextPage: data.nextPage,
     page: data.page,
+    userCart: data.cartId,
     userName: data.first_name,
     userLastName: data.last_name,
     userRole: data.role,
     hasPrevPage: data.hasPrevPage,
     hasNextPage: data.hasNextPage,
-    prevLink: data.hasPrevPage ? `http://localhost:8081/products?limit=${data.limit}&page=${data.prevPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',
-    nextLink: data.hasNextPage ? `http://localhost:8081/products?limit=${data.limit}&page=${data.nextPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',
+    prevLink: data.hasPrevPage ? `http://localhost:${config.port}/products?limit=${data.limit}&page=${data.prevPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',
+    nextLink: data.hasNextPage ? `http://localhost:${config.port}/products?limit=${data.limit}&page=${data.nextPage}${data.group ? `&group=${data.group}` : ''}${data.sort ? `&sort=${data.sort}` : ''}` : '',
   }
 }
 

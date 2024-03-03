@@ -11,6 +11,8 @@ import { CustomError } from "../utils/CustomError.js"
 import EnumsError from '../utils/EnumsError.js'
 import { generatorUserError, validatorUserError} from "../utils/CauseMessageError.js";
 import config from "../config.js";
+import CartDao from "../dao/cart.dao.js";
+import { log } from "console";
 
 export default class AuthController {
     static async register(data) {
@@ -20,13 +22,15 @@ export default class AuthController {
             age,
             email,
             password,
+            role
           } = data;
           if (
             !first_name ||
             !last_name ||
             !age ||
             !email ||
-            !password
+            !password ||
+            !role
           ) {
             CustomError.createError({
               name: 'Error creando el usuario',
@@ -36,6 +40,7 @@ export default class AuthController {
                 email,
                 age,
                 password,
+                role
               }),
               message: 'Ocurrio un error mientras intentamos crear un usuario.',
               code: EnumsError.BAD_REQUEST_ERROR,
@@ -51,6 +56,7 @@ export default class AuthController {
             age,
             email,
             password: createHash(password),
+            role
           });
           const emailService = EmailService.getInstance();
           await emailService.sendWelcomeEmail(registeredUser);

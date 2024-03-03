@@ -4,9 +4,11 @@ let pathEnvFile = null;
 
 if (process.env.ENV !== 'production') {
     pathEnvFile = './.env.dev'
-} else {
+} else if(process.env.ENV !== 'development') {
     pathEnvFile = './.env.prod'
-}
+} else if(process.env.ENV !== 'production' || process.env.ENV !== 'development') {
+    pathEnvFile = './.env.test'
+} 
 
 dotenv.config({ path: pathEnvFile });
 
@@ -23,7 +25,6 @@ export default {
     },
     db: {
         mongodbUri: process.env.MONGODB_URI,
-        mongodbUriTest: process.env.MONGODB_TEST,
     },
     jwtSecret: process.env.JWT_SECRET,
     cookieSecret: process.env.COOKIE_SECRET,
