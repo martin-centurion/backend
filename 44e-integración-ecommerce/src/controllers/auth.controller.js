@@ -11,9 +11,6 @@ import { CustomError } from "../utils/CustomError.js"
 import EnumsError from '../utils/EnumsError.js'
 import { generatorUserError, validatorUserError} from "../utils/CauseMessageError.js";
 import config from "../config.js";
-import CartDao from "../dao/cart.dao.js";
-import { log } from "console";
-import CartService from "../services/cart.service.js";
 
 export default class AuthController {
   static async register(data) {
@@ -152,6 +149,17 @@ export default class AuthController {
       if (!userToUpdate) {
         return res.status(404).json({ message: 'Usuario no encontrado' });
       }
+      const { documents } = userToUpdate;
+      const requiredDocuments = ['identification', 'proofOfAddress', 'bankStatement'];
+      const missingDocuments = requiredDocuments.filter(docName => !documents.find(doc => doc.name === docName));
+      if (missingDocuments.length > 0) {
+        CustomError.createError({
+          name: 'Error actualizando al usuario',
+          cause: generatorUserUpdate(documents),
+          message: 'Faltan completar campos 😨.',
+          code: EnumsError.INVALID_PARAMS_ERROR,
+        });
+      }
       const userRole =  userToUpdate.role
       const userUpdate = userRole === 'user' ? 'premium' : 'user';
       const userToUp = {
@@ -159,7 +167,7 @@ export default class AuthController {
            role: userUpdate
           };
       await AuthService.updateById(uid, userToUp);
-      return userUpdate
+      return userUpdate;
   }}
 
 

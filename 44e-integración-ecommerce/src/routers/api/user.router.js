@@ -1,7 +1,7 @@
 import { Router } from "express";
 import UserController from "../../controllers/user.controller.js";
 import AuthController from "../../controllers/auth.controller.js";
-import { authenticationMiddleware, authorizationMiddleware } from "../../utils.js";
+import { authenticationMiddleware, authorizationMiddleware, uploader } from "../../utils.js";
 
 const router = Router();
 
@@ -13,6 +13,35 @@ router.get('/users', authenticationMiddleware('jwt'), async (req, res, next) => 
         next(error)
     }
 });
+
+router.post('/users/:uid/documents',authenticationMiddleware('jwt'), uploader.single('file' ), async (req, res, next)=>{
+        try {
+        const {
+            params: { uid },
+            file,
+            body: { documentType }
+        } = req;
+        const upDocs = 
+            {
+                name: documentType,
+                reference: file.filename,
+            };
+            console.log('up',file.fieldname);
+            
+        console.log('file', file)
+        
+        const user = await UserModel.findById(uid);
+        if (!user) {
+            return res.status(404).json({ message: `No se encontró el usuario ${uid} 👽` });
+        }
+        user.documents.push(upDocs)
+        await user.save()
+  
+        return res.status(201).json({ message: 'Documents uploaded successfully' });
+        } catch (error) {
+        next(res.status(error.statusCode || 500).json({ message: error.message }));
+        }
+  });
 
 router.get('/users/:uid', authenticationMiddleware('jwt'), async (req, res, next) => {
     const { uid } = req.params;
@@ -52,9 +81,9 @@ router.put('/users/premium/:uid', authenticationMiddleware('jwt'), authorization
     } catch (error) {
     req.logger.error(error);
     res.status(500).json({ message: 'Error al actualizar el rol del usuario' });
-}
+    };
   
-  })
+});
 
 
 export default router;

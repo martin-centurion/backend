@@ -10,8 +10,18 @@ export const generatorUserError = (user) => {
     `;
 };
   
-  export const validatorUserError = (data) => {
+export const validatorUserError = (data) => {
    return `El email o contraseña son incorrectos.
    - email       : ${data.email}
    - password    : ${data.password}`;
-  } 
+};
+
+export const generatorUserUpdate = (user ) =>{
+  return `Todos lo campos son requerios y deben ser valido 😱.
+  Lista de campos recibidos en la solicitud:
+    -identification   : ${user.documents}
+    - proofOfAddress  : ${user.documents}
+    - bankStatement   : ${user.documents}
+    
+    `;
+};

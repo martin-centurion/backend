@@ -8,6 +8,8 @@ const userSchema = new mongoose.Schema({
     password:    { type: String, required: true },
     provider: String,
     cart:        { type: mongoose.Schema.Types.ObjectId, ref: 'Cart' },
+    documents:   [{name: { type: String }, reference: { type: String }}],
+    last_connection: { type: Date, default: null },
     role:        { type: String, enum: ['user', 'admin', 'premium'], default: 'user' },
     jwtTocken:   { type: String },
 }, { timestamps: true });

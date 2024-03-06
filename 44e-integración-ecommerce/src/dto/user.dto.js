@@ -5,7 +5,8 @@ export default class UserDTO {
         this.email = user.email;
         this.age = user.age;
         this.password = user.password;
-        this.role = user.role || 'user';
+        this.role = user.role;
         this.cart = user.cart;
+        this.documents = user.documents;
     }
 }
