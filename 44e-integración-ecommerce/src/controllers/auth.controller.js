@@ -9,7 +9,7 @@ import {
 } from "../utils.js";
 import { CustomError } from "../utils/CustomError.js"
 import EnumsError from '../utils/EnumsError.js'
-import { generatorUserError, validatorUserError} from "../utils/CauseMessageError.js";
+import { generatorUserError, validatorUserError, generatorUserUpdate} from "../utils/CauseMessageError.js";
 import config from "../config.js";
 
 export default class AuthController {
@@ -90,6 +90,7 @@ export default class AuthController {
         })
       }
       const user = await AuthService.getEmail({ email });
+      await UserModel.findByIdAndUpdate(user.id, { last_connection: Date.now() });
       const isValidPass = isValidPassword(password, user);
       if (!isValidPass) {
         CustomError.createError({
@@ -145,29 +146,32 @@ export default class AuthController {
     };
 
     static async changeUserRole(uid){
+  
       const userToUpdate = await UserService.findById(uid);
-      if (!userToUpdate) {
-        return res.status(404).json({ message: 'Usuario no encontrado' });
-      }
-      const { documents } = userToUpdate;
-      const requiredDocuments = ['identification', 'proofOfAddress', 'bankStatement'];
-      const missingDocuments = requiredDocuments.filter(docName => !documents.find(doc => doc.name === docName));
-      if (missingDocuments.length > 0) {
-        CustomError.createError({
-          name: 'Error actualizando al usuario',
-          cause: generatorUserUpdate(documents),
-          message: 'Faltan completar campos 😨.',
-          code: EnumsError.INVALID_PARAMS_ERROR,
-        });
-      }
-      const userRole =  userToUpdate.role
-      const userUpdate = userRole === 'user' ? 'premium' : 'user';
-      const userToUp = {
-          ...userToUpdate,
-           role: userUpdate
-          };
-      await AuthService.updateById(uid, userToUp);
-      return userUpdate;
-  }}
+        console.log('user to update', userToUpdate);
+        if (!userToUpdate) {
+          console.log({ message: 'Usuario no encontrado' });
+        }
+        console.log('us doc', userToUpdate.documents);
+        const { documents } = userToUpdate;
+        const requiredDocuments = ['identification', 'proofOfAddress', 'bankStatement'];
+        const missingDocuments = requiredDocuments.filter(docName => !documents.find(doc => doc.name === docName));
+        if (missingDocuments.length > 0) {
+          CustomError.createError({
+            name: 'Error actualizando al usuario',
+            cause: generatorUserUpdate(documents),
+            message: 'Faltan completar campos 😨.',
+            code: EnumsError.INVALID_PARAMS_ERROR,
+          });
+        }
+        const UserRole =  userToUpdate.role
+          const UserUpdated = UserRole === 'user' ? 'premium' : 'user';
+          const userToUp = {...userToUpdate, role: UserUpdated}
+       console.log('user updated', UserUpdated);
+           const user=  await UserService.updateById(uid, userToUp);
+           console.log('uo', user);
+           return UserUpdated
+    
+    }}
 
 

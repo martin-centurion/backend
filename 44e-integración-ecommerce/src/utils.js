@@ -6,6 +6,7 @@ import { fileURLToPath } from 'url';
 import config from './config.js';
 import { v4 as uuidv4 } from 'uuid';
 import multer from 'multer';
+import fs from 'fs';
 
 export const getNewId = () => uuidv4();
 
@@ -67,26 +68,25 @@ export const authorizationMiddleware = (roles) => (req, res, next) => {
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
-      let folderPath = null;
-     const {body:{documentType}} = req
-      console.log('file.fieldname',file);
+        let folderPath = null;
+        const { body: { documentType } } = req
+        console.log('file.fieldname', file);
   
-      switch (documentType) {
-        case 'profileImg':
-          folderPath = path.join(__dirname, './imgs/profiles');
-          break;
-        case 'productsImg':
-          folderPath = path.join(__dirname, './imgs/products');
-          break;
-        case 'images':
-          folderPath = path.join(__dirname, '../public/images');
-          break;
-        default:
-          folderPath = path.join(__dirname, '../imgs/documents');
-          
-      }
-      fs.mkdirSync(folderPath, { recursive: true });
-      cb(null, folderPath);
+        switch (documentType) {
+            case 'profileImg':
+            folderPath = path.join(__dirname, './imgs/profiles');
+            break;
+            case 'productsImg':
+            folderPath = path.join(__dirname, './imgs/products');
+            break;
+            case 'documents':
+            folderPath = path.join(__dirname, './imgs/documents');
+            break;
+            default:
+            folderPath = path.join(__dirname, '../imgs/documents');    
+        }
+      fs.mkdirSync( folderPath, { recursive: true });
+      cb( null, folderPath );
     },
     filename: (req, file, cb) => {
       console.log('filename', file);

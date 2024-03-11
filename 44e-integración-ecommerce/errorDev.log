@@ -2615,3 +2615,175 @@
 {"level":"info","message":"Database connected."}
 {"level":"info","message":"PORT: 8081"}
 {"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"CartDao"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    -identification   : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    -identification   : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    -identification   : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"level":"error"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    -identification   : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    -identification   : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"level":"error"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}
+{"level":"info","message":"Database connected."}
+{"level":"info","message":"PORT: 8081"}
+{"level":"info","message":"Server running in http://localhost:8081 (development)"}
+{"cause":"Todos lo campos son requerios y deben ser valido 😱.\n  Lista de campos recibidos en la solicitud:\n    - identification  : undefined\n    - proofOfAddress  : undefined\n    - bankStatement   : undefined\n    \n    ","code":4,"level":"error","name":"Error actualizando al usuario"}

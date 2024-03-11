@@ -5,8 +5,7 @@ export const generatorUserError = (user) => {
     - last_name   : ${user.last_name}
     - age         : ${user.age}
     - email       : ${user.email}
-    - password    : ${user.password}
-    - role        : ${user.role}
+    - password    : ${user.password} 
     `;
 };
   
@@ -16,12 +15,12 @@ export const validatorUserError = (data) => {
    - password    : ${data.password}`;
 };
 
-export const generatorUserUpdate = (user ) =>{
+export const generatorUserUpdate = (doc) =>{
   return `Todos lo campos son requerios y deben ser valido 😱.
   Lista de campos recibidos en la solicitud:
-    -identification   : ${user.documents}
-    - proofOfAddress  : ${user.documents}
-    - bankStatement   : ${user.documents}
+    - identification  : ${doc.documents}
+    - proofOfAddress  : ${doc.documents}
+    - bankStatement   : ${doc.documents}
     
     `;
 };

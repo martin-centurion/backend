@@ -1,6 +1,7 @@
 import { Router } from "express";
 import UserController from "../../controllers/user.controller.js";
 import AuthController from "../../controllers/auth.controller.js";
+import UserModel from "../../models/user.model.js";
 import { authenticationMiddleware, authorizationMiddleware, uploader } from "../../utils.js";
 
 const router = Router();
@@ -26,18 +27,18 @@ router.post('/users/:uid/documents',authenticationMiddleware('jwt'), uploader.si
                 name: documentType,
                 reference: file.filename,
             };
-            console.log('up',file.fieldname);
+            console.log('up***', file.fieldname);
             
         console.log('file', file)
         
         const user = await UserModel.findById(uid);
         if (!user) {
-            return res.status(404).json({ message: `No se encontró el usuario ${uid} 👽` });
+            return res.status(404).json({ message: `No se encontró el usuario ${uid}` });
         }
         user.documents.push(upDocs)
         await user.save()
   
-        return res.status(201).json({ message: 'Documents uploaded successfully' });
+        return res.status(201).json({ message: 'Documento cargado correctamente' });
         } catch (error) {
         next(res.status(error.statusCode || 500).json({ message: error.message }));
         }
