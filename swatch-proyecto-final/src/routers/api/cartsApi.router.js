@@ -19,12 +19,14 @@ router.get('/carts', authenticationMiddleware('jwt'), async (req, res, next) => 
 router.get('/carts/:cid', authenticationMiddleware('jwt'), async (req, res, next) => {
   const { cid } = req.params;
   try {
+    console.log('req', req.user.cart);
       const user = req.user;
       console.log('user', user);
-      const cartId = user.cartId
+      const cartId = user.cart;
+      console.log('cartId', user.cart);
       const result = await CartController.findById(cid);
-      //res.render('cart', buildResponse(cartId, result));
-      res.status(200).json(buildResponse(cartId, result))
+      res.status(200).render('carts',buildResponse(cartId, result))
+      //res.status(200).json(buildResponse(cartId, result))
   } catch (error) {
       req.logger.error(error.message)
   }

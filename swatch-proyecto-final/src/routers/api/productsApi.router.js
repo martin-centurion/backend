@@ -21,9 +21,9 @@ router.get('/products', authenticationMiddleware('jwt'), async (req, res, next) 
     };
     const product = await ProductModel.paginate(criteria, opts);
     console.log('cart id user', cart)
-    //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cart }));
+    res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cart }));
     //res.render('products', buildResponse({ ...product, group, sort, first_name, last_name, role, cart}));
-    res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role, cart  }))
+    //res.status(200).json(buildResponse({ ...product, group, sort, first_name, last_name, role, cart  }))
     } catch (error) {
         next(error);
     }

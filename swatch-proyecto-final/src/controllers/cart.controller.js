@@ -53,18 +53,15 @@ export default class CartController {
       try {
         const { cid } = req.params;
         const cart = await CartController.findById(cid, true);
-        console.log('cart purchase', cart);
-  
         const failedProductIds = [];
         const purchasedProducts = [];
         let totalAmount = 0;
   
         for (const cartProduct of cart.products) {
           const product = await ProductDao.getById(cartProduct.product);
-          console.log('product by id', product);
   
           if (product.stock >= cartProduct.quantity) {
-            // Suficiente stock, procesar la compra
+            
             product.stock -= cartProduct.quantity;
             await product.save();
   
@@ -82,7 +79,7 @@ export default class CartController {
   
         // Actualizar el carrito con productos no comprados
         const remainingProducts = cart.products.filter(
-          (cartProduct) => !failedProductIds.includes(cartProduct.product.toString())
+          (cartProduct) => failedProductIds.includes(cartProduct.product.toString())
         );
   
         cart.products = remainingProducts;
@@ -94,8 +91,20 @@ export default class CartController {
           amount: totalAmount,
           purchaser: req.user.email,
         });
-  
-        res.status(200).json({ ticket, failedProductIds });
+         
+        const productsNotBuyed = [];
+            for (const productId of failedProductIds) {
+                const productNotBuyed = await ProductDao.getById(productId);
+                productsNotBuyed.push(productNotBuyed);
+            }
+    
+            console.log('productsNotBuyed', productsNotBuyed);
+    const prod = JSON.parse(JSON.stringify(productsNotBuyed))
+            const ticketData = JSON.parse(JSON.stringify(ticket));
+            console.log('tiketsss', ticketData);
+            
+            res.status(200).render('purchase', { ticket: ticketData, productsNotBuyed: prod });
+
       } catch (error) {
         console.error('Error al procesar la compra:', error.message);
         res.status(500).json({ error: 'Error interno del servidor' });
